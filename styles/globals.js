@@ -17,4 +17,10 @@ export const GlobalStyles = createGlobalStyle`
     font-family: var(--ss);
     color: ${({ theme }) => theme.a};
   }
+
+  input {
+    color: ${({ theme }) => theme.text};
+    background-color: ${({ theme }) => theme.bg};
+    border-bottom: 2px solid ${({ theme }) => theme.text}
+  }
 `;

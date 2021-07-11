@@ -100,3 +100,49 @@ a {
     filter: brightness(120%);
   }
 }
+
+label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+}
+textarea,
+input,
+select,
+option,
+label,
+small,
+span {
+  font-family: var(--ss);
+}
+input,
+button,
+textarea,
+select {
+  display: block;
+  font-size: 0.875rem;
+  letter-spacing: 0.05rem;
+  border: none;
+  outline: none;
+  border-radius: 0;
+}
+
+button:hover {
+  cursor: pointer;
+  filter: brightness(120%);
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  padding: 0;
+  margin: 0;
+  width: auto;
+  height: 1.1rem;
+  width: 1.1rem;
+}
+
+input:disabled,
+textarea:disabled {
+  color: var(--light-gray) !important;
+  border-bottom: 2px solid var(--mid-gray) !important;
+}

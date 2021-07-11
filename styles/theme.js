@@ -16,6 +16,8 @@
 
 const primary = '#0f62fe';
 const primaryActive = '#002d9c';
+const secondary = '#393939';
+const secondaryActive = '#313233';
 
 export const lightTheme = {
   body: '#E2E2E2',
@@ -23,6 +25,7 @@ export const lightTheme = {
   toggleBorder: '#FFF',
   gradient: 'linear-gradient(#39598A, #79D7ED)',
   a: primary,
+  bg: '#d3d3d3',
 };
 
 export const darkTheme = {
@@ -31,4 +34,5 @@ export const darkTheme = {
   toggleBorder: '#6B8096',
   gradient: 'linear-gradient(#091236, #1E215D)',
   a: primary,
+  bg: secondaryActive,
 };

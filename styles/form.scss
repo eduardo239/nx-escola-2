@@ -1,0 +1,68 @@
+.field {
+  position: relative;
+  margin-bottom: 1rem;
+  label {
+    margin-bottom: 0.25rem;
+    display: inline-block;
+    color: var(--light-gray);
+  }
+  input {
+    padding: 10px;
+    width: 100%;
+    &:active,
+    &:focus {
+      border-bottom: 2px solid var(--primary);
+    }
+  }
+
+  &.field__error {
+    & input {
+      border-bottom: 2px solid var(--danger);
+    }
+    & textarea {
+      border-bottom: 2px solid var(--danger);
+    }
+  }
+}
+
+.field--radio,
+.field--check {
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+  gap: 1.5rem;
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.field--select {
+  min-height: 3rem;
+  select {
+    display: inline-block;
+    min-width: 12rem;
+    padding: 10px;
+    background-color: var(--secondary-active);
+    border-bottom: 2px solid var(--white);
+    color: var(--white);
+    &:active,
+    &:focus {
+      border-bottom: 2px solid var(--primary);
+    }
+  }
+}
+
+textarea {
+  background-color: var(--secondary-active);
+  color: var(--white);
+  resize: vertical;
+  padding: 10px;
+  border-bottom: 2px solid var(--white);
+  line-height: 1.5;
+  &:active,
+  &:focus {
+    border-bottom: 2px solid var(--primary);
+  }
+}

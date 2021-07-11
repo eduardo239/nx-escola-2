@@ -1,5 +1,4 @@
 import s from '../../styles/Navbar.module.css';
-
 import Link from 'next/link';
 
 const Navbar = () => {
@@ -9,13 +8,13 @@ const Navbar = () => {
         <Link href="/">Home</Link>
       </li>
       <li>
-        <Link href="/">Courses</Link>
+        <Link href="/courses">Cursos</Link>
       </li>
       <li>
-        <Link href="/">Home</Link>
+        <Link href="/profile">Perfil</Link>
       </li>
       <li>
-        <Link href="/">Home</Link>
+        <Link href="/logout">Logout</Link>
       </li>
     </ul>
   );

@@ -1,12 +1,14 @@
 import '../styles/reset.css';
 import '../styles/globals.scss';
 import '../styles/buttons.scss';
+import '../styles/form.scss';
 import { UserContextProvider } from '../utils/useUser';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '../styles/globals';
 import { lightTheme, darkTheme } from '../styles/theme';
 import { useEffect, useState } from 'react';
 import Layout from '../components/ui/Layout';
+import { Button } from '../components/ui/Form';
 
 function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState('light');
@@ -28,9 +30,9 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
         <Layout>
-          <button className="button button--primary" onClick={toggleTheme}>
+          <Button primary onClick={toggleTheme}>
             Switch Theme
-          </button>
+          </Button>
           <Component {...pageProps} />
         </Layout>
       </ThemeProvider>
