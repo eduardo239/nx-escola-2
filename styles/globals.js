@@ -21,6 +21,6 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   a {
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.a};
   }
 `;

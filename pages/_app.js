@@ -1,17 +1,26 @@
-import '../styles/globals.css';
+import '../styles/globals.scss';
+import '../styles/reset.css';
 import { UserContextProvider } from '../utils/useUser';
-import Layout from '../components/ui/Layout';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '../styles/globals';
 import { lightTheme, darkTheme } from '../styles/theme';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Layout from '../components/ui/Layout';
 
 function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState('light');
 
   const toggleTheme = () => {
     theme == 'light' ? setTheme('dark') : setTheme('light');
+    theme === 'dark'
+      ? window.localStorage.setItem('theme', 'light')
+      : window.localStorage.setItem('theme', 'dark');
   };
+
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem('theme');
+    if (localTheme) setTheme(localTheme);
+  }, []);
 
   return (
     <UserContextProvider>
