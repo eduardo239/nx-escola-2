@@ -1,5 +1,6 @@
-import '../styles/globals.scss';
 import '../styles/reset.css';
+import '../styles/globals.scss';
+import '../styles/buttons.scss';
 import { UserContextProvider } from '../utils/useUser';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '../styles/globals';
@@ -27,7 +28,9 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
         <Layout>
-          <button onClick={toggleTheme}>Switch Theme</button>
+          <button className="button button--primary" onClick={toggleTheme}>
+            Switch Theme
+          </button>
           <Component {...pageProps} />
         </Layout>
       </ThemeProvider>

@@ -8,19 +8,13 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
-    padding: 0;
-    margin: 0;
     transition: all 0.25s linear;
   }
 
   a {
+    font-family: var(--ss);
     color: ${({ theme }) => theme.a};
   }
 `;
