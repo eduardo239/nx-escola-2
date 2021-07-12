@@ -1,3 +1,9 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
 .container {
   display: none;
   width: 100vw;
@@ -8,13 +14,29 @@
   left: 0;
   z-index: 1000;
   .ul {
+    animation: slide 0.25s ease-in;
+    padding: 0 0.5rem;
     min-width: 12rem;
     li {
-      display: block;
-      padding: 0.25rem;
       a {
-        font-size: 0.9rem;
+        display: block;
+        padding: 0.5rem 0;
+      }
+      a,
+      button {
+        font-size: 0.75rem;
       }
     }
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+    width: 0;
+  }
+  100% {
+    transform: translateX(0);
+    width: 12rem;
   }
 }

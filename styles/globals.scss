@@ -94,6 +94,7 @@ small {
 
 a {
   text-decoration: none;
+  letter-spacing: 0.36px;
   &:hover {
     cursor: pointer;
     filter: brightness(120%);
@@ -177,11 +178,26 @@ textarea:disabled {
   margin-bottom: 1rem;
 }
 /*-----------------------------------------------------*/
-
 .separator {
   height: 1px;
-  background: var(--light-gray);
-  margin-bottom: 1rem;
   opacity: 0.1;
   width: 100%;
+}
+
+/*-----------------------------------------------------*/
+// TODO:
+.my-masonry-grid {
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div {
+  /* change div to reference your elements you put in <Masonry> */
+  margin-bottom: 30px;
 }

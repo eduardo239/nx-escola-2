@@ -3,10 +3,10 @@ import Navbar from './Navbar';
 // import Footer from './section/Footer';
 // import Navbar from './section/Navbar';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, toggleTheme, theme }) => {
   return (
     <div className={s.container}>
-      <Navbar />
+      <Navbar toggleTheme={toggleTheme} theme={theme} />
       <main className={s.main}>{children}</main>
       <div className={s.footer}>
         <footer>footer</footer>

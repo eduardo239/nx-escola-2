@@ -9,19 +9,21 @@ import { lightTheme, darkTheme } from '../styles/theme';
 import { useEffect, useState } from 'react';
 import Layout from '../components/ui/Layout';
 import { Button } from '../components/ui/Form';
+// import { toggleTheme } from '../utils/index';
 
 function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState('light');
 
-  const toggleTheme = () => {
-    theme == 'light' ? setTheme('dark') : setTheme('light');
+  const toggleTheme = (theme) => {
     theme === 'dark'
       ? window.localStorage.setItem('theme', 'light')
       : window.localStorage.setItem('theme', 'dark');
+
+    theme == 'light' ? setTheme('dark') : setTheme('light');
   };
 
   useEffect(() => {
-    const localTheme = window.localStorage.getItem('theme');
+    let localTheme = window.localStorage.getItem('theme');
     if (localTheme) setTheme(localTheme);
   }, []);
 
@@ -29,10 +31,10 @@ function MyApp({ Component, pageProps }) {
     <UserContextProvider>
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
-        <Layout>
-          <Button primary onClick={toggleTheme}>
+        <Layout toggleTheme={toggleTheme} theme={theme}>
+          {/* <Button primary onClick={() => toggleTheme(theme)}>
             Switch Theme
-          </Button>
+          </Button> */}
           <Component {...pageProps} />
         </Layout>
       </ThemeProvider>
