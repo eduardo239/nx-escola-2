@@ -1,6 +1,7 @@
 {
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.fixAll.format": true
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -12,6 +13,7 @@
     "next.config.js": true,
     "package.json": true,
     ".eslintrc": true,
-    ".prettierrc": true
-  }
+    ".prettierrc": false
+  },
+  "editor.formatOnPaste": true
 }
