@@ -18,6 +18,9 @@ export const GlobalStyles = createGlobalStyle`
     border-bottom: 2px solid ${({ theme }) => theme.text}
   }
 
+  .field label, label {
+    color: ${({ theme }) => theme.text};
+  }
 
   .button--secondary {
     color: ${({ theme }) => theme.text};

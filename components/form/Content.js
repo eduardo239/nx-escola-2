@@ -55,7 +55,6 @@ const AddContent = ({ setContent }) => {
           ...html,
           {
             type,
-            content: code,
             image: {
               url: code,
               size: { width: img.width, height: img.height },
@@ -65,6 +64,7 @@ const AddContent = ({ setContent }) => {
       };
       setContent(html);
       setCode('');
+      setLoading(false);
     }
     setLoading(false);
   };
