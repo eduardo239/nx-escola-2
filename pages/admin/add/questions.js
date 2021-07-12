@@ -161,7 +161,7 @@ const Questions = ({ subjects }) => {
           </option>
           {subjects.map((x, i) => (
             <option value={x.id} key={x.id}>
-              {x.course_id.name}/{x.name}
+              {x.name}
             </option>
           ))}
         </select>
@@ -175,9 +175,7 @@ const Questions = ({ subjects }) => {
 };
 
 export async function getStaticProps() {
-  let { data: subjects, error } = await supabase
-    .from('subjects')
-    .select('id, name, course_id(*)');
+  let { data: subjects, error } = await supabase.from('subjects').select('*');
 
   if (error) throw error;
 

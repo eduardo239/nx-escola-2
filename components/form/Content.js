@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import Image from 'next/image';
 import { Input, Button, Textarea } from '../ui/Form';
 import {
   Add16,
@@ -17,6 +18,8 @@ const AddContent = ({ setContent }) => {
   const [code, setCode] = useState('');
   const [html, setHtml] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const imageRef = useRef();
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -38,21 +41,31 @@ const AddContent = ({ setContent }) => {
   };
 
   const addImage = (URL) => {
+    if (code === '') {
+      return;
+    }
+    // TODO: fix image
     setLoading(true);
     let img = new Image();
-    img.onload = function () {
-      setHtml((html) => [
-        ...html,
-        {
-          type,
-          content: code,
-          size: { width: img.width, height: img.height },
-        },
-      ]);
+    img.src = URL;
+
+    if (img.src) {
+      img.onload = function () {
+        setHtml((html) => [
+          ...html,
+          {
+            type,
+            content: code,
+            image: {
+              url: code,
+              size: { width: img.width, height: img.height },
+            },
+          },
+        ]);
+      };
       setContent(html);
       setCode('');
-    };
-    img.src = URL;
+    }
     setLoading(false);
   };
 
@@ -132,7 +145,6 @@ const AddContent = ({ setContent }) => {
           Separator <DocumentPdf16 />
         </Button>
       </div>
-
       <form onSubmit={handleAdd}>
         {(type === 'title' ||
           type === 'subtitle' ||
@@ -147,14 +159,9 @@ const AddContent = ({ setContent }) => {
               label={type.charAt(0).toUpperCase() + type.slice(1)}
               placeholder="Write here .."
               value={code}
-              onChange={(e) => setCode(e.target.value)}
+              onChange={(e) => setCode(e.target.value.trim())}
               className="w-100"
             />
-          </div>
-        )}
-
-        {type !== 'image' && (
-          <div className="mb-4">
             <Button disabled={loading} type="submit" danger onClick={handleAdd}>
               Add Element
               <Add16 />
@@ -164,17 +171,24 @@ const AddContent = ({ setContent }) => {
       </form>
 
       {type === 'text' && (
-        <Textarea
-          id="add-subject-text"
-          label={type.charAt(0).toUpperCase() + type.slice(1)}
-          placeholder="Write here .."
-          className="w-100"
-          rows="4"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-        ></Textarea>
+        <div>
+          <Textarea
+            id="add-subject-text"
+            label={type.charAt(0).toUpperCase() + type.slice(1)}
+            placeholder="Write here .."
+            className="w-100"
+            rows="4"
+            value={code}
+            onChange={(e) => setCode(e.target.value.trim())}
+          ></Textarea>
+          <div className="mb-4">
+            <Button disabled={loading} type="submit" danger onClick={handleAdd}>
+              Add Element
+              <Add16 />
+            </Button>
+          </div>
+        </div>
       )}
-
       {type === 'image' && (
         <div>
           <Input
@@ -183,7 +197,7 @@ const AddContent = ({ setContent }) => {
             label={type.charAt(0).toUpperCase() + type.slice(1)}
             placeholder="Write here .."
             value={code}
-            onChange={(e) => setCode(e.target.value)}
+            onChange={(e) => setCode(e.target.value.trim())}
             className="w-100"
           />
           {type === 'image' && (
@@ -213,6 +227,7 @@ const AddContent = ({ setContent }) => {
                 margin: '0.5rem 0',
                 border: '1px solid #333',
                 padding: '0.5rem ',
+                fontSize: '0.75rem',
               }}
             >
               {h.content}

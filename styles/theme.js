@@ -18,6 +18,10 @@ const primary = '#0f62fe';
 const primaryActive = '#002d9c';
 const secondary = '#393939';
 const secondaryActive = '#313233';
+const danger = '#d74042';
+const dangerActive = '#b62326';
+const white = '#fff';
+const black = '#000';
 
 export const lightTheme = {
   body: '#E2E2E2',
@@ -26,6 +30,14 @@ export const lightTheme = {
   gradient: 'linear-gradient(#39598A, #79D7ED)',
   a: primary,
   bg: '#d3d3d3',
+  primary,
+  primaryActive,
+  secondary,
+  secondaryActive,
+  danger,
+  dangerActive,
+  white,
+  black,
 };
 
 export const darkTheme = {
@@ -35,4 +47,12 @@ export const darkTheme = {
   gradient: 'linear-gradient(#091236, #1E215D)',
   a: primary,
   bg: secondaryActive,
+  primary,
+  primaryActive,
+  secondary,
+  secondaryActive,
+  danger,
+  dangerActive,
+  white,
+  black,
 };

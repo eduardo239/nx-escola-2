@@ -44,9 +44,6 @@
     display: inline-block;
     min-width: 12rem;
     padding: 10px;
-    background-color: var(--secondary-active);
-    border-bottom: 2px solid var(--white);
-    color: var(--white);
     &:active,
     &:focus {
       border-bottom: 2px solid var(--primary);
@@ -55,11 +52,8 @@
 }
 
 textarea {
-  background-color: var(--secondary-active);
-  color: var(--white);
   resize: vertical;
   padding: 10px;
-  border-bottom: 2px solid var(--white);
   line-height: 1.5;
   &:active,
   &:focus {

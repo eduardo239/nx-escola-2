@@ -12,10 +12,25 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.a};
   }
 
-  input {
+  input, select, textarea {
     color: ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.bg};
     border-bottom: 2px solid ${({ theme }) => theme.text}
+  }
+
+
+  .button--secondary {
+    color: ${({ theme }) => theme.text};
+    background-color: ${({ theme }) => theme.bg};
+    border-bottom: 2px solid ${({ theme }) => theme.text};
+    &:focus {
+      border-color: var(--secondary-active);
+      box-shadow: inset 0 0 0 1px var(--secondary-active),
+        inset 0 0 0 2px var(--white);
+    }
+    &:active {
+      background-color: var(--secondary-active);
+    }
   }
 
   .menu-container ul {
