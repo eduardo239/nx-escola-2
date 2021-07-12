@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { Button, Input } from '../components/ui/Form';
+import { Button, Input, InputButton } from '../components/ui/Form';
 import { supabase } from '../utils/supabase';
+import { Accessibility16 } from '@carbon/icons-react';
 
 export default function Home({ data }) {
   // const mapCourses = () => {
@@ -44,6 +45,16 @@ export default function Home({ data }) {
           id="login-email"
           className="w-100"
         />
+        <InputButton
+          type="email"
+          placeholder="Email .."
+          label="Email"
+          id="login-email"
+          className="w-100"
+          button="click"
+        >
+          <Accessibility16 />
+        </InputButton>
         {/* {courses.length === 0 ? <p>Courses not found.</p> : mapCourses()} */}
 
         {/* 

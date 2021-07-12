@@ -66,3 +66,20 @@ textarea {
     border-bottom: 2px solid var(--primary);
   }
 }
+
+.field-button {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  label {
+    margin-bottom: 0.25rem;
+  }
+  .field-button__input {
+    display: flex;
+    width: 100%;
+    input {
+      flex: 1;
+      padding: 10px;
+    }
+  }
+}

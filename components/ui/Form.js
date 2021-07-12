@@ -72,6 +72,36 @@ export const Input = ({
   );
 };
 
+export const InputButton = ({
+  id,
+  label,
+  type = 'text',
+  error = false,
+  placeholder,
+  onClick,
+  primary = true,
+  secondary,
+  danger,
+  ...props
+}) => {
+  return (
+    <div className={`field-button ${error ? 'field-button__error' : ''}`}>
+      <label htmlFor={id}>{label}</label>
+      <div className="field-button__input">
+        <input id={id} type={type} placeholder={placeholder} />
+        <button
+          onClick={onClick}
+          className={`${primary ? 'button-icon--primary' : ''} ${
+            secondary ? 'button-icon--secondary' : ''
+          } ${danger ? 'button-icon--danger' : ''}`}
+        >
+          {props.children}
+        </button>
+      </div>
+    </div>
+  );
+};
+
 export const Textarea = ({
   id,
   rows = 3,
