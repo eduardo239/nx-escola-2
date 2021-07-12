@@ -13,7 +13,12 @@
     "next.config.js": true,
     "package.json": true,
     ".eslintrc": true,
-    ".prettierrc": false
+    ".prettierrc": true,
+    ".husky": true,
+    ".eslintignore": true,
+    ".prettierignore": true,
+    ".eslintrc.js": true,
+    ".env.local": true
   },
   "editor.formatOnPaste": true
 }

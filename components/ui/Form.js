@@ -3,6 +3,7 @@ export const Button = ({
   secondary = false,
   danger = false,
   type,
+  full = false,
   onClick,
   className = '',
   ...props
@@ -11,7 +12,7 @@ export const Button = ({
     <button
       className={`button ${primary ? 'button--primary' : ''} ${
         secondary ? 'button--secondary' : ''
-      } ${className} ${danger ? 'button--danger' : ''}`}
+      } ${className} ${danger ? 'button--danger' : ''} ${full ? 'w-100' : ''}`}
       type={type}
       onClick={onClick}
       {...props}
@@ -27,15 +28,18 @@ export const ButtonIcon = ({
   danger = false,
   error = false,
   type,
+  full = false,
   onClick,
   className = '',
   ...props
 }) => {
   return (
     <button
-      className={`${primary ? 'button-icon--primary' : ''} ${
+      className={`button ${primary ? 'button-icon--primary' : ''} ${
         secondary ? 'button-icon--secondary' : ''
-      } ${className} ${danger ? 'button-icon--danger' : ''}`}
+      } ${className} ${danger ? 'button-icon--danger' : ''} ${
+        full ? 'w-100' : ''
+      }`}
       type={type}
       onClick={onClick}
       {...props}

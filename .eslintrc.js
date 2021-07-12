@@ -3,7 +3,12 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'prettier'],
+  extends: [
+    'plugin:react/recommended',
+    'prettier',
+    'next',
+    'next/core-web-vitals',
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -12,5 +17,8 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react'],
-  rules: {},
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 0,
+  },
 };

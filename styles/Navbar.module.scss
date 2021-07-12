@@ -1,0 +1,12 @@
+.ul {
+  display: flex;
+  li a {
+    display: block;
+    padding: calc(0.875rem - 3px) 15px;
+    min-width: 6rem;
+    min-height: 3rem;
+    &:hover {
+      background-color: aliceblue;
+    }
+  }
+}
