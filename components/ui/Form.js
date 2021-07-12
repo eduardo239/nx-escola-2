@@ -23,7 +23,7 @@ export const Button = ({
 };
 
 export const ButtonIcon = ({
-  primary,
+  primary = true,
   secondary = false,
   danger = false,
   error = false,

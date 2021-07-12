@@ -176,3 +176,12 @@ textarea:disabled {
 .mb-5 {
   margin-bottom: 1rem;
 }
+/*-----------------------------------------------------*/
+
+.separator {
+  height: 1px;
+  background: var(--light-gray);
+  margin-bottom: 1rem;
+  opacity: 0.1;
+  width: 100%;
+}

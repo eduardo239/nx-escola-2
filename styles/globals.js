@@ -17,4 +17,12 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.bg};
     border-bottom: 2px solid ${({ theme }) => theme.text}
   }
+
+  .menu-container ul {
+    background-color: ${({ theme }) => theme.bg};
+  }
+
+  .menu-container ul a {
+    color: ${({ theme }) => theme.text};
+  }
 `;

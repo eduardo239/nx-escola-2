@@ -1,12 +1,20 @@
-.ul {
-  display: flex;
-  li a {
-    display: block;
-    padding: calc(0.875rem - 3px) 15px;
-    min-width: 6rem;
-    min-height: 3rem;
-    &:hover {
-      background-color: aliceblue;
+.container {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--opacity-5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  .ul {
+    min-width: 12rem;
+    li {
+      display: block;
+      padding: 0.25rem;
+      a {
+        font-size: 0.9rem;
+      }
     }
   }
 }
