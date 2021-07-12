@@ -1,0 +1,31 @@
+.card__container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.card {
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-1);
+  border: 0px solid #222;
+  background-color: var(--white);
+  color: var(--dark-gray);
+  max-width: 300px;
+  margin-bottom: 1rem;
+  transform: translate3d(0, 0, 0);
+  transition: 0.1s ease-out;
+}
+.card:hover {
+  transform: translate3d(0, -2px, 0);
+  box-shadow: var(--shadow-5);
+  /* cursor: pointer; */
+}
+
+.card_body {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.card_body small {
+  color: var(--mid-gray);
+}
