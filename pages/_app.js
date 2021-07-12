@@ -8,8 +8,6 @@ import { GlobalStyles } from '../styles/globals';
 import { lightTheme, darkTheme } from '../styles/theme';
 import { useEffect, useState } from 'react';
 import Layout from '../components/ui/Layout';
-import { Button } from '../components/ui/Form';
-// import { toggleTheme } from '../utils/index';
 
 function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState('light');
@@ -32,9 +30,6 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
         <Layout toggleTheme={toggleTheme} theme={theme}>
-          {/* <Button primary onClick={() => toggleTheme(theme)}>
-            Switch Theme
-          </Button> */}
           <Component {...pageProps} />
         </Layout>
       </ThemeProvider>

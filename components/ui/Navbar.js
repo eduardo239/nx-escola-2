@@ -1,19 +1,13 @@
 import s from '../../styles/Navbar.module.scss';
 import Link from 'next/link';
-import { Button, ButtonIcon } from './Form';
+import { ButtonIcon } from './Form';
 import { useUser } from '../../utils/useUser';
 import { useEffect, useState } from 'react';
-import {
-  Switcher16,
-  Logout16,
-  BrightnessContrast16,
-} from '@carbon/icons-react';
-// import { toggleTheme } from '../../utils';
+import { Switcher16, Logout16, Awake16, Asleep16 } from '@carbon/icons-react';
 
 const Navbar = ({ toggleTheme, theme }) => {
   const { user, profile, signOut, userProfile } = useUser();
   const [menu, setMenu] = useState(false);
-  // const [theme, setTheme] = useState('light');
 
   const handleClickOutside = (e) => {
     const tar = e.target;
@@ -27,10 +21,6 @@ const Navbar = ({ toggleTheme, theme }) => {
   };
 
   useEffect(() => {
-    // console.log(toggleTheme(theme));
-    // let localTheme = window.localStorage.getItem('theme');
-    // if (localTheme) setTheme(localTheme);
-
     if (user) userProfile(user.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -63,8 +53,29 @@ const Navbar = ({ toggleTheme, theme }) => {
             </li>
           )}
           {profile && profile.is_admin && (
-            <li>
-              <Link href="/admin">Admin</Link>
+            <li className={s.dropdown}>
+              <Link href="/admin">
+                <a>Admin</a>
+              </Link>
+              <ul className={s.content}>
+                <li className={s.dropdown2}>
+                  <Link href="/admin/add">Add</Link>
+                  <ul className={s.content2}>
+                    <li>
+                      <Link href="/admin/add/courses">Course</Link>
+                    </li>
+                    <li>
+                      <Link href="/admin/add/subjects">Subjects</Link>
+                    </li>
+                    <li>
+                      <Link href="/admin/add/questions">Questions</Link>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <Link href="/admin">All</Link>
+                </li>
+              </ul>
             </li>
           )}
           {!user && (
@@ -77,13 +88,14 @@ const Navbar = ({ toggleTheme, theme }) => {
               <Link href="/login">Login</Link>
             </li>
           )}
-          <li style={{ margin: '0 -0.5rem' }}>
+          <li>
             <ButtonIcon full secondary onClick={() => toggleTheme(theme)}>
-              Theme <BrightnessContrast16 />
+              {theme !== 'light' ? 'Light' : 'Dark'}
+              {theme !== 'light' ? <Awake16 /> : <Asleep16 />}
             </ButtonIcon>
           </li>
           {user && (
-            <li style={{ margin: '0 -0.5rem' }}>
+            <li>
               <ButtonIcon full secondary onClick={() => signOut()}>
                 Logout <Logout16 />
               </ButtonIcon>

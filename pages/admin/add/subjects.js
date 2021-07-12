@@ -3,7 +3,7 @@ import { supabase } from '../../../utils/supabase';
 import { Input, Button } from '../../../components/ui/Form';
 import { Save16 } from '@carbon/icons-react';
 import toast, { Toaster } from 'react-hot-toast';
-import Content from '../../../components/admin/new/Content';
+// import Content from '../../../components/admin/new/Content';
 
 const Subject = ({ courses }) => {
   const [name, setName] = useState('');
@@ -84,7 +84,7 @@ const Subject = ({ courses }) => {
         className="w-100"
       />
 
-      <Content setContent={setContent} />
+      {/* <Content setContent={setContent} /> */}
 
       <div>{courseId}</div>
       <div className="field--select mb-4">

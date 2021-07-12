@@ -19,7 +19,7 @@ export default function Home() {
         <h1>HOME</h1>
         <Button>Primary</Button>
         <Button secondary>Primary</Button>
-        <ButtonIcon secondary>
+        <ButtonIcon danger>
           Primary <Accessibility16 />
         </ButtonIcon>
         <ButtonIcon secondary full>

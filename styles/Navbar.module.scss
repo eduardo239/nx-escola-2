@@ -15,19 +15,48 @@
   z-index: 1000;
   .ul {
     animation: slide 0.25s ease-in;
-    padding: 0 0.5rem;
     min-width: 12rem;
     li {
+      position: relative;
       a {
         display: block;
-        padding: 0.5rem 0;
+        padding: 0.65rem 0.5rem;
+        position: relative;
+        font-size: 0.75rem;
+        &:hover {
+          background-color: var(--primary);
+          color: var(--white);
+        }
       }
-      a,
       button {
+        min-height: 35px;
+        padding: 0.25rem 0.5rem;
         font-size: 0.75rem;
       }
     }
   }
+}
+.dropdown:hover .content {
+  display: block !important;
+}
+.content {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  min-width: 12rem;
+}
+
+.dropdown2:hover .content2 {
+  display: block !important;
+}
+
+.content2 {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  min-width: 12rem;
 }
 
 @keyframes slide {
