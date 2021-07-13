@@ -214,6 +214,17 @@ textarea:disabled {
     border: 1px solid var(--success);
   }
 }
+.list-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1px;
+  border-bottom: 1px solid var(--secondary-active);
+  padding-bottom: 1px;
+  p {
+    margin: 0;
+  }
+}
 /*-----------------------------------------------------*/
 .my-masonry-grid {
   display: flex;

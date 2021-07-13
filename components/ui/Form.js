@@ -1,7 +1,7 @@
 export const Button = ({
-  primary = true,
-  secondary = false,
-  danger = false,
+  primary,
+  secondary,
+  danger,
   type,
   full = false,
   onClick,
@@ -23,9 +23,9 @@ export const Button = ({
 };
 
 export const ButtonIcon = ({
-  primary = true,
-  secondary = false,
-  danger = false,
+  primary,
+  secondary,
+  danger,
   error = false,
   type,
   full = false,
@@ -35,9 +35,36 @@ export const ButtonIcon = ({
 }) => {
   return (
     <button
-      className={`button ${primary ? 'button-icon--primary' : ''} ${
+      className={`button-icon ${primary ? 'button-icon--primary' : ''} ${
         secondary ? 'button-icon--secondary' : ''
       } ${className} ${danger ? 'button-icon--danger' : ''} ${
+        full ? 'w-100' : ''
+      }`}
+      type={type}
+      onClick={onClick}
+      {...props}
+    >
+      {props.children}
+    </button>
+  );
+};
+
+export const IconOnly = ({
+  primary,
+  secondary,
+  danger,
+  error = false,
+  type,
+  full = false,
+  onClick,
+  className = '',
+  ...props
+}) => {
+  return (
+    <button
+      className={`icon-button ${primary ? 'icon-button--primary' : ''} ${
+        secondary ? 'icon-button--secondary' : ''
+      } ${className} ${danger ? 'icon-button--danger' : ''} ${
         full ? 'w-100' : ''
       }`}
       type={type}
@@ -83,7 +110,7 @@ export const InputButton = ({
   error = false,
   placeholder,
   onClick,
-  primary = true,
+  primary,
   secondary,
   danger,
   ...props

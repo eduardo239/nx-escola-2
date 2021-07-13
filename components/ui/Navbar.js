@@ -28,7 +28,7 @@ const Navbar = ({ toggleTheme, theme }) => {
   return (
     <>
       <div className={s.header}>
-        <ButtonIcon onClick={() => setMenu(!menu)}>
+        <ButtonIcon primary onClick={() => setMenu(!menu)}>
           Menu
           <Switcher16 />
         </ButtonIcon>
@@ -59,7 +59,7 @@ const Navbar = ({ toggleTheme, theme }) => {
               </Link>
               <ul className={s.content}>
                 <li className={s.dropdown2}>
-                  <Link href="/admin/add">Add</Link>
+                  <Link href="/admin/add">Adicionar</Link>
                   <ul className={s.content2}>
                     <li>
                       <Link href="/admin/add/courses">Cursos</Link>
@@ -75,8 +75,19 @@ const Navbar = ({ toggleTheme, theme }) => {
                     </li>
                   </ul>
                 </li>
-                <li>
-                  <Link href="/admin">All</Link>
+                <li className={s.dropdown2}>
+                  <Link href="/admin/all">Lista</Link>
+                  <ul className={s.content2}>
+                    <li>
+                      <Link href="/admin/all/courses">Cursos</Link>
+                    </li>
+                    <li>
+                      <Link href="/admin/all/subjects">Matérias</Link>
+                    </li>
+                    <li>
+                      <Link href="/admin/all/questions">Questões</Link>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </li>

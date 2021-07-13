@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import { checkTheAnswers } from '../../../../utils';
 import toast, { Toaster } from 'react-hot-toast';
 import s from '../../../../styles/Questions.module.scss';
+import Head from 'next/head';
+import { app_name } from '../../../../utils/constants';
 
 const Questions = ({ questions }) => {
   const { user, userProfile, profile } = useUser();
@@ -98,6 +100,12 @@ const Questions = ({ questions }) => {
 
   return (
     <section>
+      <Head>
+        <title>{`${app_name} - Número de perguntas: ${questions.length}`}</title>
+        <meta name="description" content="Cursos de todos os tipos aqui." />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <Toaster />
 
       <h1>Questions</h1>

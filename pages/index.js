@@ -18,17 +18,28 @@ export default function Home() {
 
       <main>
         <h1>HOME</h1>
-        {/* <Button>Primary</Button>
-        <Button secondary>Primary</Button>
-        <ButtonIcon danger>
-          Primary <Accessibility16 />
-        </ButtonIcon>
-        <ButtonIcon secondary full>
-          Primary <Accessibility16 />
-        </ButtonIcon>
-        <Button danger full>
-          Primary
-        </Button>
+        {/* 
+           <Button primary>Coisa</Button>
+      <Button secondary>Coisa</Button>
+      <Button danger>Coisa</Button>
+      <ButtonIcon primary>
+        Garbage <TrashCan16 />
+      </ButtonIcon>
+      <ButtonIcon secondary>
+        Garbage <TrashCan16 />
+      </ButtonIcon>
+      <ButtonIcon danger>
+        Garbage <TrashCan16 />
+      </ButtonIcon>
+      <IconOnly danger>
+        <TrashCan16 />
+      </IconOnly>
+      <IconOnly secondary>
+        <TrashCan16 />
+      </IconOnly>
+      <IconOnly primary>
+        <TrashCan16 />
+      </IconOnly>
         <Input
           type="email"
           placeholder="Email .."

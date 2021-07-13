@@ -4,6 +4,8 @@ import { Button } from '../../../components/ui/Form';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import s from '../../../styles/Subject.module.scss';
+import Head from 'next/head';
+import { app_name } from '../../../utils/constants';
 
 const Subject = ({ subject }) => {
   const router = useRouter();
@@ -36,9 +38,17 @@ const Subject = ({ subject }) => {
 
   return (
     <section>
-      <small>{subject?.course_id?.name}</small>
-      <h1>{subject?.name}</h1>
-      <p>{subject?.runtime ? `${subject?.runtime} min.` : ''}</p>
+      <Head>
+        <title>{`${app_name} - Matéria: ${subject.name}`}</title>
+        <meta name="description" content="Cursos de todos os tipos aqui." />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <div>
+        <small>{subject?.course_id?.name}</small>
+        <h1>{subject?.name}</h1>
+        <p>{subject?.runtime ? `${subject?.runtime} min.` : ''}</p>
+      </div>
 
       <div className="separator"></div>
 

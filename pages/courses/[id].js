@@ -79,7 +79,7 @@ export default function Course({ course, subjects }) {
         <Toaster />
 
         <Head>
-          <title>{`${app_name} - Curso: ${course.name}.`}</title>
+          <title>{`${app_name} - Curso: ${course.name}`}</title>
           <meta name="description" content="Cursos de todos os tipos aqui." />
           <link rel="icon" href="/favicon.ico" />
         </Head>
