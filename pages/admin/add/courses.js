@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Save16 } from '@carbon/icons-react';
 import { Button, Input, Textarea } from '../../../components/ui/Form';
 import { supabase } from '../../../utils/supabase';
 import toast, { Toaster } from 'react-hot-toast';
+import { useUser } from '../../../utils/useUser';
+import { useRouter } from 'next/dist/client/router';
 
 const Course = () => {
+  const { user, userProfile, profile } = useUser();
+  const router = useRouter();
   const [name, setName] = useState('');
   const [runtime, setRuntime] = useState(0);
   const [description, setDescription] = useState('');
@@ -61,6 +65,14 @@ const Course = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (user) userProfile(user.id);
+    // if (!user && profile === null) {
+    // router.push('/');
+    // }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <section>
