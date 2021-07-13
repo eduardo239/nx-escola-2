@@ -54,6 +54,7 @@ export const UserContextProvider = (props) => {
     profile,
     userSignUp,
     userProfile,
+    profile,
     signIn: (options) => supabase.auth.signIn(options),
     signUp: (options) => supabase.auth.signUp(options),
     signOut: () => {
