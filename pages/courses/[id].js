@@ -9,9 +9,11 @@ import { app_name, default_course_poster } from '../../utils/constants';
 import { paymentRecords, subscribe } from '../../utils';
 import s from '../../styles/Course.module.scss';
 import toast, { Toaster } from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 export default function Course({ course, subjects }) {
   const { userProfile, user, profile, getUserCourses, userCourses } = useUser();
+  const router = useRouter();
 
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -20,7 +22,7 @@ export default function Course({ course, subjects }) {
   const mapSubjects = () => {
     return subjects.map((s) => (
       <div key={s.id}>
-        <Button danger onClick={() => router.push(`/courses/subject/${s.id}`)}>
+        <Button danger onClick={() => router.push(`/courses/subjects/${s.id}`)}>
           {s.name}
         </Button>
       </div>

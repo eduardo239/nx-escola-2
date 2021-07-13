@@ -1,0 +1,13 @@
+.question {
+  box-shadow: var(--shadow-1);
+  margin-bottom: 2rem;
+
+  .header {
+    padding: 1rem;
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+  }
+  p {
+    padding: 1rem 0.25rem;
+  }
+}

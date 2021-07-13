@@ -26,7 +26,7 @@ const black = '#000';
 export const lightTheme = {
   body: '#fff',
   text: '#262626',
-  border: '#dfdfdf',
+  border: '#bdbdbd',
   gradient: 'linear-gradient(#39598A, #79D7ED)',
   a: primary,
   bg: '#d3d3d3',

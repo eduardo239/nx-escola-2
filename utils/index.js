@@ -114,3 +114,37 @@ export const formatUsername = (username) => {
   if (at) return username;
   if (!at) return `@${username}`;
 };
+
+/**
+ * @param {Array} questions
+ * @param {Array} alternatives
+ * @param {Object} profile
+ * @returns
+ */
+export const checkTheAnswers = async (questions, alternatives, profile) => {
+  let score = 0;
+  let total = questions.length;
+  let max = 10;
+  let average = max / total;
+
+  for (let i = 0; i < questions.length; i++) {
+    if (alternatives[i]) {
+      let _cor = questions[i].correct;
+      let _alt = alternatives[i].alt;
+      if (_cor === _alt) {
+        score += 1;
+      }
+    }
+  }
+  let result = parseFloat((score * average).toFixed(2));
+
+  const body = {
+    subject_id: questions[0].subject_id,
+    profile_id: profile.id,
+    content: alternatives,
+    result,
+  };
+
+  const { data, error } = await supabase.from('user_grades').insert([body]);
+  return { data, error };
+};

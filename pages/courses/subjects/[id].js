@@ -1,11 +1,9 @@
 //TODO:
-import { supabase } from '../../../utils/initSupabase';
+import { supabase } from '../../../utils/supabase';
 import { Button } from '../../../components/ui/Form';
 import { useRouter } from 'next/router';
-import Back from '../../../components/ui/Back';
-import Link from 'next/link';
 import Image from 'next/image';
-import s from './Subject.module.css';
+import s from '../../../styles/Subject.module.scss';
 
 const Subject = ({ subject }) => {
   const router = useRouter();
@@ -38,10 +36,6 @@ const Subject = ({ subject }) => {
 
   return (
     <section>
-      <div className="mb-4">
-        <Back />
-      </div>
-
       <small>{subject?.course_id?.name}</small>
       <h1>{subject?.name}</h1>
       <p>{subject?.runtime ? `${subject?.runtime} min.` : ''}</p>
@@ -56,7 +50,7 @@ const Subject = ({ subject }) => {
         <Button
           primary
           onClick={() =>
-            router.push(`/courses/subject/questions/${subject.id}`)
+            router.push(`/courses/subjects/questions/${subject.id}`)
           }
         >
           Questions

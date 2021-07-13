@@ -22,7 +22,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.text};
   }
 
-  .field--radio {
+  .field--radio, .list-item {
    border: 1px solid ${({ theme }) => theme.border};
   }
 
