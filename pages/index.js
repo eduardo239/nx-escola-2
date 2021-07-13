@@ -2,12 +2,13 @@ import React from 'react';
 import Head from 'next/head';
 import { Accessibility16 } from '@carbon/icons-react';
 import { Button, ButtonIcon, Input, InputButton } from '../components/ui/Form';
+import { app_name } from '../utils/constants';
 
 export default function Home() {
   return (
     <section>
       <Head>
-        <title>App Escola</title>
+        <title>{`${app_name}`}</title>
         <meta
           name="description"
           content="App Escola - App para acompanhamento estudantil."

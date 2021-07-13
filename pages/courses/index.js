@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Masonry from 'react-masonry-css';
 import { Card } from '../../components/Card';
+import { app_name } from '../../utils/constants';
 import { supabase } from '../../utils/supabase';
 
 const breakpointColumnsObj = {
@@ -25,7 +26,7 @@ export default function Courses({ courses }) {
   return (
     <section>
       <Head>
-        <title>App Escola - Cursos</title>
+        <title>{`${app_name} - Cursos.`}</title>
         <meta name="description" content="Cursos de todos os tipos aqui." />
         <link rel="icon" href="/favicon.ico" />
       </Head>

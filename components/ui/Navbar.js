@@ -62,13 +62,13 @@ const Navbar = ({ toggleTheme, theme }) => {
                   <Link href="/admin/add">Add</Link>
                   <ul className={s.content2}>
                     <li>
-                      <Link href="/admin/add/courses">Course</Link>
+                      <Link href="/admin/add/courses">Cursos</Link>
                     </li>
                     <li>
-                      <Link href="/admin/add/subjects">Subjects</Link>
+                      <Link href="/admin/add/subjects">Matérias</Link>
                     </li>
                     <li>
-                      <Link href="/admin/add/questions">Questions</Link>
+                      <Link href="/admin/add/questions">Questões</Link>
                     </li>
                   </ul>
                 </li>

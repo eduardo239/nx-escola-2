@@ -48,8 +48,8 @@ const Course = () => {
       name,
       runtime,
       description,
-      promo_code: promoCode,
-      poster_url: posterURL,
+      promo: promoCode,
+      poster: posterURL,
       price: price ? parseFloat(price.replace(',', '.')) : 0,
       status,
     };

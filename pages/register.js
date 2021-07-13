@@ -5,6 +5,9 @@ import { useRouter } from 'next/router';
 import { Button, Input } from '../components/ui/Form';
 import { Login16 } from '@carbon/icons-react';
 import toast, { Toaster } from 'react-hot-toast';
+import { formatUsername } from '../utils';
+import Head from 'next/head';
+import { app_name } from '../utils/constants';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -29,8 +32,9 @@ const Register = () => {
     const { user, error } = await userSignUp({
       email,
       password,
-      username,
+      username: formatUsername(username),
     });
+
     if (error) {
       toast.dismiss();
       toast.error(error.message, {
@@ -54,7 +58,13 @@ const Register = () => {
 
   if (!user)
     return (
-      <div>
+      <section>
+        <Head>
+          <title>{`${app_name} - Registro.`}</title>
+          <meta name="description" content="Description" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+
         <Toaster />
         <h1>Register</h1>
 
@@ -100,7 +110,7 @@ const Register = () => {
             <a className="link--primary">Already have an account? sign in</a>
           </Link>
         </form>
-      </div>
+      </section>
     );
 
   return <h1>Loading ..</h1>;

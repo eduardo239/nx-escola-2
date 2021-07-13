@@ -6,6 +6,7 @@ import { Login16, LogoGithub16 } from '@carbon/icons-react';
 import { Button, Input } from '../components/ui/Form';
 import toast, { Toaster } from 'react-hot-toast';
 import Head from 'next/head';
+import { app_name } from '../utils/constants';
 // import Loading from '../components/ui/Loading';
 
 const Login = () => {
@@ -56,11 +57,8 @@ const Login = () => {
     return (
       <section>
         <Head>
-          <title>App Escola</title>
-          <meta
-            name="description"
-            content="App Escola - App para acompanhamento estudantil."
-          />
+          <title>{`${app_name} - Login.`}</title>
+          <meta name="description" content="Description" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
