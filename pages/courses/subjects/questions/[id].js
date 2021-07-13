@@ -3,9 +3,9 @@ import { supabase } from '../../../../utils/supabase';
 import { Button } from '../../../../components/ui/Form';
 import { useUser } from '../../../../utils/useUser';
 import { useRouter } from 'next/router';
+import { checkTheAnswers } from '../../../../utils';
 import toast, { Toaster } from 'react-hot-toast';
 import s from '../../../../styles/Questions.module.scss';
-import { checkTheAnswers } from '../../../../utils';
 
 const Questions = ({ questions }) => {
   const { user, userProfile, profile } = useUser();
@@ -86,12 +86,12 @@ const Questions = ({ questions }) => {
 
   if (redirect) router.push('/courses/done');
 
-  if (questions.length === 0)
-    return (
-      <section>
-        <h1>Perguntas não encontradas.</h1>
-      </section>
-    );
+  // if (questions.length === 0)
+  //   return (
+  //     <section>
+  //       <h1>Perguntas não encontradas.</h1>
+  //     </section>
+  //   );
 
   return (
     <section>

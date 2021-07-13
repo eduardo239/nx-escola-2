@@ -49,7 +49,7 @@ const Navbar = ({ toggleTheme, theme }) => {
           <div className="separator"></div>
           {user && (
             <li>
-              <Link href="/profile">{user.email}</Link>
+              <Link href={`/user/${profile.id}`}>{user.email}</Link>
             </li>
           )}
           {profile && profile.is_admin && (
