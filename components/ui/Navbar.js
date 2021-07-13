@@ -47,9 +47,9 @@ const Navbar = ({ toggleTheme, theme }) => {
             <Link href="/courses">Cursos</Link>
           </li>
           <div className="separator"></div>
-          {user && (
+          {profile && (
             <li>
-              <Link href={`/user/${profile.id}`}>{user.email}</Link>
+              <Link href={`/user/${profile.id}`}>{profile.username}</Link>
             </li>
           )}
           {profile && profile.is_admin && (

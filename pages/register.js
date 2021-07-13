@@ -60,7 +60,7 @@ const Register = () => {
     return (
       <section>
         <Head>
-          <title>{`${app_name} - Registro.`}</title>
+          <title>{`${app_name} - Registro`}</title>
           <meta name="description" content="Description" />
           <link rel="icon" href="/favicon.ico" />
         </Head>

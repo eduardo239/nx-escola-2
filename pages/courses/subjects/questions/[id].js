@@ -80,7 +80,7 @@ const Questions = ({ questions }) => {
   };
 
   useEffect(() => {
-    if (user) userProfile(user.id);
+    // if (user) userProfile(user.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

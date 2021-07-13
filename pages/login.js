@@ -57,7 +57,7 @@ const Login = () => {
     return (
       <section>
         <Head>
-          <title>{`${app_name} - Login.`}</title>
+          <title>{`${app_name} - Login`}</title>
           <meta name="description" content="Description" />
           <link rel="icon" href="/favicon.ico" />
         </Head>

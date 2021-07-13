@@ -67,12 +67,12 @@ const Course = () => {
   };
 
   useEffect(() => {
-    if (user) userProfile(user.id);
+    // if (user) userProfile(user.id);
     // if (!user && profile === null) {
     // router.push('/');
     // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, []);
 
   return (
     <section>

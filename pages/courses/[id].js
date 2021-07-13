@@ -64,14 +64,14 @@ export default function Course({ course, subjects }) {
   };
 
   useEffect(() => {
-    if (user) userProfile(user.id);
+    // if (user) userProfile(user.id);
     // TODO: fixme
     // if (profile) {
     //   getUserCourses(profile.id);
     //   if (userCourses.length > 0) setOwned(true);
     // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, []);
 
   if (course)
     return (

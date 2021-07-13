@@ -18,7 +18,7 @@ export default function Home() {
 
       <main>
         <h1>HOME</h1>
-        <Button>Primary</Button>
+        {/* <Button>Primary</Button>
         <Button secondary>Primary</Button>
         <ButtonIcon danger>
           Primary <Accessibility16 />
@@ -69,7 +69,7 @@ export default function Home() {
           ESLint statically analyzes your code to quickly find problems. ESLint
           is built into most text editors and you can run ESLint as part of your
           continuous integration pipeline.
-        </p>
+        </p> */}
       </main>
     </section>
   );
