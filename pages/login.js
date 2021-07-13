@@ -86,7 +86,7 @@ const Login = () => {
               className="w-100"
             />
 
-            <div className="mb-4">
+            <div className="mb-5">
               <Button primary type="submit" disabled={loading}>
                 Sign In <Login16 />
               </Button>
@@ -94,7 +94,7 @@ const Login = () => {
           </form>
           <div className="separator"></div>
 
-          <div className="mb-4">
+          <div className="mb-5">
             <Button
               disabled={loading}
               secondary

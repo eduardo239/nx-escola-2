@@ -22,6 +22,10 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.text};
   }
 
+  .field--radio {
+   border: 1px solid ${({ theme }) => theme.border};
+  }
+
   .button--secondary {
     color: ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.bg};

@@ -26,7 +26,7 @@ const black = '#000';
 export const lightTheme = {
   body: '#fff',
   text: '#262626',
-  toggleBorder: '#FFF',
+  border: '#dfdfdf',
   gradient: 'linear-gradient(#39598A, #79D7ED)',
   a: primary,
   bg: '#d3d3d3',
@@ -43,7 +43,7 @@ export const lightTheme = {
 export const darkTheme = {
   body: '#262626',
   text: '#FAFAFA',
-  toggleBorder: '#6B8096',
+  border: '#454545',
   gradient: 'linear-gradient(#091236, #1E215D)',
   a: primary,
   bg: secondaryActive,

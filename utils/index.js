@@ -58,6 +58,38 @@ export const subscribe = async (type, item, profile) => {
   return { data: data_update, error };
 };
 
+/**
+ *
+ * @param {Object} profile
+ * @param {enum} add add || sub
+ * @param {Float} value
+ * @returns data and error
+ */
+export const addBalance = async (profile, add, value) => {
+  let current_balance = profile[0].balance;
+  let amount = 0;
+  if (add === 'add') {
+    amount = parseFloat(current_balance) + parseFloat(value);
+  } else {
+    if (value > current_balance) {
+      return { data, error: { message: 'Saldo insuficiente.' } };
+    }
+    amount = parseFloat(current_balance) - parseFloat(value);
+  }
+
+  const body = {
+    balance: amount,
+    updated_at: new Date(),
+  };
+
+  const { data, error } = await supabase
+    .from('profiles')
+    .update(body)
+    .eq('id', profile[0].id);
+
+  return { data, error };
+};
+
 export const paymentRecords = async (item, profile) => {
   const body = {
     course_id: item.id,

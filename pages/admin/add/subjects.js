@@ -87,7 +87,7 @@ const Subject = ({ courses }) => {
       <Content setContent={setContent} />
 
       <div>{courseId}</div>
-      <div className="field--select mb-4">
+      <div className="field--select mb-5">
         <label htmlFor="add-subject-course-id">Course</label>
         <select
           className="w-100"

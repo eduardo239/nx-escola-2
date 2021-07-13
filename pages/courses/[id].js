@@ -34,20 +34,20 @@ export default function Course({ course, subjects }) {
       setLoading(true);
       const { error } = await subscribe('course', course, profile);
       if (error) {
+        toast.dismiss();
         toast.error(error.message, {
           id: 'subscribe-course-error-subscribe',
         });
         setLoading(false);
-        toast.dismiss();
         return;
       } else {
         const { error } = await paymentRecords(course, profile);
         if (error) {
+          toast.dismiss();
           toast.error(error.message, {
             id: 'subscribe-course-error-payment',
           });
           setLoading(false);
-          toast.dismiss();
           return;
         } else {
           getUserCourses(profile.id);
@@ -55,14 +55,15 @@ export default function Course({ course, subjects }) {
           toast.success('Course successfully subscribed.', {
             id: 'subscribe-course-success',
           });
+          setLoading(false);
         }
       }
-      setLoading(false);
     }
   };
 
   useEffect(() => {
     if (user) userProfile(user.id);
+    // TODO: fixme
     // if (profile) {
     //   getUserCourses(profile.id);
     //   if (userCourses.length > 0) setOwned(true);
@@ -72,7 +73,7 @@ export default function Course({ course, subjects }) {
 
   if (course)
     return (
-      <section>
+      <section className="p-5">
         <Toaster />
 
         <Head>
@@ -113,7 +114,7 @@ export default function Course({ course, subjects }) {
 
         {!owned && (
           <div className={s.subjects}>
-            <h3 className="text-center mb-4">Matérias</h3>
+            <h3 className="text-center mb-5">Matérias</h3>
             <div className="flex-center-center gap-2">
               {subjects.length === 0 ? (
                 <div>Não há matérias.</div>

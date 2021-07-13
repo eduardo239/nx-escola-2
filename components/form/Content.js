@@ -74,7 +74,7 @@ const AddContent = ({ setContent }) => {
       <div className="separator"></div>
       <h4>Element</h4>
       <div
-        className="mb-4"
+        className="mb-5"
         style={{ display: 'flex', gap: '1px', flexWrap: 'wrap' }}
       >
         <Button
@@ -181,7 +181,7 @@ const AddContent = ({ setContent }) => {
             value={code}
             onChange={(e) => setCode(e.target.value.trim())}
           ></Textarea>
-          <div className="mb-4">
+          <div className="mb-5">
             <Button disabled={loading} type="submit" danger onClick={handleAdd}>
               Add Element
               <Add16 />
@@ -201,7 +201,7 @@ const AddContent = ({ setContent }) => {
             className="w-100"
           />
           {type === 'image' && (
-            <div className="mb-4">
+            <div className="mb-5">
               <Button
                 disabled={loading}
                 type="submit"
@@ -217,7 +217,7 @@ const AddContent = ({ setContent }) => {
 
       <div className="separator"></div>
 
-      <div className="mb-4">
+      <div className="mb-5">
         <h4>Content</h4>
         {html.map((h, i) => (
           <div key={i} className="flex-space-center">

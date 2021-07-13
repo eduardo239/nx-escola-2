@@ -29,12 +29,17 @@
   display: flex;
   align-items: center;
   min-height: 3rem;
-  gap: 1.5rem;
   div {
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
+}
+
+.field--radio {
+  flex: 1;
+  padding: 10px;
+  border-radius: var(--border-radius);
 }
 
 .field--select {

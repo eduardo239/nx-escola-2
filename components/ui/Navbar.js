@@ -70,6 +70,9 @@ const Navbar = ({ toggleTheme, theme }) => {
                     <li>
                       <Link href="/admin/add/questions">Questões</Link>
                     </li>
+                    <li>
+                      <Link href="/admin/add/balance">Saldo</Link>
+                    </li>
                   </ul>
                 </li>
                 <li>
