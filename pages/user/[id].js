@@ -1,8 +1,20 @@
 import { supabase } from '../../utils/supabase';
+import Grades from '../../components/table/user/Grades';
 
-const Profile = ({ user }) => {
-  console.log(user);
-  return <div></div>;
+const Profile = ({ profile, user_grades }) => {
+  if (profile)
+    return (
+      <section>
+        {profile.username}
+        <h1>User</h1>
+        {user_grades && <Grades user_grades={user_grades}></Grades>}
+      </section>
+    );
+  return (
+    <section>
+      <h1>Usuário não encontrado.</h1>
+    </section>
+  );
 };
 
 export async function getStaticPaths() {
@@ -18,14 +30,21 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const id = context.params.id;
 
-  let { data: user, error } = await supabase
+  let { data: profile, error } = await supabase
     .from('profiles')
     .select('*')
-    .eq('id', id);
+    .eq('id', id)
+    .single();
 
   if (error) throw error;
+
+  let { data: user_grades, error: error_grades } = await supabase
+    .from('user_grades')
+    .select('*');
+
+  if (error_grades) throw new Error(error_grades);
   return {
-    props: { user },
+    props: { profile, user_grades },
   };
 }
 
