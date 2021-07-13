@@ -65,16 +65,19 @@ export const subscribe = async (type, item, profile) => {
  * @param {Float} value
  * @returns data and error
  */
-export const addBalance = async (profile, add, value) => {
-  let current_balance = profile[0].balance;
+export const addBalance = async (profile, add, v) => {
+  let current_balance = parseFloat(profile[0].balance);
+  let value = parseFloat(v);
   let amount = 0;
+
   if (add === 'add') {
-    amount = parseFloat(current_balance) + parseFloat(value);
+    amount = current_balance + value;
   } else {
     if (value > current_balance) {
       return { data, error: { message: 'Saldo insuficiente.' } };
+    } else {
+      amount = current_balance - value;
     }
-    amount = parseFloat(current_balance) - parseFloat(value);
   }
 
   const body = {

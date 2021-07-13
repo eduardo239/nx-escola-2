@@ -40,6 +40,9 @@
   flex: 1;
   padding: 10px;
   border-radius: var(--border-radius);
+  label {
+    padding: 0.5rem;
+  }
 }
 
 .field--select {

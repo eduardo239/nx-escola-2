@@ -9,7 +9,7 @@ const Balance = ({ users }) => {
   const [value, setValue] = useState(0);
   const [error, setError] = useState(false);
   const [profileId, setProfileId] = useState('');
-  const [add, setAdd] = useState(true);
+  const [operation, setOperation] = useState('add');
 
   const handleUpdateBalance = async (e) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ const Balance = ({ users }) => {
     }
 
     let profile = users.filter((x) => x.id === profileId);
-    const { error } = await addBalance(profile, 'add', value);
+    const { error } = await addBalance(profile, operation, value);
 
     if (error) {
       toast.dismiss();
@@ -70,50 +70,34 @@ const Balance = ({ users }) => {
             </option>
             {users.map((x, i) => (
               <option value={x.id} key={x.id}>
-                {x.username}
+                {x.username} - {x.balance}
               </option>
             ))}
           </select>
         </div>
 
-        {/* TODO: */}
         <div className="flex mb-5 gap-3">
           <div className="flex field--radio">
             <input
               type="radio"
               name={`add-course-balance`}
               id={`add-course-balance-add-0`}
-              defaultChecked={add}
-              onChange={() => setAdd(!add)}
+              value="add"
+              onChange={() => setOperation('add')}
             />
-            <label
-              htmlFor={`add-course-balance-add-0`}
-              style={{
-                padding: '0.5rem',
-              }}
-            >
-              Add
-            </label>
+            <label htmlFor={`add-course-balance-add-0`}>Adicionar</label>
           </div>
           <div className="flex field--radio">
             <input
               type="radio"
               name={`add-course-balance`}
               id={`add-course-balance-add-1`}
-              defaultChecked={!add}
-              onChange={() => setAdd(!add)}
+              value="sub"
+              onChange={() => setOperation('sub')}
             />
-            <label
-              htmlFor={`add-course-balance-add-1`}
-              style={{
-                padding: '0.5rem',
-              }}
-            >
-              Subtract
-            </label>
+            <label htmlFor={`add-course-balance-add-1`}>Subtrair</label>
           </div>
         </div>
-
         <Button primary type="submit">
           Save <Send16 />
         </Button>
