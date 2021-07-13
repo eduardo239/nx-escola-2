@@ -38,6 +38,7 @@ export default function Course({ course, subjects }) {
           id: 'subscribe-course-error-subscribe',
         });
         setLoading(false);
+        toast.dismiss();
         return;
       } else {
         const { error } = await paymentRecords(course, profile);
@@ -46,6 +47,7 @@ export default function Course({ course, subjects }) {
             id: 'subscribe-course-error-payment',
           });
           setLoading(false);
+          toast.dismiss();
           return;
         } else {
           getUserCourses(profile.id);
@@ -61,10 +63,10 @@ export default function Course({ course, subjects }) {
 
   useEffect(() => {
     if (user) userProfile(user.id);
-    if (profile) {
-      getUserCourses(profile.id);
-      if (userCourses.length > 0) setOwned(true);
-    }
+    // if (profile) {
+    //   getUserCourses(profile.id);
+    //   if (userCourses.length > 0) setOwned(true);
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
@@ -109,7 +111,7 @@ export default function Course({ course, subjects }) {
 
         <div className="separator"></div>
 
-        {owned && (
+        {!owned && (
           <div className={s.subjects}>
             <h3 className="text-center mb-4">Matérias</h3>
             <div className="flex-center-center gap-2">
