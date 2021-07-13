@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { supabase } from '../../../utils/supabase';
 import { Input, Button } from '../../../components/ui/Form';
-import { Save16 } from '@carbon/icons-react';
+import { NextOutline16, Save16 } from '@carbon/icons-react';
 import toast, { Toaster } from 'react-hot-toast';
 import Content from '../../../components/form/Content';
+import { useRouter } from 'next/router';
 
 const Subject = ({ courses }) => {
+  const router = useRouter();
   const [name, setName] = useState('');
   const [content, setContent] = useState('');
   const [runtime, setRuntime] = useState(0);
@@ -25,7 +27,6 @@ const Subject = ({ courses }) => {
       });
       return;
     }
-    console.log(content.length);
     if (content.length === 0) {
       toast.error('Content is required.', {
         id: 'add-subject-content',
@@ -45,7 +46,6 @@ const Subject = ({ courses }) => {
       runtime,
       content,
     };
-    console.log(body);
 
     const { error } = await supabase.from('subjects').insert([body]);
 
@@ -65,48 +65,54 @@ const Subject = ({ courses }) => {
     <section>
       <Toaster />
       <h1>Add subject</h1>
-      <Input
-        type="text"
-        placeholder="Name of the subject .."
-        label="Name of the subject"
-        id="add-subject-name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className="w-100"
-      />
-      <Input
-        type="number"
-        placeholder="Subject duration .."
-        label="Runtime"
-        id="add-subject-runtime"
-        value={runtime}
-        onChange={(e) => setRuntime(e.target.value)}
-        className="w-100"
-      />
-
-      <Content setContent={setContent} />
-
-      <div>{courseId}</div>
-      <div className="field--select mb-5">
-        <label htmlFor="add-subject-course-id">Course</label>
-        <select
+      <div className="mb-5">
+        <Input
+          type="text"
+          placeholder="Name of the subject .."
+          label="Name of the subject"
+          id="add-subject-name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className="w-100"
-          onChange={(e) => setCourseId(e.target.value)}
-          id="add-subject-course-id"
-        >
-          <option defaultValue value="">
-            choose One
-          </option>
-          {courses.map((x, i) => (
-            <option value={x.id} key={x.id}>
-              {x.name}
+        />
+        <Input
+          type="number"
+          placeholder="Subject duration .."
+          label="Runtime"
+          id="add-subject-runtime"
+          value={runtime}
+          onChange={(e) => setRuntime(e.target.value)}
+          className="w-100"
+        />
+
+        <Content setContent={setContent} />
+
+        <div>{courseId}</div>
+        <div className="field--select mb-5">
+          <label htmlFor="add-subject-course-id">Course</label>
+          <select
+            className="w-100"
+            onChange={(e) => setCourseId(e.target.value)}
+            id="add-subject-course-id"
+          >
+            <option defaultValue value="">
+              choose One
             </option>
-          ))}
-        </select>
+            {courses.map((x, i) => (
+              <option value={x.id} key={x.id}>
+                {x.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <Button primary type="submit" onClick={handleAddSubject}>
+          Save <Save16 />
+        </Button>
       </div>
 
-      <Button primary type="submit" onClick={handleAddSubject}>
-        Save <Save16 />
+      <Button secondary onClick={() => router.push('/admin/add/questions')}>
+        Adicionar Perguntas <NextOutline16 />
       </Button>
     </section>
   );

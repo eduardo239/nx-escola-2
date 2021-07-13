@@ -51,4 +51,11 @@ export const GlobalStyles = createGlobalStyle`
   .separator  {
     background-color: ${({ theme }) => theme.text};
   }
+
+  .question--header {
+    background-color: ${({ theme }) => theme.text};
+  }
+  .question--header > * {
+    color: ${({ theme }) => theme.body};
+  }
 `;

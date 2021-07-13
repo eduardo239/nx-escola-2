@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Save16 } from '@carbon/icons-react';
+import { NextFilled16, NextOutline16, Save16 } from '@carbon/icons-react';
 import { Button, Input, Textarea } from '../../../components/ui/Form';
 import { supabase } from '../../../utils/supabase';
 import toast, { Toaster } from 'react-hot-toast';
@@ -80,7 +80,7 @@ const Course = () => {
 
       <h1>Add course</h1>
 
-      <form onSubmit={handleAddCourse}>
+      <form onSubmit={handleAddCourse} className="mb-5">
         <Input
           type="text"
           placeholder="Name of the course .."
@@ -166,6 +166,9 @@ const Course = () => {
           Save <Save16 />
         </Button>
       </form>
+      <Button secondary onClick={() => router.push('/admin/add/subjects')}>
+        Adicionar Matérias <NextOutline16 />
+      </Button>
     </section>
   );
 };

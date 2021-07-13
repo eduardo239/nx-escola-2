@@ -52,7 +52,7 @@ const Navbar = ({ toggleTheme, theme }) => {
               <Link href={`/user/${profile.id}`}>{profile.username}</Link>
             </li>
           )}
-          {profile && profile.is_admin && (
+          {profile?.is_admin && (
             <li className={s.dropdown}>
               <Link href="/admin">
                 <a>Admin</a>

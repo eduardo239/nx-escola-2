@@ -32,11 +32,21 @@ const Questions = ({ questions }) => {
         profile
       );
 
-      if (error)
+      if (error) {
         toast.error(error.message, {
           id: 'question-add-error',
         });
-      // setRedirect(true);
+      } else {
+        toast.success(
+          'Perguntas salvas com sucesso, redirecionando em 3 segundos.',
+          {
+            id: 'question-add-success',
+          }
+        );
+        setTimeout(() => {
+          setRedirect(true);
+        }, 3000);
+      }
     }
   };
 
@@ -46,8 +56,8 @@ const Questions = ({ questions }) => {
 
   const mapQuestions = () => {
     return questions.map((q, i) => (
-      <div key={i} className={s.question}>
-        <div className={s.header}>
+      <div key={i} className={`${s.question}`}>
+        <div className={`${s.header} question--header`}>
           <small>[{i + 1}] Question</small>
           <p>{q.question}</p>
         </div>
@@ -86,19 +96,16 @@ const Questions = ({ questions }) => {
 
   if (redirect) router.push('/courses/done');
 
-  // if (questions.length === 0)
-  //   return (
-  //     <section>
-  //       <h1>Perguntas não encontradas.</h1>
-  //     </section>
-  //   );
-
   return (
     <section>
       <Toaster />
 
       <h1>Questions</h1>
-      {questions.length === 0 ? <p>Questions not found</p> : mapQuestions()}
+      {questions.length === 0 ? (
+        <h1>Perguntas não encontradas.</h1>
+      ) : (
+        mapQuestions()
+      )}
 
       <div className="mb-4">
         <Button secondary onClick={handleSave}>
