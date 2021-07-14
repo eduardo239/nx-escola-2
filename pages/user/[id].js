@@ -2,8 +2,10 @@ import { supabase } from '../../utils/supabase';
 import { app_name } from '../../utils/constants';
 import Grades from '../../components/table/user/Grades';
 import Head from 'next/head';
+import Payments from '../../components/table/user/Payments';
+import Courses from '../../components/table/user/Courses';
 
-const Profile = ({ profile, user_grades }) => {
+const Profile = ({ profile, user_grades, user_payments, user_courses }) => {
   if (profile)
     return (
       <section>
@@ -16,9 +18,10 @@ const Profile = ({ profile, user_grades }) => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        {profile.username}
-        <h1>User</h1>
-        {user_grades && <Grades user_grades={user_grades}></Grades>}
+        <h2>{profile.username}</h2>
+        {user_grades && <Grades user_grades={user_grades} />}
+        {user_payments && <Payments user_payments={user_payments} />}
+        {user_courses && <Courses user_courses={user_courses} />}
       </section>
     );
   return (
@@ -51,11 +54,26 @@ export async function getStaticProps(context) {
 
   let { data: user_grades, error: error_grades } = await supabase
     .from('user_grades')
-    .select('*, subject_id(id, name, course_id(id, name, poster))');
+    .select('*, subject_id(id, name, course_id(id, name, poster))')
+    .eq('profile_id', id);
 
   if (error_grades) throw new Error(error_grades);
+
+  let { data: user_payments, error: error_payments } = await supabase
+    .from('user_payments')
+    .select('*, course_id(id, name)')
+    .eq('profile_id', id);
+
+  if (error_payments) throw new Error(error_payments);
+
+  let { data: user_courses, error: error_courses } = await supabase
+    .from('user_courses')
+    .select('*, course_id(id, name, poster)')
+    .eq('profile_id', id);
+
+  if (error_courses) throw new Error(error_courses);
   return {
-    props: { profile, user_grades },
+    props: { profile, user_grades, user_payments, user_courses },
   };
 }
 

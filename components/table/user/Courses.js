@@ -3,9 +3,10 @@ import { useState } from 'react';
 import { ButtonIcon, IconOnly } from '../../ui/Form';
 import { TrashCan16 } from '@carbon/icons-react';
 
-const headers = ['Curso', 'Matéria', 'Nota', 'Opções'];
+const headers = ['Poster', 'Curso', 'Atualizado em', 'Opções'];
 
-export default function MyGrades({ user_grades }) {
+export default function Payments({ user_courses }) {
+  console.log(user_courses);
   const [loading, setLoading] = useState(false);
 
   const handleModal = () => {
@@ -14,12 +15,12 @@ export default function MyGrades({ user_grades }) {
     return;
   };
 
-  const mapUserGrades = () => {
-    return user_grades.map((x) => (
+  const mapUserCourses = () => {
+    return user_courses.map((x) => (
       <tr key={x.id} className="table-row">
-        <td>{x.subject_id.course_id.name}</td>
-        <td>{x.subject_id.name}</td>
-        <td>{x.result}</td>
+        <td>{x.poster}</td>
+        <td>{x.course_id.name}</td>
+        <td>{x.updated_at}</td>
         <td>
           <IconOnly disabled={loading} danger onClick={() => handleModal(x.id)}>
             <TrashCan16 />
@@ -30,7 +31,7 @@ export default function MyGrades({ user_grades }) {
   };
   return (
     <section>
-      <h1>Minhas Notas</h1>
+      <h1>Meus Cursos</h1>
 
       <table className="table">
         <thead>
@@ -41,10 +42,10 @@ export default function MyGrades({ user_grades }) {
           </tr>
         </thead>
         <tbody>
-          {user_grades.length === 0 ? (
-            <p>User grades not found</p>
+          {user_courses.length === 0 ? (
+            <p>Não há registro de cursos.</p>
           ) : (
-            mapUserGrades()
+            mapUserCourses()
           )}
         </tbody>
       </table>
