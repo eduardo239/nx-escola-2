@@ -26,7 +26,7 @@ export const GlobalStyles = createGlobalStyle`
    border: 1px solid ${({ theme }) => theme.border};
   }
 
-  .button--secondary {
+  .button--secondary, .modal-body {
     color: ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.bg};
     border-bottom: 2px solid ${({ theme }) => theme.text};

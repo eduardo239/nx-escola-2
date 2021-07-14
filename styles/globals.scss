@@ -265,3 +265,33 @@ textarea:disabled {
   /* change div to reference your elements you put in <Masonry> */
   margin-bottom: 30px;
 }
+/*-----------------------------------------------------*/
+.modal-container {
+  display: none;
+  background-color: var(--opacity-5);
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+}
+.modal-body {
+  position: relative;
+  display: block;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  max-width: 30rem;
+  max-height: 85vh;
+  overflow-y: auto;
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.show {
+  display: block;
+}

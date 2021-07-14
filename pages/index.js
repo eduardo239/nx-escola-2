@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Head from 'next/head';
-import { Accessibility16 } from '@carbon/icons-react';
-import { Button, ButtonIcon, Input, InputButton } from '../components/ui/Form';
+import { Accessibility16, Close16 } from '@carbon/icons-react';
+import {
+  Button,
+  ButtonIcon,
+  Input,
+  InputButton,
+  IconOnly,
+} from '../components/ui/Form';
 import { app_name } from '../utils/constants';
 import Spinner from '../components/ui/Spinner';
+import Modal from '../components/Modal';
 
 export default function Home() {
+  const modalRef = useRef(null);
+  const [modal, setModal] = useState(false);
+
   return (
     <section>
       <Head>
@@ -19,6 +29,47 @@ export default function Home() {
 
       <main>
         <h1>HOME</h1>
+
+        <button onClick={() => setModal(!modal)}>click</button>
+
+        {modal && (
+          <Modal modal={modal} setModal={setModal}>
+            <div>
+              <div className="p-5">
+                <h1>Modal</h1>
+                <p style={{ fontSize: '0.875rem' }}>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
+                  quibusdam perferendis reprehenderit expedita cupiditate?
+                  Molestiae nesciunt porro vero asperiores a quasi eaque odio,
+                  iste temporibus voluptatibus enim, dolorem voluptate suscipit?
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti neque ratione repellendus pariatur officiis rem
+                  quibusdam quisquam laboriosam dolorum asperiores
+                  necessitatibus provident consequatur sapiente, veniam corrupti
+                  in, illum porro dolore?
+                </p>
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Deserunt neque doloribus pariatur itaque, quo impedit nesciunt
+                  delectus. Rem, non repellendus, rerum reprehenderit error
+                  dolores repudiandae autem ipsa accusantium placeat veritatis.
+                </p>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+                sequi ipsum, explicabo deserunt praesentium culpa hic voluptas
+                quia quaerat veniam tempora odio architecto dolores similique
+                beatae distinctio repellendus numquam deleniti!
+              </p>
+              <div className="flex">
+                <Button danger>Click here</Button>
+                <Button secondary>Click here</Button>
+              </div>
+            </div>
+          </Modal>
+        )}
         {/* <Spinner></Spinner> */}
         {/* 
            <Button primary>Coisa</Button>
