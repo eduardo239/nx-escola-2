@@ -159,7 +159,7 @@ const AddContent = ({ setContent }) => {
               label={type.charAt(0).toUpperCase() + type.slice(1)}
               placeholder="Write here .."
               value={code}
-              onChange={(e) => setCode(e.target.value.trim())}
+              onChange={(e) => setCode(e.target.value)}
               className="w-100"
             />
             <Button disabled={loading} type="submit" danger onClick={handleAdd}>
@@ -179,7 +179,7 @@ const AddContent = ({ setContent }) => {
             className="w-100"
             rows="4"
             value={code}
-            onChange={(e) => setCode(e.target.value.trim())}
+            onChange={(e) => setCode(e.target.value)}
           ></Textarea>
           <Button disabled={loading} type="submit" danger onClick={handleAdd}>
             Adicionar Elemento
@@ -195,7 +195,7 @@ const AddContent = ({ setContent }) => {
             label={type.charAt(0).toUpperCase() + type.slice(1)}
             placeholder="Write here .."
             value={code}
-            onChange={(e) => setCode(e.target.value.trim())}
+            onChange={(e) => setCode(e.target.value)}
             className="w-100"
           />
           {type === 'image' && (

@@ -8,11 +8,17 @@ const Questions = ({ subjects }) => {
   const [question, setQuestion] = useState('');
   const [alternatives, setAlternatives] = useState([]);
   const [alternative, setAlternative] = useState('');
-  const [correct, setCorrect] = useState('');
+  const [correct, setCorrect] = useState(null);
   const [subjectId, setSubjectId] = useState('');
 
   const handleAddAlternative = (e) => {
     e.preventDefault();
+    if (alternative === '') {
+      toast.error('Alternativa em branco.', {
+        id: 'add-question-empty',
+      });
+      return;
+    }
     setAlternative('');
     setAlternatives((alternatives) => [...alternatives, alternative]);
   };
@@ -26,7 +32,7 @@ const Questions = ({ subjects }) => {
     e.preventDefault();
 
     if (question === '') {
-      toast('Question is required.', {
+      toast.error('Question is required.', {
         id: 'add-question-content',
       });
       return;
@@ -37,7 +43,7 @@ const Questions = ({ subjects }) => {
       });
       return;
     }
-    if (correct === '') {
+    if (correct === null) {
       toast.error('Select the correct answer.', {
         id: 'add-question-answer',
       });
@@ -98,6 +104,7 @@ const Questions = ({ subjects }) => {
         </Button>
       </form>
 
+      {/* TODO: style the list */}
       {alternatives.map((alternative, i) => (
         <div
           style={{
@@ -147,10 +154,14 @@ const Questions = ({ subjects }) => {
         </div>
       ))}
 
-      <p>Resposta correta: {correct + 1}</p>
+      <div className="p-5">
+        <small>
+          Resposta correta: {correct !== '' ? correct + 1 : 'Undefined'}
+        </small>
+      </div>
 
-      <label htmlFor="add-subject-course-id">Curso/Matéria</label>
-      <div className="field--select">
+      <div className="field--select mb-5">
+        <label htmlFor="add-subject-course-id">Curso/Matéria</label>
         <select
           className="w-100"
           onChange={(e) => setSubjectId(e.target.value)}
@@ -161,7 +172,7 @@ const Questions = ({ subjects }) => {
           </option>
           {subjects.map((x, i) => (
             <option value={x.id} key={x.id}>
-              {x.name}
+              Curso: {x.course_id.name}, Matéria: {x.name}
             </option>
           ))}
         </select>
@@ -175,7 +186,9 @@ const Questions = ({ subjects }) => {
 };
 
 export async function getStaticProps() {
-  let { data: subjects, error } = await supabase.from('subjects').select('*');
+  let { data: subjects, error } = await supabase
+    .from('subjects')
+    .select('*, course_id(id, name)');
 
   if (error) throw error;
 

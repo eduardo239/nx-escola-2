@@ -1,13 +1,21 @@
 import s from '../../styles/Navbar.module.scss';
 import Link from 'next/link';
-import { ButtonIcon } from './Form';
+import { ButtonIcon, IconOnly } from './Form';
 import { useUser } from '../../utils/useUser';
 import { useEffect, useState } from 'react';
-import { Switcher16, Logout16, Awake16, Asleep16 } from '@carbon/icons-react';
+import {
+  Switcher16,
+  Logout16,
+  Awake16,
+  Asleep16,
+  Home16,
+} from '@carbon/icons-react';
+import { useRouter } from 'next/dist/client/router';
 
 const Navbar = ({ toggleTheme, theme }) => {
   const { user, profile, signOut, userProfile } = useUser();
   const [menu, setMenu] = useState(false);
+  const router = useRouter();
 
   const handleClickOutside = (e) => {
     const tar = e.target;
@@ -32,6 +40,9 @@ const Navbar = ({ toggleTheme, theme }) => {
           Menu
           <Switcher16 />
         </ButtonIcon>
+        <IconOnly primary onClick={() => router.push('/')}>
+          <Home16 />
+        </IconOnly>
       </div>
 
       <section

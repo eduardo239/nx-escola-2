@@ -47,6 +47,10 @@
 
 .field--select {
   min-height: 3rem;
+  label {
+    margin-bottom: 0.25rem;
+    display: inline-block;
+  }
   select {
     display: inline-block;
     min-width: 12rem;
@@ -74,6 +78,7 @@ textarea {
   width: 100%;
   label {
     margin-bottom: 0.25rem;
+    display: inline-block;
   }
   .field-button__input {
     display: flex;

@@ -42,7 +42,9 @@ export default function Payments({ user_payments }) {
         </thead>
         <tbody>
           {user_payments.length === 0 ? (
-            <p>Não há registro de pagamentos.</p>
+            <td className="table-info" colSpan={headers.length}>
+              Não há registro de pagamentos.
+            </td>
           ) : (
             mapUserPayments()
           )}
