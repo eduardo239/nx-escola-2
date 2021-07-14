@@ -6,6 +6,7 @@ import Image from 'next/image';
 import s from '../../../styles/Subject.module.scss';
 import Head from 'next/head';
 import { app_name } from '../../../utils/constants';
+import Spinner from '../../../components/ui/Spinner';
 
 const Subject = ({ subject }) => {
   const router = useRouter();
@@ -36,38 +37,52 @@ const Subject = ({ subject }) => {
     ));
   };
 
-  return (
-    <section>
-      <Head>
-        <title>{`${app_name} - Matéria: ${subject.name}`}</title>
-        <meta name="description" content="Cursos de todos os tipos aqui." />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+  if (subject)
+    return (
+      <section>
+        <Head>
+          <title>{`${app_name} - Matéria: ${subject.name}`}</title>
+          <meta name="description" content="Cursos de todos os tipos aqui." />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <div>
-        <small>{subject?.course_id?.name}</small>
-        <h1>{subject?.name}</h1>
-        <p>{subject?.runtime ? `${subject?.runtime} min.` : ''}</p>
-      </div>
+        <div>
+          <small>{subject?.course_id?.name}</small>
+          <h1>{subject?.name}</h1>
+          <p>{subject?.runtime ? `${subject?.runtime} min.` : ''}</p>
+        </div>
 
-      <div className="separator"></div>
+        <div className="separator"></div>
 
-      <div className="mb-4">
-        {subject.content.length === 0 ? <p>Content not found</p> : mapContent()}
-      </div>
+        <div className="mb-4">
+          {subject.content.length === 0 ? (
+            <p>Content not found</p>
+          ) : (
+            mapContent()
+          )}
+        </div>
 
-      <div className="mb-4">
-        <Button
-          primary
-          onClick={() =>
-            router.push(`/courses/subjects/questions/${subject.id}`)
-          }
-        >
-          Questions
-        </Button>
-      </div>
-    </section>
-  );
+        <div className="mb-4">
+          <Button
+            primary
+            onClick={() =>
+              router.push(`/courses/subjects/questions/${subject.id}`)
+            }
+          >
+            Questions
+          </Button>
+        </div>
+      </section>
+    );
+
+  if (!subject)
+    return (
+      <section>
+        <h4>Curso não encontrado</h4>
+      </section>
+    );
+
+  return <Spinner />;
 };
 
 export async function getStaticPaths() {

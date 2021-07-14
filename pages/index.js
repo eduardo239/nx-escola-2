@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { Accessibility16 } from '@carbon/icons-react';
 import { Button, ButtonIcon, Input, InputButton } from '../components/ui/Form';
 import { app_name } from '../utils/constants';
+import Spinner from '../components/ui/Spinner';
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
 
       <main>
         <h1>HOME</h1>
+        {/* <Spinner></Spinner> */}
         {/* 
            <Button primary>Coisa</Button>
       <Button secondary>Coisa</Button>

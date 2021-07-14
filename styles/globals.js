@@ -58,4 +58,13 @@ export const GlobalStyles = createGlobalStyle`
   .question--header > * {
     color: ${({ theme }) => theme.body};
   }
+
+  .table-header th {
+    color: ${({ theme }) => theme.white};
+    background-color: ${({ theme }) => theme.primary};
+  }
+
+  .table-row td {
+    border: 1px solid ${({ theme }) => theme.border};
+  }
 `;
