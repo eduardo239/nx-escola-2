@@ -78,7 +78,7 @@ const Course = () => {
     <section className="p-5 bg-section">
       <Toaster />
 
-      <h1>Add course</h1>
+      <h1>Adicionar Curso</h1>
 
       <form onSubmit={handleAddCourse} className="mb-5">
         <Input

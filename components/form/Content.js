@@ -1,17 +1,23 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { Input, Button, Textarea } from '../ui/Form';
+import { Input, Button, Textarea, IconOnly } from '../ui/Form';
 import {
   Add16,
+  DirectionCurveFilled16,
   DocumentPdf16,
   Image16,
   Link16,
   Paragraph16,
+  SoilTemperature16,
+  Subtract16,
   TextAlignJustify16,
   TextAllCaps16,
   TextBold16,
+  TextLineSpacing16,
+  TrashCan16,
   VideoChat16,
 } from '@carbon/icons-react';
+import s from '../../styles/Questions.module.scss';
 
 const AddContent = ({ setContent }) => {
   const [type, setType] = useState('title');
@@ -77,73 +83,73 @@ const AddContent = ({ setContent }) => {
         className="mb-5"
         style={{ display: 'flex', gap: '1px', flexWrap: 'wrap' }}
       >
-        <Button
+        <IconOnly
           primary={type === 'title'}
           secondary={type !== 'title'}
           onClick={() => setType('title')}
         >
-          Title <TextAllCaps16 />
-        </Button>
-        <Button
+          <TextAllCaps16 />
+        </IconOnly>
+        <IconOnly
           primary={type === 'subtitle'}
           secondary={type !== 'subtitle'}
           label="Subtitle"
           onClick={() => setType('subtitle')}
         >
-          Subtitle <TextBold16 />
-        </Button>
-        <Button
+          <TextBold16 />
+        </IconOnly>
+        <IconOnly
           primary={type === 'paragraph'}
           secondary={type !== 'paragraph'}
           onClick={() => setType('paragraph')}
         >
-          Paragraph <Paragraph16 />
-        </Button>
-        <Button
+          <Paragraph16 />
+        </IconOnly>
+        <IconOnly
           primary={type === 'text'}
           secondary={type !== 'text'}
           onClick={() => setType('text')}
         >
-          Text <TextAlignJustify16 />
-        </Button>
+          <TextAlignJustify16 />
+        </IconOnly>
 
-        <Button
+        <IconOnly
           primary={type === 'anchor'}
           secondary={type !== 'anchor'}
           onClick={() => setType('anchor')}
         >
-          Link <Link16 />
-        </Button>
-        <Button
+          <Link16 />
+        </IconOnly>
+        <IconOnly
           primary={type === 'video'}
           secondary={type !== 'video'}
           onClick={() => setType('video')}
         >
-          Video <VideoChat16 />
-        </Button>
-        <Button
+          <VideoChat16 />
+        </IconOnly>
+        <IconOnly
           primary={type === 'pdf'}
           secondary={type !== 'pdf'}
           onClick={() => setType('pdf')}
         >
-          PDF File <DocumentPdf16 />
-        </Button>
+          <DocumentPdf16 />
+        </IconOnly>
         {/*  */}
-        <Button
+        <IconOnly
           primary={type === 'image'}
           secondary={type !== 'image'}
           onClick={() => setType('image')}
         >
-          Image <Image16 />
-        </Button>
+          <Image16 />
+        </IconOnly>
         {/*  */}
-        <Button
+        <IconOnly
           primary={type === 'separator'}
           secondary={type !== 'separator'}
           onClick={() => addElement('separator')}
         >
-          Separator <DocumentPdf16 />
-        </Button>
+          <TextLineSpacing16 />
+        </IconOnly>
       </div>
       <form onSubmit={handleAdd}>
         {(type === 'title' ||
@@ -157,7 +163,7 @@ const AddContent = ({ setContent }) => {
               id="add-subject-content"
               type="text"
               label={type.charAt(0).toUpperCase() + type.slice(1)}
-              placeholder="Write here .."
+              placeholder="Escreva aqui .."
               value={code}
               onChange={(e) => setCode(e.target.value)}
               className="w-100"
@@ -218,21 +224,16 @@ const AddContent = ({ setContent }) => {
       <div className="mb-5">
         <h5>Conteúdo</h5>
         {html.map((h, i) => (
-          <div key={i} className="flex-space-center">
-            <p
-              style={{
-                flex: '1',
-                margin: '0.5rem 0',
-                border: '1px solid #333',
-                padding: '0.5rem ',
-                fontSize: '0.75rem',
-              }}
-            >
-              {h.content}
-            </p>
-            <Button danger onClick={() => removeElement(i)}>
-              Remover
-            </Button>
+          <div key={i} className={s.item}>
+            <div>
+              <span>{i + 1}</span>
+              <label>{h.content}</label>
+            </div>
+            <div>
+              <IconOnly secondary onClick={() => removeElement(i)}>
+                <Subtract16 />
+              </IconOnly>
+            </div>
           </div>
         ))}
       </div>

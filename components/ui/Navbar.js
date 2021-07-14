@@ -2,7 +2,7 @@ import s from '../../styles/Navbar.module.scss';
 import Link from 'next/link';
 import { ButtonIcon, IconOnly } from './Form';
 import { useUser } from '../../utils/useUser';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Switcher16,
   Logout16,
@@ -19,7 +19,6 @@ const Navbar = ({ toggleTheme, theme }) => {
     useUser();
   const [menu, setMenu] = useState(false);
   const router = useRouter();
-  const itemRef = useRef();
 
   const handleClickOutside = (e) => {
     const tar = e.target;
@@ -68,12 +67,12 @@ const Navbar = ({ toggleTheme, theme }) => {
           <li style={{ padding: '10px' }}>
             <h3 style={{ color: '#262626' }}>App Escola</h3>
           </li>
-          <li>
+          <li onClick={() => setMenu(false)}>
             <Link href="/">
               <a>Home</a>
             </Link>
           </li>
-          <li>
+          <li onClick={() => setMenu(false)}>
             <Link href="/courses">
               <a>Cursos</a>
             </Link>
@@ -88,17 +87,17 @@ const Navbar = ({ toggleTheme, theme }) => {
                   Adicionar <CaretDown16 />
                 </ButtonIcon>
                 <ul className="none">
-                  <li>
+                  <li onClick={() => setMenu(false)}>
                     <Link href="/admin/add/courses">
                       <a>Cursos</a>
                     </Link>
                   </li>
-                  <li>
+                  <li onClick={() => setMenu(false)}>
                     <Link href="/admin/add/subjects">
                       <a>Matérias</a>
                     </Link>
                   </li>
-                  <li>
+                  <li onClick={() => setMenu(false)}>
                     <Link href="/admin/add/questions">
                       <a>Questões</a>
                     </Link>
@@ -110,22 +109,22 @@ const Navbar = ({ toggleTheme, theme }) => {
                   Listas <CaretDown16 />
                 </ButtonIcon>
                 <ul className="none">
-                  <li>
+                  <li onClick={() => setMenu(false)}>
                     <Link href="/admin/all/courses">
                       <a>Cursos</a>
                     </Link>
                   </li>
-                  <li>
+                  <li onClick={() => setMenu(false)}>
                     <Link href="/admin/all/subjects">
                       <a>Matérias</a>
                     </Link>
                   </li>
-                  <li>
+                  <li onClick={() => setMenu(false)}>
                     <Link href="/admin/all/questions">
                       <a>Questões</a>
                     </Link>
                   </li>
-                  <li>
+                  <li onClick={() => setMenu(false)}>
                     <Link href="/admin/all/users">
                       <a>Usuários</a>
                     </Link>
@@ -141,21 +140,21 @@ const Navbar = ({ toggleTheme, theme }) => {
             </ButtonIcon>
             <ul className="none">
               {!user && (
-                <li>
+                <li onClick={() => setMenu(false)}>
                   <Link href="/login">
                     <a>Login</a>
                   </Link>
                 </li>
               )}
               {!user && (
-                <li>
+                <li onClick={() => setMenu(false)}>
                   <Link href="/register">
                     <a>Registro</a>
                   </Link>
                 </li>
               )}
               {profile && (
-                <li>
+                <li onClick={() => setMenu(false)}>
                   <Link href={`/user/${profile.id}`}>
                     <a>{profile.username}</a>
                   </Link>
@@ -165,12 +164,12 @@ const Navbar = ({ toggleTheme, theme }) => {
           </li>
           <li>
             <ButtonIcon className={s.button} onClick={() => toggleTheme(theme)}>
-              Tema <CaretDown16 />
+              Tema {theme === 'light' ? <Awake16 /> : <Asleep16 />}
             </ButtonIcon>
           </li>
-          <li>
+          <li onClick={() => setMenu(false)}>
             <ButtonIcon className={s.button} onClick={() => handleLogout}>
-              Sair <CaretDown16 />
+              Sair <Logout16 />
             </ButtonIcon>
           </li>
         </ul>
