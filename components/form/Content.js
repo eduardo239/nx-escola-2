@@ -70,9 +70,9 @@ const AddContent = ({ setContent }) => {
   };
 
   return (
-    <div>
+    <>
       <div className="separator"></div>
-      <h4>Element</h4>
+      <h5>ELemento</h5>
       <div
         className="mb-5"
         style={{ display: 'flex', gap: '1px', flexWrap: 'wrap' }}
@@ -152,7 +152,7 @@ const AddContent = ({ setContent }) => {
           type === 'anchor' ||
           type === 'video' ||
           type === 'pdf') && (
-          <div>
+          <div className="mb-5">
             <Input
               id="add-subject-content"
               type="text"
@@ -163,7 +163,7 @@ const AddContent = ({ setContent }) => {
               className="w-100"
             />
             <Button disabled={loading} type="submit" danger onClick={handleAdd}>
-              Add Element
+              Adicionar Elemento
               <Add16 />
             </Button>
           </div>
@@ -171,7 +171,7 @@ const AddContent = ({ setContent }) => {
       </form>
 
       {type === 'text' && (
-        <div>
+        <div className="mb-5">
           <Textarea
             id="add-subject-text"
             label={type.charAt(0).toUpperCase() + type.slice(1)}
@@ -181,12 +181,10 @@ const AddContent = ({ setContent }) => {
             value={code}
             onChange={(e) => setCode(e.target.value.trim())}
           ></Textarea>
-          <div className="mb-5">
-            <Button disabled={loading} type="submit" danger onClick={handleAdd}>
-              Add Element
-              <Add16 />
-            </Button>
-          </div>
+          <Button disabled={loading} type="submit" danger onClick={handleAdd}>
+            Adicionar Elemento
+            <Add16 />
+          </Button>
         </div>
       )}
       {type === 'image' && (
@@ -205,10 +203,10 @@ const AddContent = ({ setContent }) => {
               <Button
                 disabled={loading}
                 type="submit"
-                primary
+                secondary
                 onClick={() => addImage(code)}
               >
-                Add Image <Add16 />
+                Adicionar Imagem <Add16 />
               </Button>
             </div>
           )}
@@ -218,7 +216,7 @@ const AddContent = ({ setContent }) => {
       <div className="separator"></div>
 
       <div className="mb-5">
-        <h4>Content</h4>
+        <h5>Conteúdo</h5>
         {html.map((h, i) => (
           <div key={i} className="flex-space-center">
             <p
@@ -233,12 +231,12 @@ const AddContent = ({ setContent }) => {
               {h.content}
             </p>
             <Button danger onClick={() => removeElement(i)}>
-              Remove
+              Remover
             </Button>
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

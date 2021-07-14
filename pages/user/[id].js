@@ -8,7 +8,7 @@ import Courses from '../../components/table/user/Courses';
 const Profile = ({ profile, user_grades, user_payments, user_courses }) => {
   if (profile)
     return (
-      <section>
+      <section className="p-5 bg-section">
         <Head>
           <title>{`${app_name} - ${profile.username}`}</title>
           <meta
@@ -25,7 +25,7 @@ const Profile = ({ profile, user_grades, user_payments, user_courses }) => {
       </section>
     );
   return (
-    <section>
+    <section className="p-5 bg-section">
       <h1>Usuário não encontrado.</h1>
     </section>
   );

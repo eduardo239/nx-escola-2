@@ -99,7 +99,7 @@ const Questions = ({ questions }) => {
   if (redirect) router.push('/courses/done');
 
   return (
-    <section>
+    <section className="p-5 bg-section">
       <Head>
         <title>{`${app_name} - Número de perguntas: ${questions.length}`}</title>
         <meta name="description" content="Cursos de todos os tipos aqui." />

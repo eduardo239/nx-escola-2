@@ -42,10 +42,10 @@ const Balance = ({ users }) => {
   };
 
   return (
-    <section className="p-5">
+    <section className="p-5 bg-section">
       <Toaster />
       <form onSubmit={handleUpdateBalance}>
-        <h1>Add balance</h1>
+        <h1>Adicionar saldo</h1>
 
         <Input
           type="number"
@@ -99,7 +99,7 @@ const Balance = ({ users }) => {
           </div>
         </div>
         <Button primary type="submit">
-          Save <Send16 />
+          Salvar <Send16 />
         </Button>
       </form>
     </section>

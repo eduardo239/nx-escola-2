@@ -75,7 +75,7 @@ const Course = () => {
   }, []);
 
   return (
-    <section>
+    <section className="p-5 bg-section">
       <Toaster />
 
       <h1>Add course</h1>
@@ -166,6 +166,7 @@ const Course = () => {
           Save <Save16 />
         </Button>
       </form>
+
       <Button secondary onClick={() => router.push('/admin/add/subjects')}>
         Adicionar Matérias <NextOutline16 />
       </Button>

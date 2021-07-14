@@ -70,9 +70,9 @@ const Questions = ({ subjects }) => {
   };
 
   return (
-    <section>
+    <section className="p-5 bg-section">
       <Toaster />
-      <h1>Add Question</h1>
+      <h1>Adicionar questões</h1>
 
       <Textarea
         label="Question"
@@ -94,7 +94,7 @@ const Questions = ({ subjects }) => {
           className="w-100"
         />
         <Button secondary type="submit" onClick={handleAddAlternative}>
-          Add <Add16 />
+          Adicionar <Add16 />
         </Button>
       </form>
 
@@ -141,15 +141,15 @@ const Questions = ({ subjects }) => {
               type="submit"
               onClick={() => handleRemoveAlternative(i)}
             >
-              Remove <Subtract16 />
+              Remover <Subtract16 />
             </Button>
           </div>
         </div>
       ))}
 
-      <p>Correct answer: {correct + 1}</p>
+      <p>Resposta correta: {correct + 1}</p>
 
-      <label htmlFor="add-subject-course-id">Course/Subject</label>
+      <label htmlFor="add-subject-course-id">Curso/Matéria</label>
       <div className="field--select">
         <select
           className="w-100"
@@ -168,7 +168,7 @@ const Questions = ({ subjects }) => {
       </div>
 
       <Button primary type="submit" onClick={handleAddQuestions}>
-        Save <Save16 />
+        Salvar <Save16 />
       </Button>
     </section>
   );

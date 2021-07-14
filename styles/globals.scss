@@ -167,6 +167,12 @@ textarea:disabled {
   align-items: center;
   justify-content: space-between;
 }
+
+.flex-center-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 /*-----------------------------------------------------*/
 .mb-1 {
   margin-bottom: 0.1rem;
@@ -186,6 +192,9 @@ textarea:disabled {
 }
 .p-5 {
   padding: 1rem;
+}
+.p-10 {
+  padding: 2rem;
 }
 /*-----------------------------------------------------*/
 .gap-1 {
@@ -267,6 +276,7 @@ textarea:disabled {
 }
 /*-----------------------------------------------------*/
 .modal-container {
+  z-index: 999;
   display: none;
   background-color: var(--opacity-5);
   position: fixed;
@@ -277,21 +287,40 @@ textarea:disabled {
   left: 0;
   top: 0;
 }
+@keyframes slideIn {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: initial;
+  }
+}
 .modal-body {
+  z-index: 899;
+  box-shadow: var(--shadow-4);
   position: relative;
   display: block;
   margin-left: 10vw;
   margin-right: 10vw;
-  max-width: 30rem;
+  max-width: 35rem;
   max-height: 85vh;
+  min-width: 25rem;
   overflow-y: auto;
+  animation: slideIn 0.3s cubic-bezier(0.17, 0.61, 0.33, 0.82);
+
   .close {
     position: absolute;
     top: 0;
     right: 0;
   }
 }
-
-.show {
+.spinner__center {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.spinner__center .active {
   display: block;
 }

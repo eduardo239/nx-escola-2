@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import Head from 'next/head';
-import { Accessibility16, Close16 } from '@carbon/icons-react';
+import { Accessibility16, Close16, TrashCan16 } from '@carbon/icons-react';
 import {
   Button,
   ButtonIcon,
@@ -13,11 +13,10 @@ import Spinner from '../components/ui/Spinner';
 import Modal from '../components/Modal';
 
 export default function Home() {
-  const modalRef = useRef(null);
   const [modal, setModal] = useState(false);
 
   return (
-    <section>
+    <section className="p-5 bg-section">
       <Head>
         <title>{`${app_name}`}</title>
         <meta
@@ -30,7 +29,9 @@ export default function Home() {
       <main>
         <h1>HOME</h1>
 
-        <button onClick={() => setModal(!modal)}>click</button>
+        <Button primary onClick={() => setModal(!modal)}>
+          click
+        </Button>
 
         {modal && (
           <Modal modal={modal} setModal={setModal}>
@@ -43,56 +44,42 @@ export default function Home() {
                   Molestiae nesciunt porro vero asperiores a quasi eaque odio,
                   iste temporibus voluptatibus enim, dolorem voluptate suscipit?
                 </p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Deleniti neque ratione repellendus pariatur officiis rem
-                  quibusdam quisquam laboriosam dolorum asperiores
-                  necessitatibus provident consequatur sapiente, veniam corrupti
-                  in, illum porro dolore?
-                </p>
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Deserunt neque doloribus pariatur itaque, quo impedit nesciunt
-                  delectus. Rem, non repellendus, rerum reprehenderit error
-                  dolores repudiandae autem ipsa accusantium placeat veritatis.
-                </p>
               </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-                sequi ipsum, explicabo deserunt praesentium culpa hic voluptas
-                quia quaerat veniam tempora odio architecto dolores similique
-                beatae distinctio repellendus numquam deleniti!
-              </p>
-              <div className="flex">
-                <Button danger>Click here</Button>
-                <Button secondary>Click here</Button>
+              <div className="flex-center-end">
+                <ButtonIcon danger onClick={() => console.log(1)}>
+                  Deletar <TrashCan16 />
+                </ButtonIcon>
+                <ButtonIcon secondary onClick={() => setModal(!modal)}>
+                  Cancelar <Close16 />
+                </ButtonIcon>
               </div>
             </div>
           </Modal>
         )}
         {/* <Spinner></Spinner> */}
+        <Button primary>Coisa</Button>
+        <Button secondary>Coisa</Button>
+        <Button danger>Coisa</Button>
+
+        <ButtonIcon primary>
+          Garbage <TrashCan16 />
+        </ButtonIcon>
+        <ButtonIcon secondary>
+          Garbage <TrashCan16 />
+        </ButtonIcon>
+        <ButtonIcon danger>
+          Garbage <TrashCan16 />
+        </ButtonIcon>
+        <IconOnly danger>
+          <TrashCan16 />
+        </IconOnly>
+        <IconOnly secondary>
+          <TrashCan16 />
+        </IconOnly>
+        <IconOnly primary>
+          <TrashCan16 />
+        </IconOnly>
         {/* 
-           <Button primary>Coisa</Button>
-      <Button secondary>Coisa</Button>
-      <Button danger>Coisa</Button>
-      <ButtonIcon primary>
-        Garbage <TrashCan16 />
-      </ButtonIcon>
-      <ButtonIcon secondary>
-        Garbage <TrashCan16 />
-      </ButtonIcon>
-      <ButtonIcon danger>
-        Garbage <TrashCan16 />
-      </ButtonIcon>
-      <IconOnly danger>
-        <TrashCan16 />
-      </IconOnly>
-      <IconOnly secondary>
-        <TrashCan16 />
-      </IconOnly>
-      <IconOnly primary>
-        <TrashCan16 />
-      </IconOnly>
         <Input
           type="email"
           placeholder="Email .."

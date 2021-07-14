@@ -1,59 +1,51 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '../../../utils/supabase';
-import { Edit16, TrashCan16 } from '@carbon/icons-react';
+import { Close16, Edit16, TrashCan16 } from '@carbon/icons-react';
 import { ButtonIcon, Button, IconOnly } from '../../../components/ui/Form';
 // import Modal from '../../../components/ui/Modal';
 import toast, { Toaster } from 'react-hot-toast';
+import Modal from '../../../components/Modal';
+import { useUser } from '../../../utils/useUser';
 // import ModalEdit from '../../../components/admin/edit/ModalEdit';
+import Spinner from '../../../components/ui/Spinner';
 
-const Courses = ({ courses }) => {
+const Courses = ({}) => {
+  const { getCourses, delCourse, courses } = useUser();
   const [modal, setModal] = useState(false);
-  const [editModal, setEditModal] = useState(false);
-  const [ok, setOk] = useState(false);
   const [courseId, setCourseId] = useState('');
   const [course, setCourse] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const handleDeleteOk = async () => {
-    setLoading(true);
-    const { error } = await supabase.from('course').delete().eq('id', courseId);
-
-    if (error)
-      toast.error(error.message, {
-        id: 'admin-all-course-error',
-      });
-    else {
-      toast.success('Course successfully removed.', {
-        id: 'admin-all-course-success',
-      });
-    }
-    setLoading(false);
-  };
-
-  const handleModal = async (id) => {
-    setCourseId(id);
+  const openModal = async (x) => {
+    setCourse(x);
+    setCourseId(x.id);
     setModal(!modal);
   };
 
-  const handleEditModal = (x) => {
-    setCourseId(x.id);
-    setCourse(x);
-    setEditModal(!editModal);
+  const removeCourse = async () => {
+    setLoading(true);
+    await delCourse(courseId);
+    setTimeout(async () => await getCourses(), 10000);
+    setLoading(false);
+    setModal(false);
   };
+
+  useEffect(() => {
+    (async function () {
+      await getCourses();
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const mapCourses = () => {
     return courses.map((x) => (
       <div key={x.id} className="list-row">
         <p>{x.name}</p>
         <div className="flex">
-          <IconOnly
-            disabled={loading}
-            secondary
-            onClick={() => handleEditModal(x)}
-          >
+          <IconOnly disabled={loading} secondary onClick={() => openModal(x)}>
             <Edit16 />
           </IconOnly>
-          <IconOnly disabled={loading} danger onClick={() => handleModal(x.id)}>
+          <IconOnly disabled={loading} danger onClick={() => openModal(x)}>
             <TrashCan16 />
           </IconOnly>
         </div>
@@ -62,24 +54,38 @@ const Courses = ({ courses }) => {
   };
 
   return (
-    <section>
+    <section className="p-5 bg-section">
       <Toaster />
+      {loading && <Spinner />}
 
-      <h1>All Courses</h1>
+      <h1>Todos os cursos</h1>
 
-      {courses.length === 0 ? <p>Courses not found</p> : mapCourses()}
+      {courses === null ? <p>Não há cursos aqui.</p> : mapCourses()}
 
-      {/* {courseId && modal && (
-        <Modal
-          setOk={setOk}
-          setModal={setModal}
-          handleDeleteOk={handleDeleteOk}
-        />
+      {modal && (
+        <Modal modal={modal} setModal={setModal}>
+          <div>
+            <div className="p-5">
+              <h1>{course.name}</h1>
+              <p style={{ fontSize: '0.875rem' }}>
+                {course.description ? course.description : 'undefined'}
+              </p>
+            </div>
+            <div className="flex-center-end">
+              <ButtonIcon danger disabled={loading} onClick={removeCourse}>
+                Deletar <TrashCan16 />
+              </ButtonIcon>
+              <Button
+                secondary
+                disabled={loading}
+                onClick={() => setModal(!modal)}
+              >
+                Cancelar <Close16 />
+              </Button>
+            </div>
+          </div>
+        </Modal>
       )}
-
-      {courseId && editModal && (
-        <ModalEdit setEditModal={setEditModal} course={course} />
-      )} */}
     </section>
   );
 };

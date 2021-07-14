@@ -3,7 +3,7 @@ import { app_name } from '../../utils/constants';
 
 const Done = () => {
   return (
-    <section>
+    <section className="p-5 bg-section">
       <Head>
         <title>{`${app_name} - Done`}</title>
         <meta name="description" content="Cursos de todos os tipos aqui." />

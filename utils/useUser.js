@@ -6,6 +6,7 @@ export const UserContext = createContext();
 
 export const UserContextProvider = (props) => {
   const [user, setUser] = useState(null);
+  const [courses, setCourses] = useState(null);
   const [profile, setProfile] = useState(null);
   const [session, setSession] = useState(null);
   const [userCourses, setUserCourses] = useState(null);
@@ -50,27 +51,44 @@ export const UserContextProvider = (props) => {
     return { data, error };
   };
 
+  const getCourses = async () => {
+    let { data: courses, error } = await supabase.from('courses').select('*');
+    if (courses) setCourses(courses);
+  };
+
   /**
    *
    * @param {String} id profile_id
    */
   const getUserCourses = async (id) => {
-    let { data: user_courses, error } = await supabase
+    let { data, error } = await supabase
       .from('user_courses')
       .select('id')
       .eq('profile_id', id);
-    if (user_courses) setUserCourses(user_courses);
+    if (data) setUserCourses(data);
+    return { data, error };
+  };
+
+  const delCourse = async (id) => {
+    const { data, error } = await supabase
+      .from('courses')
+      .delete()
+      .eq('id', id);
+    return { data, error };
   };
 
   const value = {
     session,
     user,
+    courses,
     profile,
     userSignUp,
     userProfile,
     profile,
     userCourses,
     getUserCourses,
+    getCourses,
+    delCourse,
     signIn: (options) => supabase.auth.signIn(options),
     signUp: (options) => supabase.auth.signUp(options),
     signOut: () => {

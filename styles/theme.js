@@ -22,9 +22,11 @@ const danger = '#d74042';
 const dangerActive = '#b62326';
 const white = '#fff';
 const black = '#000';
+const black80 = '#808080';
+const black20 = '#e0e0e0';
 
 export const lightTheme = {
-  body: '#fff',
+  body: '#ececec',
   text: '#262626',
   border: '#bdbdbd',
   gradient: 'linear-gradient(#39598A, #79D7ED)',
@@ -38,10 +40,12 @@ export const lightTheme = {
   dangerActive,
   white,
   black,
+  black80,
+  black20,
 };
 
 export const darkTheme = {
-  body: '#262626',
+  body: '#121212',
   text: '#FAFAFA',
   border: '#454545',
   gradient: 'linear-gradient(#091236, #1E215D)',
@@ -53,6 +57,8 @@ export const darkTheme = {
   secondaryActive,
   danger,
   dangerActive,
-  white,
-  black,
+  white: '#262626',
+  black: '#fff',
+  black80: '#e0e0e0',
+  black20: '#808080',
 };

@@ -26,7 +26,7 @@ export default function Courses({ courses }) {
 
   if (courses)
     return (
-      <section>
+      <section className="p-5 bg-section">
         <Head>
           <title>{`${app_name} - Cursos.`}</title>
           <meta name="description" content="Cursos de todos os tipos aqui." />
@@ -49,7 +49,7 @@ export default function Courses({ courses }) {
 
   if (courses.length === 0)
     return (
-      <section>
+      <section className="p-5 bg-section">
         <h1>Não há cursos no momento.</h1>
       </section>
     );

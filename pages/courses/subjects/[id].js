@@ -39,7 +39,7 @@ const Subject = ({ subject }) => {
 
   if (subject)
     return (
-      <section>
+      <section className="p-5 bg-section">
         <Head>
           <title>{`${app_name} - Matéria: ${subject.name}`}</title>
           <meta name="description" content="Cursos de todos os tipos aqui." />
@@ -77,7 +77,7 @@ const Subject = ({ subject }) => {
 
   if (!subject)
     return (
-      <section>
+      <section className="p-5 bg-section">
         <h4>Curso não encontrado</h4>
       </section>
     );

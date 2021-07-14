@@ -76,7 +76,7 @@ export default function Course({ course, subjects }) {
 
   if (course)
     return (
-      <section className="p-5">
+      <section className="p-5 bg-section">
         <Toaster />
 
         <Head>
@@ -132,7 +132,7 @@ export default function Course({ course, subjects }) {
 
   if (!course)
     return (
-      <section>
+      <section className="p-5 bg-section">
         <h4>Curso não encontrado</h4>
       </section>
     );

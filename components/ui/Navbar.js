@@ -27,7 +27,7 @@ const Navbar = ({ toggleTheme, theme }) => {
 
   return (
     <>
-      <div className={s.header}>
+      <div className={`${s.header} menu-header`}>
         <ButtonIcon primary onClick={() => setMenu(!menu)}>
           Menu
           <Switcher16 />

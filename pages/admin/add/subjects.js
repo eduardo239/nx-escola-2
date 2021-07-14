@@ -62,14 +62,14 @@ const Subject = ({ courses }) => {
   };
 
   return (
-    <section>
+    <section className="p-5 bg-section">
       <Toaster />
-      <h1>Add subject</h1>
+      <h1>Adicionar matéria</h1>
       <div className="mb-5">
         <Input
           type="text"
-          placeholder="Name of the subject .."
-          label="Name of the subject"
+          placeholder="Nome da matéira .."
+          label="Nome da matéira"
           id="add-subject-name"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -77,43 +77,45 @@ const Subject = ({ courses }) => {
         />
         <Input
           type="number"
-          placeholder="Subject duration .."
           label="Runtime"
           id="add-subject-runtime"
           value={runtime}
           onChange={(e) => setRuntime(e.target.value)}
           className="w-100"
         />
-
-        <Content setContent={setContent} />
-
-        <div>{courseId}</div>
-        <div className="field--select mb-5">
-          <label htmlFor="add-subject-course-id">Course</label>
-          <select
-            className="w-100"
-            onChange={(e) => setCourseId(e.target.value)}
-            id="add-subject-course-id"
-          >
-            <option defaultValue value="">
-              choose One
-            </option>
-            {courses.map((x, i) => (
-              <option value={x.id} key={x.id}>
-                {x.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <Button primary type="submit" onClick={handleAddSubject}>
-          Save <Save16 />
-        </Button>
       </div>
 
-      <Button secondary onClick={() => router.push('/admin/add/questions')}>
-        Adicionar Perguntas <NextOutline16 />
-      </Button>
+      <div className="mb-5">
+        <Content setContent={setContent} />
+      </div>
+
+      <div className="field--select mb-5">
+        <label htmlFor="add-subject-course-id">Curso</label>
+        <select
+          className="w-100"
+          onChange={(e) => setCourseId(e.target.value)}
+          id="add-subject-course-id"
+        >
+          <option defaultValue value="">
+            choose One
+          </option>
+          {courses.map((x, i) => (
+            <option value={x.id} key={x.id}>
+              {x.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="mb-5">
+        <Button primary type="submit" onClick={handleAddSubject}>
+          Salvar <Save16 />
+        </Button>
+
+        <Button secondary onClick={() => router.push('/admin/add/questions')}>
+          Adicionar Perguntas <NextOutline16 />
+        </Button>
+      </div>
     </section>
   );
 };

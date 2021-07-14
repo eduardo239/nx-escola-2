@@ -1,12 +1,18 @@
 .button {
+  min-width: 7rem;
+  min-height: 3rem;
+}
+
+.button,
+.button-icon,
+.icon-button {
   font-family: var(--ss);
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.29;
   position: relative;
   display: inline-flex;
-  min-width: 7rem;
-  min-height: 3rem;
+
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
@@ -14,152 +20,27 @@
   border-radius: 0;
   text-align: left;
   text-decoration: none;
-  & svg {
-    margin-left: 0.65rem;
-  }
+
   &:hover {
     cursor: pointer;
     filter: brightness(110%);
   }
-  &:disabled {
-    background-color: var(--mid-gray);
-    color: var(--light-gray);
-    outline-color: var(--mid-gray);
-    &:hover {
-      filter: brightness(100%);
-      background-color: var(--mid-gray);
-      cursor: not-allowed;
-    }
-  }
-
-  /*  */
-  &.button--primary {
-    border: 1px solid transparent;
-    background-color: var(--primary);
-    color: var(--white);
-    &:focus {
-      border-color: var(--primary);
-      box-shadow: inset 0 0 0 1px var(--primary), inset 0 0 0 2px var(--white);
-    }
-    &:active {
-      background-color: var(--primary-active);
-    }
-  }
-
-  /*  */
-  &.button--secondary {
-    border: 1px solid transparent;
-  }
-
-  &.button--danger {
-    border: 1px solid transparent;
-    background-color: var(--danger);
-    color: var(--white);
-    &:focus {
-      border-color: var(--danger-active);
-      box-shadow: inset 0 0 0 1px var(--danger-active),
-        inset 0 0 0 2px var(--white);
-    }
-    &:active {
-      background-color: var(--danger-active);
-    }
-  }
-
-  /*  */
-  &.button--outline {
-    border: 1px solid var(--primary);
-    background-color: transparent;
-    color: var(--primary);
-    &:focus {
-      border-color: var(--primary);
-      box-shadow: inset 0 0 0 1px var(--primary), inset 0 0 0 2px var(--white);
-    }
-    &:active {
-      color: var(--primary-active);
-    }
-  }
-
-  /*  */
-  &.button--link {
-    border: 1px solid transparent;
-    background-color: transparent;
-    color: var(--white);
-    &:focus {
-      border-color: transparent;
-    }
-    &:active {
-      color: var(--primary);
-    }
-  }
 }
-
-/* ICON ONLY */
-.button-icon,
-.icon-button {
-  font-family: var(--ss);
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.29;
-  position: relative;
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: space-between;
-  padding: calc(0.875rem - 3px) 15px;
-  border-radius: 0;
-  text-align: left;
-  text-decoration: none;
+.button-icon {
+  & svg {
+    margin-left: 0.65rem;
+  }
 }
 .button-icon,
 .icon-button {
-  &.button-icon--primary {
+  &.button-icon--primary,
+  &.button-icon--secondary,
+  &.button-icon--danger {
     padding: calc(0.875rem - 3px) 15px;
     min-width: 7rem;
     min-height: 3rem;
     &.icon-button--primary {
       padding: 0.65rem;
-    }
-  }
-  &.button-icon--primary,
-  &.icon-button--primary {
-    background-color: var(--primary);
-    color: var(--white);
-    & svg {
-      fill: var(--white);
-    }
-  }
-
-  &.button-icon--secondary {
-    padding: calc(0.875rem - 3px) 15px;
-    min-width: 7rem;
-    min-height: 3rem;
-    &.icon-button--secondary {
-      padding: 0.65rem;
-    }
-  }
-  &.button-icon--secondary,
-  &.icon-button--secondary {
-    background-color: var(--secondary);
-    color: var(--white);
-    & svg {
-      fill: var(--white);
-    }
-  }
-
-  &.button-icon--danger {
-    padding: calc(0.875rem - 3px) 15px;
-    min-width: 7rem;
-    min-height: 3rem;
-    &.icon-button--danger {
-      padding: 0.65rem;
-    }
-  }
-  &.button-icon--danger,
-  &.icon-button--danger {
-    background-color: var(--danger);
-    color: var(--white);
-    & svg {
-      fill: var(--white);
     }
   }
 }
