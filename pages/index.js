@@ -27,8 +27,6 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1>HOME</h1>
-
         <Button primary onClick={() => setModal(!modal)}>
           click
         </Button>
@@ -39,10 +37,10 @@ export default function Home() {
               <div className="p-5">
                 <h1>Modal</h1>
                 <p style={{ fontSize: '0.875rem' }}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-                  quibusdam perferendis reprehenderit expedita cupiditate?
-                  Molestiae nesciunt porro vero asperiores a quasi eaque odio,
-                  iste temporibus voluptatibus enim, dolorem voluptate suscipit?
+                  O MIBR não existiria sem toda nossa entrega e dedicação e é
+                  isso que buscamos. Queremos com a gente quem tá olhando pra
+                  frente. Queremos achar quem sabe na ESSÊNCIA o que é vestir
+                  essa camisa.
                 </p>
               </div>
               <div className="flex-center-end">

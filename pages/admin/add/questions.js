@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { supabase } from '../../../utils/supabase';
-import { Button, Textarea, Input } from '../../../components/ui/Form';
+import { Button, Textarea, Input, IconOnly } from '../../../components/ui/Form';
 import { Add16, Save16, Subtract16 } from '@carbon/icons-react';
 import toast, { Toaster } from 'react-hot-toast';
+import s from '../../../styles/Questions.module.scss';
 
 const Questions = ({ subjects }) => {
+  console.log(subjects);
   const [question, setQuestion] = useState('');
   const [alternatives, setAlternatives] = useState([]);
   const [alternative, setAlternative] = useState('');
@@ -32,25 +34,25 @@ const Questions = ({ subjects }) => {
     e.preventDefault();
 
     if (question === '') {
-      toast.error('Question is required.', {
+      toast.error('É preciso fornecer a pergunta.', {
         id: 'add-question-content',
       });
       return;
     }
     if (alternatives.length < 5) {
-      toast.error('Minimum of 5 alternatives.', {
+      toast.error('Ao menos 5 alternativas.', {
         id: 'add-question-alternatives',
       });
       return;
     }
     if (correct === null) {
-      toast.error('Select the correct answer.', {
+      toast.error('Por favor escolha a alternativa correta.', {
         id: 'add-question-answer',
       });
       return;
     }
     if (subjectId === '') {
-      toast.error('Select the Subject.', {
+      toast.error('Selecione a matéria.', {
         id: 'add-question-subject-id',
       });
       return;
@@ -69,16 +71,17 @@ const Questions = ({ subjects }) => {
         id: 'add-question-error',
       });
       return;
+    } else {
+      toast.success('Question successfully added.', {
+        id: 'add-question-success',
+      });
     }
-    toast.success('Question successfully added.', {
-      id: 'add-question-success',
-    });
   };
 
   return (
     <section className="p-5 bg-section">
       <Toaster />
-      <h1>Adicionar questões</h1>
+      <h1>Criar questões</h1>
 
       <Textarea
         label="Question"
@@ -89,7 +92,7 @@ const Questions = ({ subjects }) => {
         onChange={(e) => setQuestion(e.target.value)}
       ></Textarea>
 
-      <form onSubmit={handleAddAlternative}>
+      <form onSubmit={handleAddAlternative} className="mb-5">
         <Input
           type="text"
           placeholder="Alternative .."
@@ -106,26 +109,9 @@ const Questions = ({ subjects }) => {
 
       {/* TODO: style the list */}
       {alternatives.map((alternative, i) => (
-        <div
-          style={{
-            margin: 0,
-            padding: '0.5rem',
-            display: 'grid',
-            gap: '0.5rem',
-            gridTemplateColumns: 'auto 1fr',
-          }}
-          key={i}
-        >
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              borderRight: '2px solid #333',
-              paddingRight: '0.5rem',
-            }}
-          >
-            <span>[{i + 1}]</span>
-
+        <div key={i} className={s.item}>
+          <div>
+            <span>{i + 1}</span>
             <input
               className="ml-4"
               type="radio"
@@ -134,22 +120,12 @@ const Questions = ({ subjects }) => {
               value={alternative}
               onChange={(e) => setCorrect(i)}
             />
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
             <label htmlFor={`correct-${i}`}>{alternative}</label>
-            <Button
-              secondary
-              type="submit"
-              onClick={() => handleRemoveAlternative(i)}
-            >
-              Remover <Subtract16 />
-            </Button>
+          </div>
+          <div>
+            <IconOnly secondary onClick={() => handleRemoveAlternative(i)}>
+              <Subtract16 />
+            </IconOnly>
           </div>
         </div>
       ))}

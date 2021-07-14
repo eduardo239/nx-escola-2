@@ -89,6 +89,8 @@ export const UserContextProvider = (props) => {
     getUserCourses,
     getCourses,
     delCourse,
+    setSession,
+    setUser,
     signIn: (options) => supabase.auth.signIn(options),
     signUp: (options) => supabase.auth.signUp(options),
     signOut: () => {

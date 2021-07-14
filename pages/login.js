@@ -7,7 +7,7 @@ import { Button, Input } from '../components/ui/Form';
 import toast, { Toaster } from 'react-hot-toast';
 import Head from 'next/head';
 import { app_name } from '../utils/constants';
-// import Loading from '../components/ui/Loading';
+import Spinner from '../components/ui/Spinner';
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -21,10 +21,11 @@ const Login = () => {
     setLoading(true);
     toast.loading('Loading...');
 
-    const { user, error } = await signIn({
+    const { error } = await signIn({
       email,
       password,
     });
+
     if (error) {
       toast.dismiss();
       toast.error(error.message, {
@@ -55,63 +56,68 @@ const Login = () => {
 
   if (!user)
     return (
-      <section>
+      <section className="p-5 bg-section">
         <Head>
           <title>{`${app_name} - Login`}</title>
           <meta name="description" content="Description" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <main>
-          <Toaster />
-          <h1>Login</h1>
+        <Toaster />
+        <h1>Login</h1>
 
-          <form onSubmit={handleLogin}>
-            <Input
-              type="email"
-              placeholder="Email .."
-              label="Email"
-              id="login-email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-100"
-            />
-            <Input
-              type="password"
-              placeholder="Password .."
-              label="Password"
-              id="login-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-100"
-            />
-
-            <div className="mb-5">
-              <Button primary type="submit" disabled={loading}>
-                Sign In <Login16 />
-              </Button>
-            </div>
-          </form>
-          <div className="separator"></div>
+        <form onSubmit={handleLogin} className="mb-5">
+          <Input
+            type="email"
+            placeholder="Email .."
+            label="Email"
+            id="login-email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-100"
+          />
+          <Input
+            type="password"
+            placeholder="Password .."
+            label="Password"
+            id="login-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-100"
+          />
 
           <div className="mb-5">
-            <Button
-              disabled={loading}
-              secondary
-              type="submit"
-              onClick={() => handleOAuthSignIn('github')}
-            >
-              Continue with Github <LogoGithub16 />
+            <Button primary type="submit" disabled={loading}>
+              Login <Login16 />
             </Button>
           </div>
+        </form>
 
-          <Link href="/register">
-            <a className="link--primary">Or sign up</a>
-          </Link>
-        </main>
+        <div className="separator mb-5"></div>
+
+        <div className="mb-5">
+          <Button
+            disabled={loading}
+            secondary
+            type="submit"
+            onClick={() => handleOAuthSignIn('github')}
+          >
+            Continue com Github <LogoGithub16 />
+          </Button>
+        </div>
+
+        <Link href="/register">
+          <a className="link--primary small-text">
+            Não tem uma conta? Se inscreva
+          </a>
+        </Link>
       </section>
     );
-  return <h1>Loading ...</h1>;
+  return (
+    <section className="flex-center-center">
+      <Spinner />
+    </section>
+  );
 };
 
 export default Login;

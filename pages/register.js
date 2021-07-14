@@ -4,18 +4,19 @@ import { useUser } from '../utils/useUser';
 import { useRouter } from 'next/router';
 import { Button, Input } from '../components/ui/Form';
 import { Login16 } from '@carbon/icons-react';
-import toast, { Toaster } from 'react-hot-toast';
 import { formatUsername } from '../utils';
-import Head from 'next/head';
 import { app_name } from '../utils/constants';
+import toast, { Toaster } from 'react-hot-toast';
+import Spinner from '../components/ui/Spinner';
+import Head from 'next/head';
 
 const Register = () => {
+  const router = useRouter();
+  const { user, userSignUp } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
-  const { user, signUp, userSignUp } = useUser();
-  const router = useRouter();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -58,7 +59,7 @@ const Register = () => {
 
   if (!user)
     return (
-      <section>
+      <section className="p-5 bg-section">
         <Head>
           <title>{`${app_name} - Registro`}</title>
           <meta name="description" content="Description" />
@@ -68,7 +69,7 @@ const Register = () => {
         <Toaster />
         <h1>Register</h1>
 
-        <form onSubmit={handleRegister}>
+        <form onSubmit={handleRegister} className="mb-5">
           <Input
             type="email"
             placeholder="Email .."
@@ -98,22 +99,28 @@ const Register = () => {
             className="w-100"
           />
 
-          <div className="separator"></div>
+          <div className="separator mb-5"></div>
 
           <div className="mb-5">
             <Button primary type="submit" disabled={loading}>
-              Sign Up <Login16 />
+              Registrar <Login16 />
             </Button>
           </div>
-
-          <Link href="/register">
-            <a className="link--primary">Already have an account? sign in</a>
-          </Link>
         </form>
+
+        <Link href="/register">
+          <a className="link--primary small-text">
+            Já tem uma conta? Faça o login
+          </a>
+        </Link>
       </section>
     );
 
-  return <h1>Loading ..</h1>;
+  return (
+    <section className="flex-center-center">
+      <Spinner />
+    </section>
+  );
 };
 
 export default Register;

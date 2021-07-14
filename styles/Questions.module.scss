@@ -11,3 +11,29 @@
     padding: 1rem 0.25rem;
   }
 }
+
+// admin add questions
+.item {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #333;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  div {
+    display: flex;
+    align-items: center;
+    span,
+    input[type='radio'],
+    label {
+      padding: 10px;
+    }
+    span {
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: var(--primary);
+      margin-right: 10px;
+      min-width: 38px;
+      text-align: center;
+    }
+  }
+}
