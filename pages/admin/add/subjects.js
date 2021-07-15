@@ -16,25 +16,25 @@ const Subject = ({ courses }) => {
     e.preventDefault();
 
     if (name === '') {
-      toast('Name is required.', {
+      toast.error('O nome da matéria é obrigatório.', {
         id: 'add-subject-name',
       });
       return;
     }
     if (runtime === 0) {
-      toast.error('Runtime is required.', {
+      toast.error('O tempo é obrigatório.', {
         id: 'add-subject-runtime',
       });
       return;
     }
     if (content.length === 0) {
-      toast.error('Content is required.', {
+      toast.error('O conteúdo é obrigatório.', {
         id: 'add-subject-content',
       });
       return;
     }
     if (courseId === '') {
-      toast.error('Course is required.', {
+      toast.error('O curso é obrigatório.', {
         id: 'add-subject-course',
       });
       return;
@@ -56,7 +56,7 @@ const Subject = ({ courses }) => {
       return;
     }
 
-    toast.success('Subject successfully added', {
+    toast.success('Curso adicionado com sucesso.', {
       id: 'add-subject-success',
     });
   };
@@ -120,7 +120,7 @@ const Subject = ({ courses }) => {
   );
 };
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   let { data: courses, error } = await supabase
     .from('courses')
     .select('id, name');

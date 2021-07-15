@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { NextFilled16, NextOutline16, Save16 } from '@carbon/icons-react';
-import { Button, Input, Textarea } from '../../../components/ui/Form';
+import {
+  Button,
+  ButtonIcon,
+  Input,
+  Textarea,
+} from '../../../components/ui/Form';
 import { supabase } from '../../../utils/supabase';
 import toast, { Toaster } from 'react-hot-toast';
 import { useUser } from '../../../utils/useUser';
@@ -141,14 +146,7 @@ const Course = () => {
               defaultChecked={status}
               onChange={() => setStatus(!status)}
             />
-            <label
-              htmlFor={`alt-course-active-1`}
-              style={{
-                padding: '0.5rem',
-              }}
-            >
-              Active
-            </label>
+            <label htmlFor={`alt-course-active-1`}>Active</label>
           </div>
         </div>
 
@@ -162,14 +160,14 @@ const Course = () => {
           onChange={(e) => setDescription(e.target.value)}
         ></Textarea>
 
-        <Button primary type="submit">
+        <ButtonIcon primary type="submit">
           Save <Save16 />
-        </Button>
+        </ButtonIcon>
       </form>
 
-      <Button secondary onClick={() => router.push('/admin/add/subjects')}>
+      <ButtonIcon secondary onClick={() => router.push('/admin/add/subjects')}>
         Adicionar Matérias <NextOutline16 />
-      </Button>
+      </ButtonIcon>
     </section>
   );
 };

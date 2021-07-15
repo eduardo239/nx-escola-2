@@ -161,7 +161,7 @@ const Questions = ({ subjects }) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   let { data: subjects, error } = await supabase
     .from('subjects')
     .select('*, course_id(id, name)');
