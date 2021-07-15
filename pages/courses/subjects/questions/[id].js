@@ -130,7 +130,7 @@ export async function getStaticPaths() {
   const paths = subjects.map((subject) => ({
     params: { id: subject.id },
   }));
-
+  console.log(paths);
   return { paths, fallback: true };
 }
 
@@ -141,6 +141,8 @@ export async function getStaticProps(context) {
     .from('questions')
     .select('*')
     .eq('subject_id', id);
+
+  console.log(questions);
 
   if (error) throw error;
   return {

@@ -21,9 +21,9 @@ const Profile = ({ profile, user_grades, user_payments, user_courses }) => {
         </Head>
 
         <h2>{profile.username}</h2>
-        {user_grades && <Grades user_grades={user_grades} />}
-        {user_payments && <Payments user_payments={user_payments} />}
-        {user_courses && <Courses user_courses={user_courses} />}
+        {user_grades.length > 0 && <Grades user_grades={user_grades} />}
+        {user_payments.length > 0 && <Payments user_payments={user_payments} />}
+        {user_courses.length > 0 && <Courses user_courses={user_courses} />}
       </section>
     );
 
