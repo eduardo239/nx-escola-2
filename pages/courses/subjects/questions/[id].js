@@ -101,7 +101,9 @@ const Questions = ({ questions }) => {
   return (
     <section className="p-5 bg-section">
       <Head>
-        <title>{`${app_name} - Número de perguntas: ${questions.length}`}</title>
+        <title>{`${app_name} - Número de perguntas: ${
+          questions.length ? questions.length : 0
+        }`}</title>
         <meta name="description" content="Cursos de todos os tipos aqui." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
