@@ -22,6 +22,60 @@ export const Button = ({
   );
 };
 
+export const ButtonOutline = ({
+  primary,
+  secondary,
+  danger,
+  white,
+  type,
+  full = false,
+  onClick,
+  className = '',
+  ...props
+}) => {
+  return (
+    <button
+      className={`button-outline ${primary ? 'button-outline--primary' : ''} ${
+        secondary ? 'button-outline--secondary' : ''
+      } ${className} ${danger ? 'button-outline--danger' : ''} ${
+        white ? 'button-outline--white' : ''
+      } ${full ? 'w-100' : ''}`}
+      type={type}
+      onClick={onClick}
+      {...props}
+    >
+      {props.children}
+    </button>
+  );
+};
+
+export const ButtonLink = ({
+  primary,
+  secondary,
+  danger,
+  white,
+  type,
+  full = false,
+  onClick,
+  className = '',
+  ...props
+}) => {
+  return (
+    <button
+      className={`button-link ${primary ? 'button-link--primary' : ''} ${
+        secondary ? 'button-link--secondary' : ''
+      } ${className} ${danger ? 'button-link--danger' : ''} ${
+        white ? 'button-link--white' : ''
+      } ${full ? 'w-100' : ''}`}
+      type={type}
+      onClick={onClick}
+      {...props}
+    >
+      {props.children}
+    </button>
+  );
+};
+
 export const ButtonIcon = ({
   primary,
   secondary,

@@ -23,9 +23,6 @@ const AddContent = ({ setContent }) => {
   const [type, setType] = useState('title');
   const [code, setCode] = useState('');
   const [html, setHtml] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const imageRef = useRef();
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -46,20 +43,9 @@ const AddContent = ({ setContent }) => {
     setHtml(html.filter((item, index) => index !== i));
   };
 
-  const addImage = (URL) => {
-    if (code === '') {
-      return;
-    }
-    setLoading(true);
-    setHtml((html) => [...html, { type, content: URL }]);
-    setContent(html);
-    setCode('');
-
-    setLoading(false);
-  };
-
   return (
     <>
+      <div className="separator"></div>
       <div className="separator"></div>
       <h5>ELemento</h5>
       <div
@@ -140,6 +126,7 @@ const AddContent = ({ setContent }) => {
           type === 'paragraph' ||
           type === 'anchor' ||
           type === 'video' ||
+          type === 'image' ||
           type === 'pdf') && (
           <div className="mb-5">
             <Input
@@ -151,8 +138,8 @@ const AddContent = ({ setContent }) => {
               onChange={(e) => setCode(e.target.value)}
               className="w-100"
             />
-            <Button disabled={loading} type="submit" danger onClick={handleAdd}>
-              Adicionar Elemento
+            <Button type="submit" danger onClick={handleAdd}>
+              Adicionar {type.charAt(0).toUpperCase() + type.slice(1)}
               <Add16 />
             </Button>
           </div>
@@ -170,35 +157,10 @@ const AddContent = ({ setContent }) => {
             value={code}
             onChange={(e) => setCode(e.target.value)}
           ></Textarea>
-          <Button disabled={loading} type="submit" danger onClick={handleAdd}>
-            Adicionar Elemento
+          <Button type="submit" danger onClick={handleAdd}>
+            Adicionar {type.charAt(0).toUpperCase() + type.slice(1)}
             <Add16 />
           </Button>
-        </div>
-      )}
-      {type === 'image' && (
-        <div>
-          <Input
-            id="add-subject-image"
-            type="text"
-            label={type.charAt(0).toUpperCase() + type.slice(1)}
-            placeholder="Write here .."
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-            className="w-100"
-          />
-          {type === 'image' && (
-            <div className="mb-5">
-              <Button
-                disabled={loading}
-                type="submit"
-                secondary
-                onClick={() => addImage(code)}
-              >
-                Adicionar Imagem <Add16 />
-              </Button>
-            </div>
-          )}
         </div>
       )}
 

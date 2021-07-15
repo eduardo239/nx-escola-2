@@ -15,13 +15,7 @@ const breakpointColumnsObj = {
 
 export default function Courses({ courses }) {
   const mapCourses = () => {
-    return courses
-      .map((c, i) => (
-        <div key={i}>
-          <Card key={c.id} course={c} />
-        </div>
-      ))
-      .reverse();
+    return courses.map((c, i) => <Card key={c.id} course={c} />).reverse();
   };
 
   if (courses)

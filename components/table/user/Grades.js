@@ -42,9 +42,11 @@ export default function MyGrades({ user_grades }) {
         </thead>
         <tbody>
           {user_grades.length === 0 ? (
-            <td className="table-info" colSpan={headers.length}>
-              Não há registros de notas.
-            </td>
+            <tr>
+              <td className="table-info" colSpan={headers.length}>
+                Não há registros de notas.
+              </td>
+            </tr>
           ) : (
             mapUserGrades()
           )}

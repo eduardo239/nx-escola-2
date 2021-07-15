@@ -5,7 +5,9 @@
 
 .button,
 .button-icon,
-.icon-button {
+.icon-button,
+.button-link,
+.button-outline {
   font-family: var(--ss);
   font-size: 0.875rem;
   font-weight: 400;
@@ -43,4 +45,7 @@
       padding: 0.65rem;
     }
   }
+}
+
+.button-link {
 }

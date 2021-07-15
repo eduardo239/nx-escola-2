@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
-import { Button } from '../../components/ui/Form';
+import {
+  Button,
+  ButtonIcon,
+  ButtonLink,
+  ButtonOutline,
+} from '../../components/ui/Form';
 import { supabase } from '../../utils/supabase';
 import { useUser } from '../../utils/useUser';
 import { Currency16 } from '@carbon/icons-react';
 import { app_name, default_course_poster } from '../../utils/constants';
-import { paymentRecords, subscribe } from '../../utils';
+import { formatMoney, paymentRecords, subscribe } from '../../utils';
 import { useRouter } from 'next/router';
 import toast, { Toaster } from 'react-hot-toast';
 import Spinner from '../../components/ui/Spinner';
@@ -20,13 +25,17 @@ export default function Course({ course, subjects }) {
   const [loading, setLoading] = useState(false);
   const [owned, setOwned] = useState(false);
 
+  // BUTTON LINK
   const mapSubjects = () => {
-    return subjects.map((s) => (
-      <div key={s.id}>
-        <Button danger onClick={() => router.push(`/courses/subjects/${s.id}`)}>
-          {s.name}
-        </Button>
-      </div>
+    return subjects.map((s, i) => (
+      <ButtonOutline
+        key={s.id}
+        white
+        full
+        onClick={() => router.push(`/courses/subjects/${s.id}`)}
+      >
+        {i + 1} - {s.name}
+      </ButtonOutline>
     ));
   };
 
@@ -64,16 +73,6 @@ export default function Course({ course, subjects }) {
     }
   };
 
-  useEffect(() => {
-    // if (user) userProfile(user.id);
-    // TODO: fixme
-    // if (profile) {
-    //   getUserCourses(profile.id);
-    //   if (userCourses.length > 0) setOwned(true);
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   if (course)
     return (
       <section className="p-5 bg-section">
@@ -88,52 +87,41 @@ export default function Course({ course, subjects }) {
         <div className={s.container}>
           <div className={s.poster}>
             <Image
-              src={
-                course?.poster_url ? course.poster_url : default_course_poster
-              }
-              alt={course?.name && 'Course'}
+              src={course.poster ? course.poster : default_course_poster}
+              alt={course.name}
               width={300}
               height={100}
             />
           </div>
+
           <div className={s.body}>
-            <h1>{course?.name}</h1>
-            <p>{course?.price}</p>
-            <div className="separator"></div>
-            <p>{course?.description}</p>
+            <h1>{course.name}</h1>
+            <p>{formatMoney(course.price)}</p>
+            <p>{course.created_at}</p>
+            <div className="separator mb-5"></div>
+            <p>{course.description}</p>
             {!owned && (
-              <Button
+              <ButtonIcon
                 disabled={loading}
                 primary
                 onClick={() => handleSubscribe(course)}
               >
-                Subscribe <Currency16 />
-              </Button>
+                Se inscrever <Currency16 />
+              </ButtonIcon>
             )}
           </div>
         </div>
 
-        <div className="separator"></div>
+        <div className="separator mb-5"></div>
 
         {!owned && (
-          <div className={s.subjects}>
+          <div className={s.subject}>
             <h3 className="text-center mb-5">Matérias</h3>
-            <div className="flex-center-center gap-2">
-              {subjects.length === 0 ? (
-                <div>Não há matérias.</div>
-              ) : (
-                mapSubjects()
-              )}
+            <div className={s.subjects}>
+              {subjects.length === 0 ? <p>Não há matérias.</p> : mapSubjects()}
             </div>
           </div>
         )}
-      </section>
-    );
-
-  if (!course)
-    return (
-      <section className="p-5 bg-section">
-        <h4>Curso não encontrado</h4>
       </section>
     );
 

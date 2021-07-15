@@ -42,9 +42,11 @@ export default function Payments({ user_courses }) {
         </thead>
         <tbody>
           {user_courses.length === 0 ? (
-            <td className="table-info" colSpan={headers.length}>
-              Não há registro de cursos.
-            </td>
+            <tr>
+              <td className="table-info" colSpan={headers.length}>
+                Não há registro de cursos.
+              </td>
+            </tr>
           ) : (
             mapUserCourses()
           )}

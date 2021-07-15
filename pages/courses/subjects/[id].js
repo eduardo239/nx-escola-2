@@ -46,7 +46,7 @@ const Subject = ({ subject }) => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <div>
+        <div className="mb-5">
           <small>{subject?.course_id?.name}</small>
           <h1>{subject?.name}</h1>
           <p>{subject?.runtime ? `${subject?.runtime} min.` : ''}</p>
@@ -54,7 +54,7 @@ const Subject = ({ subject }) => {
 
         <div className="separator"></div>
 
-        <div className="mb-4">
+        <div className="mb-5">
           {subject.content.length === 0 ? (
             <p>Content not found</p>
           ) : (
@@ -62,7 +62,7 @@ const Subject = ({ subject }) => {
           )}
         </div>
 
-        <div className="mb-4">
+        <div className="mb-5">
           <Button
             primary
             onClick={() =>

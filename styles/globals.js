@@ -13,8 +13,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   a {
-    font-family: var(--ss);
-    color: ${({ theme }) => theme.a};
+    color: ${({ theme }) => theme.primary};
   }
 
   input, select, textarea {
@@ -94,6 +93,109 @@ export const GlobalStyles = createGlobalStyle`
     }
     &:active {
       background-color: ${({ theme }) => theme.dangerActive};
+    }
+  }
+
+  .button-link--primary {
+    color:  ${({ theme }) => theme.primary};
+    background-color: transparent;
+    border: 1px solid transparent;
+     & svg {
+      fill: ${({ theme }) => theme.primary};
+    }
+    &:focus {
+      border-color: ${({ theme }) => theme.primaryActive};
+      box-shadow: inset 0 0 0 1px ${({ theme }) => theme.primaryActive},
+        inset 0 0 0 2px var(--white);
+    }
+    &:hover {
+    }
+  }
+
+  .button-link--secondary {
+    color:  ${({ theme }) => theme.secondary};
+    background-color: transparent;
+    border: 1px solid transparent;
+     & svg {
+      fill: ${({ theme }) => theme.secondary};
+    }
+    &:focus {
+      border-color: ${({ theme }) => theme.secondaryActive};
+      box-shadow: inset 0 0 0 1px ${({ theme }) => theme.secondaryActive},
+        inset 0 0 0 2px var(--white);
+    }
+    &:hover {
+      
+    }
+  }
+  
+  .button-link--white {
+    color:  ${({ theme }) => theme.black};
+    background-color: transparent;
+    border: 1px solid transparent;
+     & svg {
+      fill: ${({ theme }) => theme.black};
+    }
+    &:focus {
+      border-color: ${({ theme }) => theme.black};
+      box-shadow: inset 0 0 0 1px ${({ theme }) => theme.black},
+        inset 0 0 0 2px ${({ theme }) => theme.black};
+    }
+    &:hover {
+      
+    }
+  }
+
+  .button-outline--primary {
+    color:  ${({ theme }) => theme.primary};
+    background-color: transparent;
+    border: 1px solid ${({ theme }) => theme.primary};
+     & svg {
+      fill: ${({ theme }) => theme.primary};
+    }
+    &:focus {
+      border-color: ${({ theme }) => theme.primaryActive};
+      box-shadow: inset 0 0 0 1px ${({ theme }) => theme.primaryActive},
+        inset 0 0 0 2px var(--white);
+    }
+    &:active {
+      color: ${({ theme }) => theme.primaryActive};
+       box-shadow: inset 0 0 0 1px ${({ theme }) => theme.primaryActive};
+    }
+  }
+  
+  .button-outline--secondary {
+    color:  ${({ theme }) => theme.secondary};
+    background-color: transparent;
+    border: 1px solid ${({ theme }) => theme.secondary};
+     & svg {
+      fill: ${({ theme }) => theme.secondary};
+    }
+    &:focus {
+      border-color: ${({ theme }) => theme.secondaryActive};
+      box-shadow: inset 0 0 0 1px ${({ theme }) => theme.secondaryActive},
+        inset 0 0 0 2px var(--white);
+    }
+    &:active {
+      color: ${({ theme }) => theme.secondaryActive};
+       box-shadow: inset 0 0 0 1px ${({ theme }) => theme.secondaryActive};
+    }
+  }
+  .button-outline--white {
+    color:  ${({ theme }) => theme.black};
+    background-color: transparent;
+    border: 1px solid ${({ theme }) => theme.black};
+     & svg {
+      fill: ${({ theme }) => theme.black};
+    }
+    &:focus {
+      border-color: ${({ theme }) => theme.black};
+      box-shadow: inset 0 0 0 1px ${({ theme }) => theme.black},
+        inset 0 0 0 2px var(--white);
+    }
+    &:active {
+      color: ${({ theme }) => theme.secondaryActive};
+       box-shadow: inset 0 0 0 1px ${({ theme }) => theme.secondaryActive};
     }
   }
 

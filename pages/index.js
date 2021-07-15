@@ -27,6 +27,7 @@ export default function Home() {
       </Head>
 
       <main>
+        {/*  */}
         <Button primary onClick={() => setModal(!modal)}>
           click
         </Button>
@@ -37,10 +38,10 @@ export default function Home() {
               <div className="p-5">
                 <h1>Modal</h1>
                 <p style={{ fontSize: '0.875rem' }}>
-                  O MIBR não existiria sem toda nossa entrega e dedicação e é
-                  isso que buscamos. Queremos com a gente quem tá olhando pra
-                  frente. Queremos achar quem sabe na ESSÊNCIA o que é vestir
-                  essa camisa.
+                  O mi não existiria sem toda nossa entrega e dedicação e é isso
+                  que buscamos. Queremos com a gente quem tá olhando pra frente.
+                  Queremos achar quem sabe na ESSÊNCIA o que é vestir essa
+                  camisa.
                 </p>
               </div>
               <div className="flex-center-end">
@@ -54,8 +55,8 @@ export default function Home() {
             </div>
           </Modal>
         )}
-        {/* <Spinner></Spinner> */}
-        <Button primary>Coisa</Button>
+        <Spinner></Spinner>
+        {/* <Button primary>Coisa</Button>
         <Button secondary>Coisa</Button>
         <Button danger>Coisa</Button>
 
@@ -76,7 +77,7 @@ export default function Home() {
         </IconOnly>
         <IconOnly primary>
           <TrashCan16 />
-        </IconOnly>
+        </IconOnly> */}
         {/* 
         <Input
           type="email"

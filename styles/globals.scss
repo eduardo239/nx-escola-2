@@ -95,6 +95,7 @@ small {
 a {
   text-decoration: none;
   letter-spacing: 0.36px;
+  font-family: var(--ss);
   &:hover {
     cursor: pointer;
     filter: brightness(120%);
@@ -155,6 +156,9 @@ textarea:disabled {
   font-size: 0.9rem;
 }
 /*-----------------------------------------------------*/
+.text-center {
+  text-align: center;
+}
 .w-100 {
   width: 100%;
 }
@@ -332,12 +336,12 @@ textarea:disabled {
   }
 }
 .spinner__center {
-  display: none;
+  display: flex;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 .spinner__center .active {
-  display: block;
+  display: flex;
 }
