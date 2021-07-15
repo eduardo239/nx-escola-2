@@ -71,14 +71,6 @@ const Course = () => {
     }
   };
 
-  useEffect(() => {
-    // if (user) userProfile(user.id);
-    // if (!user && profile === null) {
-    // router.push('/');
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <section className="p-5 bg-section">
       <Toaster />

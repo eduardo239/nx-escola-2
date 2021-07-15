@@ -64,6 +64,7 @@ export const UserContextProvider = (props) => {
     supabase.auth.signOut();
   };
 
+  // TODO: refatorar
   const getCourses = async () => {
     let { data: courses, error } = await supabase.from('courses').select('*');
     if (courses) setCourses(courses);

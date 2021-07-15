@@ -1,9 +1,8 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import Masonry from 'react-masonry-css';
 import { Card } from '../../components/Card';
 import { app_name } from '../../utils/constants';
 import { supabase } from '../../utils/supabase';
+import Masonry from 'react-masonry-css';
 import Spinner from '../../components/ui/Spinner';
 
 const breakpointColumnsObj = {
@@ -35,7 +34,7 @@ export default function Courses({ courses }) {
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
           >
-            {courses.length === 0 ? <p>Nenhum curso aqui.</p> : mapCourses()}
+            {courses.length === 0 ? <p>Nenhum há cursos.</p> : mapCourses()}
           </Masonry>
         </main>
       </section>

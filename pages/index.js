@@ -11,10 +11,11 @@ import {
 import { app_name } from '../utils/constants';
 import Spinner from '../components/ui/Spinner';
 import Modal from '../components/Modal';
-
+import { useCourse } from '../utils/useCourse';
 export default function Home() {
   const [modal, setModal] = useState(false);
-
+  const { courses, getCourses } = useCourse();
+  console.log(courses);
   return (
     <section className="p-5 bg-section">
       <Head>
@@ -30,6 +31,10 @@ export default function Home() {
         {/*  */}
         <Button primary onClick={() => setModal(!modal)}>
           click
+        </Button>
+
+        <Button danger onClick={getCourses}>
+          get courses
         </Button>
 
         {modal && (

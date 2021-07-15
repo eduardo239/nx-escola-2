@@ -1,13 +1,14 @@
+import { useEffect, useState } from 'react';
+import { UserContextProvider } from '../utils/useUser';
+import { CourseContextProvider } from '../utils/useCourse';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from '../styles/globals';
+import Layout from '../components/ui/Layout';
 import '../styles/reset.css';
 import '../styles/globals.scss';
 import '../styles/buttons.scss';
 import '../styles/form.scss';
-import { UserContextProvider } from '../utils/useUser';
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyles } from '../styles/globals';
 import { lightTheme, darkTheme } from '../styles/theme';
-import { useEffect, useState } from 'react';
-import Layout from '../components/ui/Layout';
 
 function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState('light');
@@ -27,12 +28,14 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <UserContextProvider>
-      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-        <GlobalStyles />
-        <Layout toggleTheme={toggleTheme} theme={theme}>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
+      <CourseContextProvider>
+        <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+          <GlobalStyles />
+          <Layout toggleTheme={toggleTheme} theme={theme}>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </CourseContextProvider>
     </UserContextProvider>
   );
 }

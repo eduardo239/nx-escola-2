@@ -1,11 +1,19 @@
 import { supabase } from '../../utils/supabase';
 import { app_name } from '../../utils/constants';
+import { useUser } from '../../utils/useUser';
 import Grades from '../../components/table/user/Grades';
 import Head from 'next/head';
 import Payments from '../../components/table/user/Payments';
 import Courses from '../../components/table/user/Courses';
+import { useRouter } from 'next/router';
 
 const Profile = ({ profile, user_grades, user_payments, user_courses }) => {
+  const { user } = useUser();
+
+  const router = useRouter();
+  console.log(router);
+  //TODO: remove usuários não logados
+
   if (profile)
     return (
       <section className="p-5 bg-section">
@@ -24,6 +32,7 @@ const Profile = ({ profile, user_grades, user_payments, user_courses }) => {
         {user_courses && <Courses user_courses={user_courses} />}
       </section>
     );
+
   return (
     <section className="p-5 bg-section">
       <h1>Usuário não encontrado.</h1>
