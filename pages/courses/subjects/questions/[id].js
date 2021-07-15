@@ -9,7 +9,7 @@ import s from '../../../../styles/Questions.module.scss';
 import Head from 'next/head';
 import { app_name } from '../../../../utils/constants';
 
-const Questions = ({ questions }) => {
+const Questions = ({ questions = [] }) => {
   const { user, userProfile, profile } = useUser();
   const [alternatives, setAlternatives] = useState([]);
   const [redirect, setRedirect] = useState(false);
@@ -134,20 +134,20 @@ export async function getStaticPaths() {
   return { paths, fallback: true };
 }
 
-export async function getStaticProps(context) {
-  const id = context.params.id;
+// export async function getStaticProps(context) {
+//   const id = context.params.id;
 
-  let { data: questions, error } = await supabase
-    .from('questions')
-    .select('*')
-    .eq('subject_id', id);
+//   let { data: questions, error } = await supabase
+//     .from('questions')
+//     .select('*')
+//     .eq('subject_id', id);
 
-  console.log(questions);
+//   console.log(questions);
 
-  if (error) throw error;
-  return {
-    props: { questions },
-  };
-}
+//   if (error) throw error;
+//   return {
+//     props: { questions },
+//   };
+// }
 
 export default Questions;
