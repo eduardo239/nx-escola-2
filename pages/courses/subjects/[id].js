@@ -47,16 +47,16 @@ const Subject = ({ subject }) => {
         </Head>
 
         <div className="mb-5">
-          <small>{subject?.course_id?.name}</small>
-          <h1>{subject?.name}</h1>
-          <p>{subject?.runtime ? `${subject?.runtime} min.` : ''}</p>
+          <small>{subject.course_id?.name}</small>
+          <h1>{subject.name}</h1>
+          <p>{subject.runtime ? `${subject.runtime} min.` : ''}</p>
         </div>
 
         <div className="separator"></div>
 
         <div className="mb-5">
           {subject.content.length === 0 ? (
-            <p>Content not found</p>
+            <p>Conteúdo não encontrado.</p>
           ) : (
             mapContent()
           )}
@@ -69,7 +69,7 @@ const Subject = ({ subject }) => {
               router.push(`/courses/subjects/questions/${subject.id}`)
             }
           >
-            Questions
+            Atividades
           </Button>
         </div>
       </section>

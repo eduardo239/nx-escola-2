@@ -171,12 +171,25 @@ export const sliceString = (string, length = 110) => {
   }
 };
 
+/**
+ *
+ * @param {Date} date
+ * @returns
+ */
 export const timeFromX = (date) => {
   let _date = new Date(date);
   let y = _date.getFullYear();
   let m = _date.getMonth();
   let d = _date.getDate();
-  let a = moment([y, m, d]);
-  let b = moment();
-  return a.from(b);
+
+  return moment([y, m, d]).fromNow();
+};
+
+/**
+ *
+ * @param {Date} date
+ * @returns
+ */
+export const formatDate = (date) => {
+  return moment(date).format('DD/MM/YYYY, kk:mm:ss');
 };

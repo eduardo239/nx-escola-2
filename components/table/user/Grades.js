@@ -2,8 +2,9 @@ import { supabase } from '../../../utils/supabase';
 import { useState } from 'react';
 import { ButtonIcon, IconOnly } from '../../ui/Form';
 import { TrashCan16 } from '@carbon/icons-react';
+import { formatDate, timeFromX } from '../../../utils';
 
-const headers = ['Curso', 'Matéria', 'Nota', 'Opções'];
+const headers = ['Curso', 'Matéria', 'Nota', 'Atualizado em', 'Opções'];
 
 export default function MyGrades({ user_grades }) {
   const [loading, setLoading] = useState(false);
@@ -20,6 +21,7 @@ export default function MyGrades({ user_grades }) {
         <td>{x.subject_id.course_id.name}</td>
         <td>{x.subject_id.name}</td>
         <td>{x.result}</td>
+        <td>{formatDate(x.updated_at)}</td>
         <td>
           <IconOnly disabled={loading} danger onClick={() => handleModal(x.id)}>
             <TrashCan16 />
