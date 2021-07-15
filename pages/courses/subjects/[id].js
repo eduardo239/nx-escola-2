@@ -75,14 +75,11 @@ const Subject = ({ subject }) => {
       </section>
     );
 
-  if (!subject)
-    return (
-      <section className="p-5 bg-section">
-        <h4>Curso não encontrado</h4>
-      </section>
-    );
-
-  return <Spinner />;
+  return (
+    <section className="p-5 bg-section">
+      <h4>Curso não encontrado</h4>
+    </section>
+  );
 };
 
 export async function getStaticPaths() {
