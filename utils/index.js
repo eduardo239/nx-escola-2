@@ -161,3 +161,12 @@ export const formatMoney = (value) => {
     currency: 'BRL',
   });
 };
+
+export const sliceString = (string, length = 110) => {
+  let sl = string.length;
+  if (sl > 30) {
+    return `${string.slice(0, length)}...`;
+  } else {
+    return string;
+  }
+};

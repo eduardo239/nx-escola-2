@@ -20,7 +20,7 @@ const Balance = ({ users }) => {
 
     if (value === 0 || profileId === '') {
       toast.dismiss();
-      toast.error('O valor e o usuário são requeridos.', {
+      toast.error('O valor e o usuário são obrigatórios.', {
         id: 'add-balance-value-empty',
       });
       setError(true);

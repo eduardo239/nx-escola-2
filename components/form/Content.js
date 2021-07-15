@@ -50,28 +50,11 @@ const AddContent = ({ setContent }) => {
     if (code === '') {
       return;
     }
-    // TODO: fix image
     setLoading(true);
-    let img = new Image();
-    img.src = URL;
+    setHtml((html) => [...html, { type, content: URL }]);
+    setContent(html);
+    setCode('');
 
-    if (img.src) {
-      img.onload = function () {
-        setHtml((html) => [
-          ...html,
-          {
-            type,
-            image: {
-              url: code,
-              size: { width: img.width, height: img.height },
-            },
-          },
-        ]);
-      };
-      setContent(html);
-      setCode('');
-      setLoading(false);
-    }
     setLoading(false);
   };
 

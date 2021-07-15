@@ -14,7 +14,6 @@ const breakpointColumnsObj = {
 };
 
 export default function Courses({ courses }) {
-  console.log(courses);
   const mapCourses = () => {
     return courses
       .map((c, i) => (
@@ -29,7 +28,7 @@ export default function Courses({ courses }) {
     return (
       <section className="p-5 bg-section">
         <Head>
-          <title>{`${app_name} - Cursos.`}</title>
+          <title>{`${app_name} - Cursos`}</title>
           <meta name="description" content="Cursos de todos os tipos aqui." />
           <link rel="icon" href="/favicon.ico" />
         </Head>

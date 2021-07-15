@@ -6,7 +6,6 @@ import toast, { Toaster } from 'react-hot-toast';
 import s from '../../../styles/Questions.module.scss';
 
 const Questions = ({ subjects }) => {
-  console.log(subjects);
   const [question, setQuestion] = useState('');
   const [alternatives, setAlternatives] = useState([]);
   const [alternative, setAlternative] = useState('');

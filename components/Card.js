@@ -3,7 +3,7 @@ import { Button } from '../components/ui/Form';
 import { default_course_poster } from '../utils/constants';
 import Image from 'next/image';
 import s from '../styles/Card.module.scss';
-
+import { formatMoney, sliceString } from '../utils/index';
 export const Card = ({ course }) => {
   const router = useRouter();
 
@@ -16,21 +16,23 @@ export const Card = ({ course }) => {
         height={100}
       />
       <div className={s.card_body}>
-        <div className="mb-2">
-          <small>{course.price ? course.price : 'Undefined'}</small>
+        <div className="mb-3">
+          <small>
+            {course.price ? formatMoney(course.price) : 'Undefined'}
+          </small>
         </div>
-        <p className="body-heavy mb-3">{course.name}</p>
-        <p className="small-light mb-3">{course.description ?? ''}</p>
-        <small className="small-light">
-          {course.runtime ? `${course.runtime} min` : ''}
-        </small>
+        <p className={s.title}>{course.name}</p>
+        <p className={s.paragraph}>
+          {course.description ? sliceString(course.description) : 'Undefined'}
+        </p>
+        <small>{course.runtime ? course.runtime : 'Undefined'}</small>
       </div>
       <Button
         className="w-100"
         primary
         onClick={() => router.push(`/courses/${course.id}`)}
       >
-        Read more
+        Leia mais
       </Button>
     </div>
   );

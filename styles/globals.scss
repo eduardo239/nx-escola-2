@@ -305,9 +305,11 @@ textarea:disabled {
 @keyframes slideIn {
   0% {
     transform: translateY(-10px);
+    opacity: 0.1;
   }
   100% {
     transform: initial;
+    opacity: 1;
   }
 }
 .modal-body {

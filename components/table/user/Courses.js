@@ -6,7 +6,6 @@ import { TrashCan16 } from '@carbon/icons-react';
 const headers = ['Poster', 'Curso', 'Atualizado em', 'Opções'];
 
 export default function Payments({ user_courses }) {
-  console.log(user_courses);
   const [loading, setLoading] = useState(false);
 
   const handleModal = () => {
