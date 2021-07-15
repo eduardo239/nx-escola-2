@@ -51,6 +51,13 @@ export const UserContextProvider = (props) => {
     return { data, error };
   };
 
+  const logout = async () => {
+    setUser(null);
+    setProfile(null);
+    setSession(null);
+    supabase.auth.signOut();
+  };
+
   const getCourses = async () => {
     let { data: courses, error } = await supabase.from('courses').select('*');
     if (courses) setCourses(courses);
@@ -80,6 +87,7 @@ export const UserContextProvider = (props) => {
   const value = {
     session,
     user,
+    logout,
     courses,
     profile,
     userSignUp,

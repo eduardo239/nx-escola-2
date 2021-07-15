@@ -10,13 +10,14 @@ import {
   Asleep16,
   Home16,
   CaretDown16,
+  User16,
+  Money16,
 } from '@carbon/icons-react';
 import { useRouter } from 'next/dist/client/router';
 import Logo from '../Logo';
 
 const Navbar = ({ toggleTheme, theme }) => {
-  const { user, profile, signOut, userProfile, setSession, setUser } =
-    useUser();
+  const { user, profile, signOut, userProfile, logout } = useUser();
   const [menu, setMenu] = useState(false);
   const router = useRouter();
 
@@ -29,12 +30,6 @@ const Navbar = ({ toggleTheme, theme }) => {
     const tar = e.target;
     const cur = e.currentTarget;
     tar !== cur && setMenu(false);
-  };
-
-  const handleLogout = async () => {
-    setSession(null);
-    setUser(null);
-    await signOut();
   };
 
   const click = (e) => {
@@ -58,6 +53,18 @@ const Navbar = ({ toggleTheme, theme }) => {
       <IconOnly primary onClick={() => router.push('/')}>
         <Home16 />
       </IconOnly>
+
+      {profile && (
+        <IconOnly primary onClick={() => router.push(`/user/${profile.id}`)}>
+          <User16 />
+        </IconOnly>
+      )}
+      {profile && (
+        <IconOnly primary onClick={() => router.push(`/user/balance`)}>
+          <Money16 />
+        </IconOnly>
+      )}
+
       <nav
         className={s.container}
         onClick={handleClickOutside}
@@ -77,6 +84,7 @@ const Navbar = ({ toggleTheme, theme }) => {
               <a>Cursos</a>
             </Link>
           </li>
+
           <li>
             <ButtonIcon className={s.button} onClick={click}>
               Admin <CaretDown16 />
@@ -100,6 +108,11 @@ const Navbar = ({ toggleTheme, theme }) => {
                   <li onClick={() => setMenu(false)}>
                     <Link href="/admin/add/questions">
                       <a>Questões</a>
+                    </Link>
+                  </li>
+                  <li onClick={() => setMenu(false)}>
+                    <Link href="/admin/add/balance">
+                      <a>Saldo</a>
                     </Link>
                   </li>
                 </ul>
@@ -168,7 +181,7 @@ const Navbar = ({ toggleTheme, theme }) => {
             </ButtonIcon>
           </li>
           <li onClick={() => setMenu(false)}>
-            <ButtonIcon className={s.button} onClick={() => handleLogout}>
+            <ButtonIcon className={s.button} onClick={() => logout()}>
               Sair <Logout16 />
             </ButtonIcon>
           </li>

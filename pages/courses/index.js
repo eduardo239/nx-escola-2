@@ -14,6 +14,7 @@ const breakpointColumnsObj = {
 };
 
 export default function Courses({ courses }) {
+  console.log(courses);
   const mapCourses = () => {
     return courses
       .map((c, i) => (
@@ -34,7 +35,7 @@ export default function Courses({ courses }) {
         </Head>
 
         <main>
-          <h1>Cursos</h1>
+          <h1>Todos os Cursos</h1>
 
           <Masonry
             breakpointCols={breakpointColumnsObj}
@@ -57,7 +58,7 @@ export default function Courses({ courses }) {
   return <Spinner />;
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { data: courses, error } = await supabase.from('courses').select('*');
 
   if (error) throw error;

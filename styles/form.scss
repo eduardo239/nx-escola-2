@@ -38,10 +38,11 @@
 
 .field--radio {
   flex: 1;
-  padding: 10px;
   border-radius: var(--border-radius);
+  padding-left: 10px;
+  padding-right: 10px;
   label {
-    padding: 0.5rem;
+    padding: 10px;
   }
 }
 

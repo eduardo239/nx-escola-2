@@ -144,7 +144,7 @@ const Questions = ({ subjects }) => {
           id="add-subject-course-id"
         >
           <option defaultValue value="">
-            choose One
+            Escolha um
           </option>
           {subjects.map((x, i) => (
             <option value={x.id} key={x.id}>

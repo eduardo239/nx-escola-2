@@ -66,7 +66,7 @@ const Balance = ({ users }) => {
             id="add-balance-user-id"
           >
             <option defaultValue value="">
-              choose One
+              Escolha um
             </option>
             {users.map((x, i) => (
               <option value={x.id} key={x.id}>
