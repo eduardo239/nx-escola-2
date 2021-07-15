@@ -10,6 +10,7 @@ export const GlobalStyles = createGlobalStyle`
   .bg-section {
     background-color: ${({ theme }) => theme.white};
     min-height: 100vh;
+    box-shadow: var(--shadow-2);
   }
 
   a {

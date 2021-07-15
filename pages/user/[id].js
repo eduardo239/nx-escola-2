@@ -8,12 +8,6 @@ import Courses from '../../components/table/user/Courses';
 import { useRouter } from 'next/router';
 
 const Profile = ({ profile, user_grades, user_payments, user_courses }) => {
-  const { user } = useUser();
-
-  const router = useRouter();
-  console.log(router);
-  //TODO: remove usuários não logados
-
   if (profile)
     return (
       <section className="p-5 bg-section">
@@ -47,7 +41,7 @@ export async function getStaticPaths() {
     params: { id: user.id },
   }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps(context) {

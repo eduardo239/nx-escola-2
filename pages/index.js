@@ -12,10 +12,14 @@ import { app_name } from '../utils/constants';
 import Spinner from '../components/ui/Spinner';
 import Modal from '../components/Modal';
 import { useCourse } from '../utils/useCourse';
+import { supabase } from '../utils/supabase';
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
 export default function Home() {
   const [modal, setModal] = useState(false);
   const { courses, getCourses } = useCourse();
-  console.log(courses);
+
   return (
     <section className="p-5 bg-section">
       <Head>

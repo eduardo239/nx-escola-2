@@ -137,7 +137,7 @@ export async function getStaticPaths() {
 
   if (error) throw new Error(error);
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps(context) {

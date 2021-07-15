@@ -92,7 +92,7 @@ export async function getStaticPaths() {
     params: { id: subject.id },
   }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps(context) {

@@ -7,37 +7,21 @@ export const CourseContextProvider = (props) => {
   const [course, setCourse] = useState(null);
   const [courses, setCourses] = useState(null);
 
-  // TODO:
-  useEffect(() => {
-    const session = supabase.auth.session();
-    setSession(session);
-    setUser(session?.user ?? null);
-
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-      }
-    );
-
-    return () => {
-      authListener.unsubscribe();
-    };
-  }, []);
+  useEffect(() => {}, []);
 
   const getCourses = async () => {
-    let { data: courses, error } = await supabase.from('courses').select('*');
-    if (courses) setCourses(courses);
+    let { data, error } = await supabase.from('courses').select('*');
+    if (data) setCourses(data);
     return { data, error };
   };
 
   const getCourse = async (id) => {
-    let { data: courses, error } = await supabase
+    let { data, error } = await supabase
       .from('courses')
       .select('*')
       .eq('id', id)
       .single();
-    if (courses) setCourse(courses);
+    if (data) setCourse(data);
     return { data, error };
   };
 
@@ -71,7 +55,7 @@ export const CourseContextProvider = (props) => {
 export const useCourse = () => {
   const context = useContext(CourseContext);
   if (context === undefined) {
-    throw new Error(`useCourse must be used within a UserContextProvider.`);
+    throw new Error(`useCourse must be used within a CourseContextProvider.`);
   }
   return context;
 };
