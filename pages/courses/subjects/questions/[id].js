@@ -124,15 +124,15 @@ const Questions = ({ questions = [] }) => {
   );
 };
 
-export async function getStaticPaths() {
-  let { data: subjects } = await supabase.from('subjects').select('*');
+// export async function getStaticPaths() {
+//   let { data: subjects } = await supabase.from('subjects').select('*');
 
-  const paths = subjects.map((subject) => ({
-    params: { id: subject.id },
-  }));
-  console.log(paths);
-  return { paths, fallback: true };
-}
+//   const paths = subjects.map((subject) => ({
+//     params: { id: subject.id },
+//   }));
+//   console.log(paths);
+//   return { paths, fallback: true };
+// }
 
 // export async function getStaticProps(context) {
 //   const id = context.params.id;
