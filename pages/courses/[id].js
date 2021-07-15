@@ -11,7 +11,7 @@ import { supabase } from '../../utils/supabase';
 import { useUser } from '../../utils/useUser';
 import { Currency16 } from '@carbon/icons-react';
 import { app_name, default_course_poster } from '../../utils/constants';
-import { formatMoney, paymentRecords, subscribe } from '../../utils';
+import { formatMoney, paymentRecords, subscribe, timeFromX } from '../../utils';
 import { useRouter } from 'next/router';
 import toast, { Toaster } from 'react-hot-toast';
 import Spinner from '../../components/ui/Spinner';
@@ -97,7 +97,7 @@ export default function Course({ course, subjects }) {
           <div className={s.body}>
             <h1>{course.name}</h1>
             <p>{formatMoney(course.price)}</p>
-            <p>{course.created_at}</p>
+            <p className="black80">{timeFromX(course.created_at)}</p>
             <div className="separator mb-5"></div>
             <p>{course.description}</p>
             {!owned && (

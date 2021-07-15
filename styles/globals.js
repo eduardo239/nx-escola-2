@@ -16,6 +16,18 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.primary};
   }
 
+  .primary {
+    color: ${({ theme }) => theme.primary};
+  }
+  
+  .secondary {
+    color: ${({ theme }) => theme.secondary};
+  }
+  
+  .black80 {
+    color: ${({ theme }) => theme.black80};
+  }
+
   input, select, textarea {
     color: ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.bg};

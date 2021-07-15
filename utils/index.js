@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-
+import moment from 'moment';
 /**
  * @param {String} theme 'light' || 'dark'
  */
@@ -169,4 +169,14 @@ export const sliceString = (string, length = 110) => {
   } else {
     return string;
   }
+};
+
+export const timeFromX = (date) => {
+  let _date = new Date(date);
+  let y = _date.getFullYear();
+  let m = _date.getMonth();
+  let d = _date.getDate();
+  let a = moment([y, m, d]);
+  let b = moment();
+  return a.from(b);
 };
