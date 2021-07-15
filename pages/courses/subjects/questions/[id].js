@@ -100,15 +100,13 @@ const Questions = ({ questions }) => {
 
   return (
     <section className="p-5 bg-section">
+      <Toaster />
+
       <Head>
-        <title>{`${app_name} - Número de perguntas: ${
-          questions.length ? questions.length : 0
-        }`}</title>
+        <title>{`${app_name} - Atividades`}</title>
         <meta name="description" content="Cursos de todos os tipos aqui." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Toaster />
 
       <h1>Questions</h1>
       {questions.length === 0 ? (
