@@ -60,13 +60,13 @@ export const subscribe = async (type, item, profile) => {
 
 /**
  *
- * @param {Object} profile
+ * @param {Object} profile of user
  * @param {enum} add add || sub
- * @param {Float} value
+ * @param {Float} value float
  * @returns data and error
  */
 export const addBalance = async (profile, add, v) => {
-  let current_balance = parseFloat(profile[0].balance);
+  let current_balance = parseFloat(profile.balance);
   let value = parseFloat(v);
   let amount = 0;
 
@@ -88,7 +88,7 @@ export const addBalance = async (profile, add, v) => {
   const { data, error } = await supabase
     .from('profiles')
     .update(body)
-    .eq('id', profile[0].id);
+    .eq('id', profile.id);
 
   return { data, error };
 };
@@ -147,4 +147,17 @@ export const checkTheAnswers = async (questions, alternatives, profile) => {
 
   const { data, error } = await supabase.from('user_grades').insert([body]);
   return { data, error };
+};
+
+/**
+ *
+ * @param {Float} value float
+ * @returns string
+ */
+export const formatMoney = (value) => {
+  let x = parseFloat(value);
+  return x.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
 };

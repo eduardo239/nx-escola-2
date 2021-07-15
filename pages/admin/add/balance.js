@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { supabase } from '../../../utils/supabase';
-import { Button, Input, Textarea } from '../../../components/ui/Form';
+import { Button, Input } from '../../../components/ui/Form';
 import { Send16 } from '@carbon/icons-react';
-import { addBalance } from '../../../utils/index';
 import toast, { Toaster } from 'react-hot-toast';
+import { useUser } from '../../../utils/useUser';
+import { formatMoney } from '../../../utils';
 
 const Balance = ({ users }) => {
+  const { updateBalance } = useUser();
   const [value, setValue] = useState(0);
   const [error, setError] = useState(false);
   const [profileId, setProfileId] = useState('');
@@ -25,17 +27,19 @@ const Balance = ({ users }) => {
       return;
     }
 
-    let profile = users.filter((x) => x.id === profileId);
-    const { error } = await addBalance(profile, operation, value);
+    let p = users.filter((x) => x.id === profileId);
+    let profile = p[0];
+    const { error } = await updateBalance(profile, operation, value);
 
     if (error) {
       toast.dismiss();
       toast.error(error.message, {
         id: 'add-balance-error',
       });
+      return;
     } else {
       toast.dismiss();
-      toast.success('Balance successfully updated.', {
+      toast.success('Saldo atualizado com sucesso.', {
         id: 'add-balance-success',
       });
     }
@@ -70,7 +74,7 @@ const Balance = ({ users }) => {
             </option>
             {users.map((x, i) => (
               <option value={x.id} key={x.id}>
-                {x.username} - {x.balance}
+                {x.username} - {formatMoney(x.balance)}
               </option>
             ))}
           </select>

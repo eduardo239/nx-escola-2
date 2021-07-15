@@ -1,5 +1,5 @@
 import { useEffect, useState, createContext, useContext } from 'react';
-import { formatUsername } from '.';
+import { addBalance, formatUsername } from '.';
 import { supabase } from './supabase';
 
 export const UserContext = createContext();
@@ -51,6 +51,12 @@ export const UserContextProvider = (props) => {
     return { data, error };
   };
 
+  const updateBalance = async (profile, add, value) => {
+    const { data, error } = await addBalance(profile, add, value);
+    if (data) setProfile(data[0]);
+    return { data, error };
+  };
+
   const logout = async () => {
     setUser(null);
     setProfile(null);
@@ -99,6 +105,7 @@ export const UserContextProvider = (props) => {
     delCourse,
     setSession,
     setUser,
+    updateBalance,
     signIn: (options) => supabase.auth.signIn(options),
     signUp: (options) => supabase.auth.signUp(options),
     signOut: () => {
