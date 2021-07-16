@@ -1,13 +1,35 @@
-import { supabase } from '../../utils/supabase';
+import { useEffect } from 'react';
 import { app_name } from '../../utils/constants';
 import { useUser } from '../../utils/useUser';
 import Grades from '../../components/table/user/Grades';
 import Head from 'next/head';
 import Payments from '../../components/table/user/Payments';
 import Courses from '../../components/table/user/Courses';
-import { useRouter } from 'next/router';
 
-const Profile = ({ profile, user_grades, user_payments, user_courses }) => {
+const Profile = ({}) => {
+  const {
+    profile,
+    userCourses,
+    userPayments,
+    userGrades,
+    getUserCourses,
+    getUserPayments,
+    getUserGrades,
+  } = useUser();
+  useEffect(() => {
+    (async function () {
+      if (profile) {
+        await getUserCourses(profile.id);
+        await getUserPayments(profile.id);
+        await getUserGrades(profile.id);
+      }
+    })();
+  }, [profile]);
+
+  console.log(userCourses);
+  console.log(userPayments);
+  console.log(userGrades);
+
   if (profile)
     return (
       <section className="p-5 bg-section">
@@ -21,9 +43,9 @@ const Profile = ({ profile, user_grades, user_payments, user_courses }) => {
         </Head>
 
         <h2>{profile.username}</h2>
-        {user_grades.length > 0 && <Grades user_grades={user_grades} />}
-        {user_payments.length > 0 && <Payments user_payments={user_payments} />}
-        {user_courses.length > 0 && <Courses user_courses={user_courses} />}
+        {userGrades && <Grades user_grades={userGrades} />}
+        {userPayments && <Payments user_payments={userPayments} />}
+        {userCourses && <Courses user_courses={userCourses} />}
       </section>
     );
 
@@ -33,51 +55,5 @@ const Profile = ({ profile, user_grades, user_payments, user_courses }) => {
     </section>
   );
 };
-
-export async function getStaticPaths() {
-  let { data: users } = await supabase.from('profiles').select('*');
-
-  const paths = users.map((user) => ({
-    params: { id: user.id },
-  }));
-
-  return { paths, fallback: true };
-}
-
-export async function getStaticProps(context) {
-  const id = context.params.id;
-
-  let { data: profile, error } = await supabase
-    .from('profiles')
-    .select('*')
-    .eq('id', id)
-    .single();
-
-  if (error) throw error;
-
-  let { data: user_grades, error: error_grades } = await supabase
-    .from('user_grades')
-    .select('*, subject_id(id, name, course_id(id, name, poster))')
-    .eq('profile_id', id);
-
-  if (error_grades) throw new Error(error_grades);
-
-  let { data: user_payments, error: error_payments } = await supabase
-    .from('user_payments')
-    .select('*, course_id(id, name)')
-    .eq('profile_id', id);
-
-  if (error_payments) throw new Error(error_payments);
-
-  let { data: user_courses, error: error_courses } = await supabase
-    .from('user_courses')
-    .select('*, course_id(id, name, poster)')
-    .eq('profile_id', id);
-
-  if (error_courses) throw new Error(error_courses);
-  return {
-    props: { profile, user_grades, user_payments, user_courses },
-  };
-}
 
 export default Profile;

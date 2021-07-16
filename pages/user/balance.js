@@ -50,6 +50,8 @@ const Balance = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
+        <Toaster />
+
         <h1 className="mb-5">Saldo</h1>
         <p>Username: {profile.username}</p>
         <p>{formatMoney(profile.balance.toFixed(2))}</p>

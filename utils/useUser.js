@@ -10,6 +10,8 @@ export const UserContextProvider = (props) => {
   const [profile, setProfile] = useState(null);
   const [session, setSession] = useState(null);
   const [userCourses, setUserCourses] = useState(null);
+  const [userPayments, setUserPayments] = useState(null);
+  const [userGrades, setUserGrades] = useState(null);
 
   useEffect(() => {
     const session = supabase.auth.session();
@@ -70,24 +72,39 @@ export const UserContextProvider = (props) => {
     if (courses) setCourses(courses);
   };
 
-  /**
-   *
-   * @param {String} id profile_id
-   */
-  const getUserCourses = async (id) => {
-    let { data, error } = await supabase
-      .from('user_courses')
-      .select('id')
-      .eq('profile_id', id);
-    if (data) setUserCourses(data);
-    return { data, error };
-  };
-
   const delCourse = async (id) => {
     const { data, error } = await supabase
       .from('courses')
       .delete()
       .eq('id', id);
+    return { data, error };
+  };
+
+  /******************************************************* */
+  const updateProfile = async (id, body) => {};
+  const getProfile = async (id) => {};
+  const getUserCourses = async (id) => {
+    let { data, error } = await supabase
+      .from('user_courses')
+      .select('*, course_id(id, name)')
+      .eq('profile_id', id);
+    if (data) setUserCourses(data);
+    return { data, error };
+  };
+  const getUserPayments = async (id) => {
+    let { data, error } = await supabase
+      .from('user_payments')
+      .select('*, course_id(id, name)')
+      .eq('profile_id', id);
+    if (data) setUserPayments(data);
+    return { data, error };
+  };
+  const getUserGrades = async (id) => {
+    let { data, error } = await supabase
+      .from('user_grades')
+      .select('*, subject_id(id, name, course_id(id, name))')
+      .eq('profile_id', id);
+    if (data) setUserGrades(data);
     return { data, error };
   };
 
@@ -101,7 +118,11 @@ export const UserContextProvider = (props) => {
     userProfile,
     profile,
     userCourses,
+    userPayments,
+    userGrades,
     getUserCourses,
+    getUserPayments,
+    getUserGrades,
     getCourses,
     delCourse,
     setSession,

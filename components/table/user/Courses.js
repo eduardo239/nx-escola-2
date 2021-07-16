@@ -6,6 +6,7 @@ import { formatDate, timeFromX } from '../../../utils';
 const headers = ['Curso', 'Atualizado em', 'Opções'];
 
 export default function Payments({ user_courses }) {
+  console.log(user_courses);
   const [loading, setLoading] = useState(false);
 
   const handleModal = () => {
