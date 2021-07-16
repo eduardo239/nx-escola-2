@@ -193,3 +193,7 @@ export const timeFromX = (date) => {
 export const formatDate = (date) => {
   return moment(date).format('DD/MM/YYYY, kk:mm:ss');
 };
+
+export const formatDateShort = (date) => {
+  return moment(date).format('DD/MM/YYYY');
+};

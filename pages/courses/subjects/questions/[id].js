@@ -80,7 +80,8 @@ const Questions = ({ questions = [] }) => {
             <label
               htmlFor={`alt-${x}-${q.id}`}
               style={{
-                padding: '0.5rem 100% 0.5rem 0.5rem',
+                padding: '0.5rem',
+                width: '100%',
               }}
             >
               {a}

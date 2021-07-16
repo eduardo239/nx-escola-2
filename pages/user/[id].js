@@ -5,6 +5,7 @@ import Grades from '../../components/table/user/Grades';
 import Head from 'next/head';
 import Payments from '../../components/table/user/Payments';
 import Courses from '../../components/table/user/Courses';
+import Chart from '../../components/table/user/Chart';
 
 const Profile = ({}) => {
   const {
@@ -26,10 +27,6 @@ const Profile = ({}) => {
     })();
   }, [profile]);
 
-  console.log(userCourses);
-  console.log(userPayments);
-  console.log(userGrades);
-
   if (profile)
     return (
       <section className="p-5 bg-section">
@@ -43,6 +40,7 @@ const Profile = ({}) => {
         </Head>
 
         <h2>{profile.username}</h2>
+        {userGrades && <Chart user_grades={userGrades} />}
         {userGrades && <Grades user_grades={userGrades} />}
         {userPayments && <Payments user_payments={userPayments} />}
         {userCourses && <Courses user_courses={userCourses} />}
