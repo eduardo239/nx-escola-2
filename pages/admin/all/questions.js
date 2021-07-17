@@ -1,56 +1,55 @@
 import { useEffect, useState } from 'react';
 import { Close16, Edit16, TrashCan16 } from '@carbon/icons-react';
 import { ButtonIcon, Button, IconOnly } from '../../../components/ui/Form';
-import { useUser } from '../../../utils/useUser';
-import { useCourse } from '../../../utils/useCourse';
-import Spinner from '../../../components/ui/Spinner';
 import Modal from '../../../components/Modal';
+import Spinner from '../../../components/ui/Spinner';
 import toast, { Toaster } from 'react-hot-toast';
+import { useCourse } from '../../../utils/useCourse';
 
 const Courses = ({}) => {
-  const { delCourse, datas, getDatas } = useCourse();
+  const { getDatas, delData, datas } = useCourse();
   const [modal, setModal] = useState(false);
-  const [courseId, setCourseId] = useState('');
-  const [course, setCourse] = useState({});
+  const [questionId, setQuestionId] = useState('');
+  const [question, setQuestion] = useState({});
   const [loading, setLoading] = useState(false);
 
   const openModal = async (x) => {
-    setCourse(x);
-    setCourseId(x.id);
+    setQuestion(x);
+    setQuestionId(x.id);
     setModal(!modal);
   };
 
   const handleDelete = async () => {
     setLoading(true);
-    const { error } = await delCourse('courses', courseId);
+    const { error } = await delData('questions', questionId);
     if (error) {
       toast.dismiss();
       toast.error(error.message, {
-        id: 'all-courses-error',
+        id: 'all-questions-error',
       });
       return;
     } else {
       toast.dismiss();
-      toast.success('Curso removido com sucesso.', {
-        id: 'all-courses-success',
+      toast.success('Pergunta removida com sucesso.', {
+        id: 'all-questions-success',
       });
     }
-    await getDatas('courses');
+    await getDatas('questions');
     setLoading(false);
     setModal(false);
   };
 
   useEffect(() => {
     (async function () {
-      await getDatas('courses');
+      await getDatas('questions');
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const mapCourses = () => {
+  const mapQuestions = () => {
     return datas.map((x) => (
       <div key={x.id} className="list-row">
-        <p>{x.name}</p>
+        <p>{x.question}</p>
         <div className="flex">
           <IconOnly disabled={loading} secondary onClick={() => openModal(x)}>
             <Edit16 />
@@ -68,17 +67,17 @@ const Courses = ({}) => {
       <Toaster />
       {loading && <Spinner />}
 
-      <h1>Todos os cursos</h1>
+      <h1>Todos as matérias</h1>
 
-      {datas === null ? <p>Não há cursos aqui.</p> : mapCourses()}
+      {!datas ? <p>Não há perguntas aqui.</p> : mapQuestions()}
 
       {modal && (
         <Modal modal={modal} setModal={setModal}>
           <div>
             <div className="p-5">
-              <h3 className="mb-5">{course.name}</h3>
+              <h3>{question.question}</h3>
               <p style={{ fontSize: '0.875rem' }}>
-                {course.description ? course.description : 'undefined'}
+                {question.description ? question.description : 'undefined'}
               </p>
             </div>
             <div className="flex-center-end">

@@ -6,9 +6,13 @@ export const CourseContext = createContext();
 export const CourseContextProvider = (props) => {
   const [course, setCourse] = useState(null);
   const [courses, setCourses] = useState(null);
+  const [subject, setSubject] = useState(null);
   const [subjects, setSubjects] = useState(null);
+  const [question, setQuestion] = useState(null);
+  const [questions, setQuestions] = useState(null);
 
-  useEffect(() => {}, []);
+  const [data, setData] = useState(null);
+  const [datas, setDatas] = useState(null);
 
   const getCourses = async () => {
     let { data, error } = await supabase.from('courses').select('*');
@@ -42,12 +46,41 @@ export const CourseContextProvider = (props) => {
     return { data, error };
   };
 
+  // -----
+
   const getSubjects = async () => {
     let { data, error } = await supabase.from('subjects').select('*');
     if (data) setSubjects(data);
     return { data, error };
   };
 
+  const getQuestions = async () => {
+    let { data, error } = await supabase.from('questions').select('*');
+    if (data) setQuestions(data);
+    return { data, error };
+  };
+  // -----
+  const getDatas = async (table) => {
+    let { data, error } = await supabase.from(table).select('*');
+    if (data) setDatas(data);
+    return { data, error };
+  };
+
+  const getData = async (table, id) => {
+    let { data, error } = await supabase
+      .from(data)
+      .select('*')
+      .eq('id', id)
+      .single();
+    if (data) setData(data);
+    return { data, error };
+  };
+  // -----
+  const delData = async (table, id) => {
+    const { data, error } = await supabase.from(table).delete().eq('id', id);
+    return { data, error };
+  };
+  // -----
   const value = {
     course,
     courses,
@@ -55,8 +88,17 @@ export const CourseContextProvider = (props) => {
     getCourses,
     updateCourse,
     deleteCourse,
+    subject,
     subjects,
     getSubjects,
+    questions,
+    questions,
+    getQuestions,
+    data,
+    datas,
+    getData,
+    getDatas,
+    delData,
   };
   return <CourseContext.Provider value={value} {...props} />;
 };

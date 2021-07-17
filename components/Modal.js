@@ -19,7 +19,7 @@ const Modal = ({ modal, setModal, children }) => {
         <IconOnly secondary className="close" onClick={() => setModal(!modal)}>
           <Close16 />
         </IconOnly>
-        <Spinner></Spinner>
+        {/* <Spinner></Spinner> */}
         {children}
       </div>
     </div>
