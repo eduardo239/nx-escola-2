@@ -30,7 +30,12 @@ export default function MyGrades({ user_grades }) {
         <td className={resultPass(x.result)}>{x.result}</td>
         <td>{formatDate(x.updated_at)}</td>
         <td>
-          <IconOnly disabled={loading} danger onClick={() => handleModal(x.id)}>
+          <IconOnly
+            small
+            disabled={loading}
+            danger
+            onClick={() => handleModal(x.id)}
+          >
             <TrashCan16 />
           </IconOnly>
         </td>

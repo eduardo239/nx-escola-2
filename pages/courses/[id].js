@@ -64,7 +64,7 @@ export default function Course({ course, subjects }) {
         } else {
           getUserCourses(profile.id);
           toast.dismiss();
-          toast.success('Course successfully subscribed.', {
+          toast.success('Inscrição realizada com sucesso.', {
             id: 'subscribe-course-success',
           });
           setLoading(false);

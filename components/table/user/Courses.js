@@ -6,7 +6,6 @@ import { formatDate, timeFromX } from '../../../utils';
 const headers = ['Curso', 'Atualizado em', 'Opções'];
 
 export default function Payments({ user_courses }) {
-  console.log(user_courses);
   const [loading, setLoading] = useState(false);
 
   const handleModal = () => {
@@ -21,7 +20,12 @@ export default function Payments({ user_courses }) {
         <td>{x.course_id.name}</td>
         <td>{formatDate(x.updated_at)}</td>
         <td>
-          <IconOnly disabled={loading} danger onClick={() => handleModal(x.id)}>
+          <IconOnly
+            small
+            disabled={loading}
+            danger
+            onClick={() => handleModal(x.id)}
+          >
             <TrashCan16 />
           </IconOnly>
         </td>

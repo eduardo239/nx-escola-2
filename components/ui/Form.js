@@ -107,6 +107,7 @@ export const IconOnly = ({
   primary,
   secondary,
   danger,
+  small,
   error = false,
   type,
   full = false,
@@ -120,7 +121,7 @@ export const IconOnly = ({
         secondary ? 'icon-button--secondary' : ''
       } ${className} ${danger ? 'icon-button--danger' : ''} ${
         full ? 'w-100' : ''
-      }`}
+      } ${small ? 'icon-button--small' : ''}`}
       type={type}
       onClick={onClick}
       {...props}

@@ -25,6 +25,7 @@ const Profile = ({}) => {
         await getUserGrades(profile.id);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile]);
 
   if (profile)

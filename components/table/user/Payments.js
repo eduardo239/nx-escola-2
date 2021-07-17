@@ -22,7 +22,12 @@ export default function Payments({ user_payments }) {
         <td>{formatMoney(x.value)}</td>
         <td>{formatDate(x.updated_at)}</td>
         <td>
-          <IconOnly disabled={loading} danger onClick={() => handleModal(x.id)}>
+          <IconOnly
+            small
+            disabled={loading}
+            danger
+            onClick={() => handleModal(x.id)}
+          >
             <TrashCan16 />
           </IconOnly>
         </td>

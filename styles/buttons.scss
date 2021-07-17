@@ -8,6 +8,14 @@
 .icon-button,
 .button-link,
 .button-outline {
+  padding: calc(0.875rem - 3px) 15px;
+}
+// TODO: small
+.button,
+.button-icon,
+.icon-button,
+.button-link,
+.button-outline {
   font-family: var(--ss);
   font-size: 0.875rem;
   font-weight: 400;
@@ -18,7 +26,6 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
-  padding: calc(0.875rem - 3px) 15px;
   border-radius: 0;
   text-align: left;
   text-decoration: none;
@@ -47,5 +54,6 @@
   }
 }
 
-.button-link {
+.icon-button--small {
+  padding: 7px;
 }
