@@ -241,13 +241,14 @@ textarea:disabled {
 
   .table-row td {
     // border: 1px solid var(--secondary-active);
-    border-radius: var(--border-radius);
-    padding: 0 0 0 0.5rem;
+    // border-radius: var(--border-radius);
+    padding: 0 0.5rem;
     margin-bottom: 0.25rem;
     font-size: 0.8rem;
   }
   .table-row td:last-child {
     padding: 0;
+    text-align: right;
   }
 }
 
@@ -345,3 +346,15 @@ textarea:disabled {
 .spinner__center .active {
   display: flex;
 }
+
+/*-----------------------------------------------------*/
+.aprovado {
+  background-color: var(--success);
+  color: var(--white);
+}
+.reprovado {
+  background-color: var(--danger);
+  color: var(--white);
+}
+/*-----------------------------------------------------*/
+/*-----------------------------------------------------*/

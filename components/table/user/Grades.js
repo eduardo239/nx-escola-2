@@ -15,12 +15,19 @@ export default function MyGrades({ user_grades }) {
     return;
   };
 
+  const resultPass = (x) => {
+    if (x > 5.999) {
+      return 'aprovado';
+    } else {
+      return 'reprovado';
+    }
+  };
   const mapUserGrades = () => {
     return user_grades.map((x) => (
       <tr key={x.id} className="table-row">
         <td>{x.subject_id.course_id.name}</td>
         <td>{x.subject_id.name}</td>
-        <td>{x.result}</td>
+        <td className={resultPass(x.result)}>{x.result}</td>
         <td>{formatDate(x.updated_at)}</td>
         <td>
           <IconOnly disabled={loading} danger onClick={() => handleModal(x.id)}>
@@ -34,6 +41,9 @@ export default function MyGrades({ user_grades }) {
     <section>
       <h1>Minhas Notas</h1>
 
+      <div>
+        <small>Mínimo de 6 para passar</small>
+      </div>
       <table className="table">
         <thead>
           <tr className="table-header">

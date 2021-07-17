@@ -6,6 +6,7 @@ export const CourseContext = createContext();
 export const CourseContextProvider = (props) => {
   const [course, setCourse] = useState(null);
   const [courses, setCourses] = useState(null);
+  const [subjects, setSubjects] = useState(null);
 
   useEffect(() => {}, []);
 
@@ -41,6 +42,12 @@ export const CourseContextProvider = (props) => {
     return { data, error };
   };
 
+  const getSubjects = async () => {
+    let { data, error } = await supabase.from('subjects').select('*');
+    if (data) setSubjects(data);
+    return { data, error };
+  };
+
   const value = {
     course,
     courses,
@@ -48,6 +55,8 @@ export const CourseContextProvider = (props) => {
     getCourses,
     updateCourse,
     deleteCourse,
+    subjects,
+    getSubjects,
   };
   return <CourseContext.Provider value={value} {...props} />;
 };

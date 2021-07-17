@@ -2,7 +2,7 @@ import { supabase } from '../../../utils/supabase';
 import { useState } from 'react';
 import { ButtonIcon, IconOnly } from '../../ui/Form';
 import { TrashCan16 } from '@carbon/icons-react';
-import { formatDate, timeFromX } from '../../../utils';
+import { formatDate, formatMoney, timeFromX } from '../../../utils';
 
 const headers = ['Curso', 'Valor', 'Atualizado em', 'Opções'];
 
@@ -19,7 +19,7 @@ export default function Payments({ user_payments }) {
     return user_payments.map((x) => (
       <tr key={x.id} className="table-row">
         <td>{x.course_id.name}</td>
-        <td>{x.value}</td>
+        <td>{formatMoney(x.value)}</td>
         <td>{formatDate(x.updated_at)}</td>
         <td>
           <IconOnly disabled={loading} danger onClick={() => handleModal(x.id)}>

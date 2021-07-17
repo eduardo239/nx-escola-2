@@ -30,16 +30,6 @@ const Chart = ({ user_grades }) => {
     <section>
       <h1>Notas</h1>
 
-      <Input
-        type="number"
-        placeholder="Mostrar #n últimas notas .."
-        label="Runtime"
-        id="add-course-runtime"
-        value={length}
-        onChange={(e) => setLength(e.target.value)}
-        className="w-100"
-      />
-
       <Line
         data={{
           labels: mapDates(),
@@ -48,12 +38,22 @@ const Chart = ({ user_grades }) => {
               label: '# of Votes',
               data: mapGrades(),
               fill: false,
-              backgroundColor: 'rgb(255, 99, 132)',
-              borderColor: 'rgba(255, 99, 132, 0.2)',
+              backgroundColor: '#333fff',
+              borderColor: '#555fff',
             },
           ],
         }}
         options={options}
+      />
+
+      <Input
+        type="number"
+        placeholder="Mostrar #n últimas notas .."
+        label="Number of results"
+        id="add-course-results"
+        value={length}
+        onChange={(e) => setLength(e.target.value)}
+        className="w-100"
       />
     </section>
   );

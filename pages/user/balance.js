@@ -1,12 +1,12 @@
-import Spinner from '../../components/ui/Spinner';
 import { useState } from 'react';
 import { useUser } from '../../utils/useUser';
 import { Button, Input } from '../../components/ui/Form';
 import { Send16 } from '@carbon/icons-react';
-import toast, { Toaster } from 'react-hot-toast';
-import { formatMoney } from '../../utils';
-import Head from 'next/head';
 import { app_name } from '../../utils/constants';
+import { formatMoney } from '../../utils';
+import toast, { Toaster } from 'react-hot-toast';
+import Spinner from '../../components/ui/Spinner';
+import Head from 'next/head';
 
 const Balance = () => {
   const { profile, updateBalance } = useUser();

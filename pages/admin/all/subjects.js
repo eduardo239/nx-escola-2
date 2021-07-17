@@ -2,44 +2,43 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../../../utils/supabase';
 import { Close16, Edit16, TrashCan16 } from '@carbon/icons-react';
 import { ButtonIcon, Button, IconOnly } from '../../../components/ui/Form';
-// import Modal from '../../../components/ui/Modal';
-import toast, { Toaster } from 'react-hot-toast';
-import Modal from '../../../components/Modal';
 import { useUser } from '../../../utils/useUser';
-// import ModalEdit from '../../../components/admin/edit/ModalEdit';
+import Modal from '../../../components/Modal';
 import Spinner from '../../../components/ui/Spinner';
+import toast, { Toaster } from 'react-hot-toast';
 import { useCourse } from '../../../utils/useCourse';
 
 const Courses = ({}) => {
-  const { getCourses, delCourse, courses } = useCourse();
+  const { getSubjects, delCourse, subjects } = useCourse();
+  console.log(subjects);
   const [modal, setModal] = useState(false);
-  const [courseId, setCourseId] = useState('');
-  const [course, setCourse] = useState({});
+  const [subjectId, setSubjectId] = useState('');
+  const [subject, setSubject] = useState({});
   const [loading, setLoading] = useState(false);
 
   const openModal = async (x) => {
-    setCourse(x);
-    setCourseId(x.id);
+    setSubject(x);
+    setSubjectId(x.id);
     setModal(!modal);
   };
 
   const removeCourse = async () => {
     setLoading(true);
-    await delCourse(courseId);
-    setTimeout(async () => await getCourses(), 10000);
+    await delCourse(subjectId);
+    setTimeout(async () => await getSubjects(), 10000);
     setLoading(false);
     setModal(false);
   };
 
   useEffect(() => {
     (async function () {
-      await getCourses();
+      await getSubjects();
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const mapCourses = () => {
-    return courses.map((x) => (
+  const mapSubjects = () => {
+    return subjects.map((x) => (
       <div key={x.id} className="list-row">
         <p>{x.name}</p>
         <div className="flex">
@@ -59,17 +58,17 @@ const Courses = ({}) => {
       <Toaster />
       {loading && <Spinner />}
 
-      <h1>Todos os cursos</h1>
+      <h1>Todos as matérias</h1>
 
-      {courses === null ? <p>Não há cursos aqui.</p> : mapCourses()}
+      {!subjects ? <p>Não há matérias aqui.</p> : mapSubjects()}
 
       {modal && (
         <Modal modal={modal} setModal={setModal}>
           <div>
             <div className="p-5">
-              <h1>{course.name}</h1>
+              <h1>{subject.name}</h1>
               <p style={{ fontSize: '0.875rem' }}>
-                {course.description ? course.description : 'undefined'}
+                {subject.description ? subject.description : 'undefined'}
               </p>
             </div>
             <div className="flex-center-end">
@@ -92,7 +91,9 @@ const Courses = ({}) => {
 };
 
 export async function getStaticProps() {
-  let { data: courses, error } = await supabase.from('courses').select('*');
+  let { data: courses, error } = await supabase
+    .from('subjects')
+    .select('*, course_id(id, name)');
 
   if (error) throw error;
   return {

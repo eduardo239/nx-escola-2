@@ -237,12 +237,12 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .table-header th {
-    color: ${({ theme }) => theme.white};
+    color: var(--white);
     background-color: ${({ theme }) => theme.primary};
   }
 
   .table-row td {
-    border: 1px solid ${({ theme }) => theme.border};
+    border-bottom: 1px solid ${({ theme }) => theme.border};
   }
 // NORMAL
   .modal-body {
