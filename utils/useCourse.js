@@ -60,6 +60,13 @@ export const CourseContextProvider = (props) => {
     return { data, error };
   };
   // -----
+  /**
+   *
+   * @param {String} table
+   * @param {uuid} id
+   * @param {Object} body
+   * @returns
+   */
   const updateData = async (table, id, body) => {
     const { data, error } = await supabase
       .from(table)
@@ -111,6 +118,7 @@ export const CourseContextProvider = (props) => {
     datas,
     getData,
     getDatas,
+    updateData,
     delData,
   };
   return <CourseContext.Provider value={value} {...props} />;

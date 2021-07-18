@@ -342,10 +342,8 @@ textarea:disabled {
   box-shadow: var(--shadow-4);
   position: relative;
   display: block;
-  margin-left: 10vw;
-  margin-right: 10vw;
-  max-height: 85vh;
-  min-width: 50vw;
+  max-height: 90vh;
+  min-width: 70vw;
   max-width: 90vw;
   overflow-y: auto;
   animation: slideIn 0.3s cubic-bezier(0.17, 0.61, 0.33, 0.82);

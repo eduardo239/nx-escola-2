@@ -13,7 +13,7 @@ import { useCourse } from '../../../utils/useCourse';
 import Content from '../../../components/form/Content';
 
 const Courses = ({}) => {
-  const { getDatas, delData, datas } = useCourse();
+  const { getDatas, delData, datas, updateData } = useCourse();
 
   const [modal, setModal] = useState(false);
   const [subjectId, setSubjectId] = useState('');
@@ -28,9 +28,36 @@ const Courses = ({}) => {
   const [courses, setCourses] = useState([]);
 
   const openModal = async (x) => {
+    setName(x.name);
+    setContent(x.content);
+    setRuntime(x.runtime);
+    // setCourseId(x.courseId);
+    // TODO: content
+
     setSubject(x);
     setSubjectId(x.id);
     setModal(!modal);
+  };
+
+  const handleUpdate = async (id) => {
+    const body = { name, content, runtime };
+    const { error } = await updateData('subjects', id, body);
+    if (error) {
+      toast.dismiss();
+      toast.error(error.message, {
+        id: 'all-subject-put-error',
+      });
+      setLoading(false);
+      return;
+    } else {
+      toast.dismiss();
+      toast.success('Curso atualizado com sucesso.', {
+        id: 'all-subject-put-success',
+      });
+    }
+    await getDatas('subjects');
+    setLoading(false);
+    setModal(false);
   };
 
   const handleDelete = async () => {
@@ -41,6 +68,7 @@ const Courses = ({}) => {
       toast.error(error.message, {
         id: 'all-subject-error',
       });
+      setLoading(false);
       return;
     } else {
       toast.dismiss();
@@ -96,7 +124,7 @@ const Courses = ({}) => {
                 placeholder="Nome da matéira .."
                 label="Nome da matéira"
                 id="add-subject-name"
-                value={subject.name}
+                value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-100"
               />
@@ -104,7 +132,7 @@ const Courses = ({}) => {
                 type="number"
                 label="Runtime"
                 id="add-subject-runtime"
-                value={subject.runtime}
+                value={runtime}
                 onChange={(e) => setRuntime(e.target.value)}
                 className="w-100"
               />
@@ -134,6 +162,13 @@ const Courses = ({}) => {
             </div>
           </div>
           <div className="flex-center-end">
+            <ButtonIcon
+              secondary
+              disabled={loading}
+              onClick={() => handleUpdate(subject.id)}
+            >
+              Atualizar <TrashCan16 />
+            </ButtonIcon>
             <ButtonIcon danger disabled={loading} onClick={handleDelete}>
               Deletar <TrashCan16 />
             </ButtonIcon>
