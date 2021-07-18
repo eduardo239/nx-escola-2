@@ -74,8 +74,8 @@ const Courses = ({}) => {
       {modal && (
         <Modal modal={modal} setModal={setModal}>
           <div>
-            <div className="p-5">
-              <h3>{question.question}</h3>
+            <div className="p-5 mr-15">
+              <h3 className="mb-5">{question.question}</h3>
               <p style={{ fontSize: '0.875rem' }}>
                 {question.description ? question.description : 'undefined'}
               </p>

@@ -60,8 +60,21 @@ export const CourseContextProvider = (props) => {
     return { data, error };
   };
   // -----
-  const getDatas = async (table) => {
-    let { data, error } = await supabase.from(table).select('*');
+  const updateData = async (table, id, body) => {
+    const { data, error } = await supabase
+      .from(table)
+      .update(body)
+      .eq('id', id);
+    return { data, error };
+  };
+  // -----
+
+  const getDatas = async (table, ...columns) => {
+    let foreign = columns.length > 0;
+
+    let { data, error } = await supabase
+      .from(table)
+      .select(`* ${foreign ? ', ' + columns.toString() : ''}`);
     if (data) setDatas(data);
     return { data, error };
   };

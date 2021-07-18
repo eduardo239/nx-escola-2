@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Close16, Edit16, TrashCan16 } from '@carbon/icons-react';
-import { ButtonIcon, Button, IconOnly } from '../../../components/ui/Form';
+import {
+  ButtonIcon,
+  Button,
+  IconOnly,
+  Input,
+  Textarea,
+} from '../../../components/ui/Form';
 import { useUser } from '../../../utils/useUser';
 import { useCourse } from '../../../utils/useCourse';
 import Spinner from '../../../components/ui/Spinner';
@@ -8,11 +14,18 @@ import Modal from '../../../components/Modal';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Courses = ({}) => {
-  const { delCourse, datas, getDatas } = useCourse();
+  const { delData, datas, getDatas } = useCourse();
   const [modal, setModal] = useState(false);
   const [courseId, setCourseId] = useState('');
   const [course, setCourse] = useState({});
   const [loading, setLoading] = useState(false);
+
+  const [name, setName] = useState('');
+  const [runtime, setRuntime] = useState(0);
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState(0);
+  const [promoCode, setPromoCode] = useState('');
+  const [posterURL, setPosterURL] = useState('');
 
   const openModal = async (x) => {
     setCourse(x);
@@ -22,7 +35,7 @@ const Courses = ({}) => {
 
   const handleDelete = async () => {
     setLoading(true);
-    const { error } = await delCourse('courses', courseId);
+    const { error } = await delData('courses', courseId);
     if (error) {
       toast.dismiss();
       toast.error(error.message, {
@@ -75,11 +88,75 @@ const Courses = ({}) => {
       {modal && (
         <Modal modal={modal} setModal={setModal}>
           <div>
-            <div className="p-5">
-              <h3 className="mb-5">{course.name}</h3>
-              <p style={{ fontSize: '0.875rem' }}>
-                {course.description ? course.description : 'undefined'}
-              </p>
+            <div className="p-5 ">
+              <h3 className="mb-5 mr-15">Editar Curso</h3>
+              <Input
+                type="text"
+                placeholder="Name of the course .."
+                label="Name"
+                id="add-course-name"
+                value={course.name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-100"
+              />
+              <Input
+                type="number"
+                placeholder="Course duration .."
+                label="Runtime"
+                id="add-course-runtime"
+                value={course.runtime}
+                onChange={(e) => setRuntime(e.target.value)}
+                className="w-100"
+              />
+              <Input
+                type="number"
+                placeholder="Price .."
+                label="Price"
+                id="add-course-price"
+                value={course.price}
+                onChange={(e) => setPrice(e.target.value)}
+                className="w-100"
+              />
+
+              <Input
+                type="text"
+                placeholder="Promo code .."
+                label="Promo Code"
+                id="add-course-promo-code"
+                value={course.promoCode}
+                onChange={(e) => setPromoCode(e.target.value)}
+                className="w-100"
+              />
+              <Input
+                type="text"
+                placeholder="Poster URL .."
+                label="Poster URL"
+                id="add-course-promo-poster"
+                value={course.posterURL}
+                onChange={(e) => setPosterURL(e.target.value)}
+                className="w-100"
+              />
+              <div className="flex" style={{ gap: '1rem' }}>
+                <div className={`flex list-item`} style={{ flex: '1' }}>
+                  <input
+                    type="checkbox"
+                    name={`add-course-active`}
+                    id={`alt-course-active-1`}
+                    defaultChecked={course.status}
+                    onChange={() => setStatus(!status)}
+                  />
+                  <label htmlFor={`alt-course-active-1`}>Active</label>
+                </div>
+              </div>
+
+              <Textarea
+                label="Description"
+                placeholder="Description of the course"
+                className="w-100"
+                rows="3"
+                value={course.description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></Textarea>
             </div>
             <div className="flex-center-end">
               <ButtonIcon danger disabled={loading} onClick={handleDelete}>

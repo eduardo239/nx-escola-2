@@ -1,7 +1,7 @@
 import { Close16 } from '@carbon/icons-react';
-import React from 'react';
 import { IconOnly } from './ui/Form';
 import Spinner from '../components/ui/Spinner';
+
 const Modal = ({ modal, setModal, children }) => {
   const handleClickOutside = (e) => {
     let tar = e.target;
