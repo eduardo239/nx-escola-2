@@ -18,6 +18,8 @@ import {
   VideoChat16,
 } from '@carbon/icons-react';
 import s from '../../styles/Questions.module.scss';
+import { extractYoutubeUrl } from '../../utils';
+import ContentBody from './ContentBody';
 
 const AddContent = ({ setContent }) => {
   const [type, setType] = useState('title');
@@ -41,6 +43,38 @@ const AddContent = ({ setContent }) => {
 
   const removeElement = (i) => {
     setHtml(html.filter((item, index) => index !== i));
+  };
+
+  const mapContent = () => {
+    // return <ContentBody html={html} />;
+    return html.map((c, i) => (
+      <div key={i} className="text-center">
+        {c.type === 'title' && <h1 className={s.h1}>{c.content}</h1>}
+        {c.type === 'subtitle' && <h4>{c.content}</h4>}
+        {c.type === 'paragraph' && <p>{c.content}</p>}
+        {c.type === 'text' && <p className="text-left">{c.content}</p>}
+        {/* https://www.youtube.com/watch?v=tgbNymZ7vqY&t=2s */}
+        {c.type === 'video' && (
+          <div className="">
+            <div className="video-container">
+              <iframe
+                className="video"
+                src={extractYoutubeUrl(c.content)}
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        )}
+        {c.type === 'pdf' && <p>{c.content}</p>}
+        {c.type === 'anchor' && (
+          <a href={c.content} target="_blank" rel="noreferrer">
+            {c.content}
+          </a>
+        )}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {c.type === 'image' && <img src={c.content} alt={c.content} />}
+      </div>
+    ));
   };
 
   return (
@@ -181,6 +215,10 @@ const AddContent = ({ setContent }) => {
             </div>
           </div>
         ))}
+      </div>
+      {/*  */}
+      <div className="mb-5 text-center">
+        {mapContent().length > 0 && mapContent()}
       </div>
     </>
   );

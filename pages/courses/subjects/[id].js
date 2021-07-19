@@ -1,8 +1,6 @@
-//TODO:
 import { supabase } from '../../../utils/supabase';
 import { Button } from '../../../components/ui/Form';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import s from '../../../styles/Subject.module.scss';
 import Head from 'next/head';
 import { app_name } from '../../../utils/constants';
@@ -13,11 +11,11 @@ const Subject = ({ subject }) => {
 
   const mapContent = () => {
     return subject.content.map((c, i) => (
-      <div key={i} className={s.element}>
+      <div key={i} className="text-center">
         {c.type === 'title' && <h1 className={s.h1}>{c.content}</h1>}
         {c.type === 'subtitle' && <h4 className={s.subtitle}>{c.content}</h4>}
         {c.type === 'paragraph' && <p className={s.paragraph}>{c.content}</p>}
-        {c.type === 'text' && <p>{c.content}</p>}
+        {c.type === 'text' && <p className="text-left">{c.content}</p>}
         {c.type === 'video' && <p>{c.content}</p>}
         {c.type === 'pdf' && <p>{c.content}</p>}
         {c.type === 'anchor' && (
@@ -25,14 +23,8 @@ const Subject = ({ subject }) => {
             {c.content}
           </a>
         )}
-        {c.type === 'image' && (
-          <Image
-            height={c.size.height || '300'}
-            width={c.size.width || '100'}
-            src={c.content}
-            alt={c.content}
-          />
-        )}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {c.type === 'image' && <img src={c.content} alt={c.content} />}
       </div>
     ));
   };
@@ -77,7 +69,7 @@ const Subject = ({ subject }) => {
 
   return (
     <section className="p-5 bg-section">
-      <h4>Curso não encontrado</h4>
+      <h4>Matéria não encontrada</h4>
     </section>
   );
 };

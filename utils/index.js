@@ -197,3 +197,9 @@ export const formatDate = (date) => {
 export const formatDateShort = (date) => {
   return moment(date).format('DD/MM/YYYY');
 };
+
+export const extractYoutubeUrl = (url) => {
+  let id = url.split('&')[0].split('=')[1];
+  let BASE_PATH = `https://www.youtube.com/embed/${id}`;
+  return BASE_PATH;
+};
