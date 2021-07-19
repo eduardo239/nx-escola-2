@@ -2,7 +2,7 @@ export const Button = ({
   primary,
   secondary,
   danger,
-  type,
+  type = 'button',
   full = false,
   onClick,
   className = '',

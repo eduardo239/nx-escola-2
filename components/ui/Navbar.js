@@ -84,6 +84,11 @@ const Navbar = ({ toggleTheme, theme }) => {
               <a>Cursos</a>
             </Link>
           </li>
+          <li onClick={() => setMenu(false)}>
+            <Link href="/forum">
+              <a>Forum</a>
+            </Link>
+          </li>
 
           <li>
             <ButtonIcon className={s.button} onClick={click}>
