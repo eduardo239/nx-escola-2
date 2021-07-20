@@ -1,8 +1,8 @@
-import s from '../../styles/Navbar.module.scss';
+import { useRouter } from 'next/dist/client/router';
+import { useEffect, useState } from 'react';
+import { useUser } from '../../utils/useUser';
 import Link from 'next/link';
 import { ButtonIcon, IconOnly } from './Form';
-import { useUser } from '../../utils/useUser';
-import { useEffect, useState } from 'react';
 import {
   Switcher16,
   Logout16,
@@ -13,8 +13,8 @@ import {
   User16,
   Money16,
 } from '@carbon/icons-react';
-import { useRouter } from 'next/dist/client/router';
-import Logo from '../Logo';
+import s from '../../styles/Navbar.module.scss';
+// import Logo from '../Logo';
 
 const Navbar = ({ toggleTheme, theme }) => {
   const { user, profile, signOut, userProfile, logout } = useUser();
@@ -66,13 +66,13 @@ const Navbar = ({ toggleTheme, theme }) => {
       )}
 
       <nav
-        className={s.container}
+        className={`${s.container} navbar-nav`}
         onClick={handleClickOutside}
         style={{ display: `${menu ? 'flex' : 'none'}` }}
       >
         <ul>
-          <li style={{ padding: '10px' }}>
-            <h3 style={{ color: '#262626' }}>App Escola</h3>
+          <li className="p-3">
+            <h3>App Escola</h3>
           </li>
           <li onClick={() => setMenu(false)}>
             <Link href="/">
@@ -185,6 +185,7 @@ const Navbar = ({ toggleTheme, theme }) => {
               Tema {theme === 'light' ? <Awake16 /> : <Asleep16 />}
             </ButtonIcon>
           </li>
+
           <li onClick={() => setMenu(false)}>
             <ButtonIcon className={s.button} onClick={() => logout()}>
               Sair <Logout16 />

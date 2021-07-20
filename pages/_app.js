@@ -3,12 +3,13 @@ import { UserContextProvider } from '../utils/useUser';
 import { CourseContextProvider } from '../utils/useCourse';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '../styles/globals';
+import { lightTheme, darkTheme } from '../styles/theme';
+import { ForumContextProvider } from '../utils/useForum';
 import Layout from '../components/ui/Layout';
 import '../styles/reset.css';
 import '../styles/globals.scss';
 import '../styles/buttons.scss';
 import '../styles/form.scss';
-import { lightTheme, darkTheme } from '../styles/theme';
 
 function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState('light');
@@ -29,12 +30,14 @@ function MyApp({ Component, pageProps }) {
   return (
     <UserContextProvider>
       <CourseContextProvider>
-        <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-          <GlobalStyles />
-          <Layout toggleTheme={toggleTheme} theme={theme}>
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
+        <ForumContextProvider>
+          <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+            <GlobalStyles />
+            <Layout toggleTheme={toggleTheme} theme={theme}>
+              <Component {...pageProps} />
+            </Layout>
+          </ThemeProvider>
+        </ForumContextProvider>
       </CourseContextProvider>
     </UserContextProvider>
   );

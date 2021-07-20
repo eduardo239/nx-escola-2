@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext, useContext } from 'react';
+import { useState, createContext, useContext } from 'react';
 import { supabase } from './supabase';
 
 export const CourseContext = createContext();

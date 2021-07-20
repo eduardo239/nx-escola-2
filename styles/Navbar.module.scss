@@ -16,7 +16,7 @@
   ul {
     max-height: 100vh;
     overflow-y: auto;
-    background-color: var(--white);
+    // background-color: var(--white);
     width: 238px;
     animation: slide 0.1s forwards;
   }
@@ -47,8 +47,6 @@
 .container ul li a {
   letter-spacing: 0.04rem;
   font-size: 0.75rem;
-  color: var(--dark-gray);
-  border-bottom: 1px solid var(--light-gray);
   width: 100%;
 }
 .none {

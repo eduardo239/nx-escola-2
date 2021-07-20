@@ -250,4 +250,10 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.white};
     border-bottom: 2px solid ${({ theme }) => theme.text};
   }
+  
+  .navbar-nav ul, .navbar-nav ul > li a, .navbar-nav ul > li button {
+    color: ${({ theme }) => theme.text};
+    background-color: ${({ theme }) => theme.white};
+    border-bottom: 1px solid ${({ theme }) => theme.border};
+  }
 `;
