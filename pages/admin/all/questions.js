@@ -5,8 +5,10 @@ import Modal from '../../../components/Modal';
 import Spinner from '../../../components/ui/Spinner';
 import toast, { Toaster } from 'react-hot-toast';
 import { useCourse } from '../../../utils/useCourse';
+import { useUser } from '../../../utils/useUser';
 
 const Courses = ({}) => {
+  const { user, profile } = useUser();
   const { getDatas, delData, datas } = useCourse();
   const [modal, setModal] = useState(false);
   const [questionId, setQuestionId] = useState('');
@@ -62,41 +64,48 @@ const Courses = ({}) => {
     ));
   };
 
-  return (
-    <section className="p-5 bg-section">
-      <Toaster />
-      {loading && <Spinner />}
+  if (user && profile?.is_admin)
+    return (
+      <section className="p-5 bg-section">
+        <Toaster />
+        {loading && <Spinner />}
 
-      <h1>Todos as matérias</h1>
+        <h1>Todos as matérias</h1>
 
-      {!datas ? <p>Não há perguntas aqui.</p> : mapQuestions()}
+        {!datas ? <p>Não há perguntas aqui.</p> : mapQuestions()}
 
-      {modal && (
-        <Modal modal={modal} setModal={setModal}>
-          <div>
-            <div className="p-5 mr-15">
-              <h3 className="mb-5">{question.question}</h3>
-              <p style={{ fontSize: '0.875rem' }}>
-                {question.description ? question.description : 'undefined'}
-              </p>
+        {modal && (
+          <Modal modal={modal} setModal={setModal}>
+            <div>
+              <div className="p-5 mr-15">
+                <h3 className="mb-5">{question.question}</h3>
+                <p style={{ fontSize: '0.875rem' }}>
+                  {question.description ? question.description : 'undefined'}
+                </p>
+              </div>
+              <div className="flex-center-end">
+                <ButtonIcon danger disabled={loading} onClick={handleDelete}>
+                  Deletar <TrashCan16 />
+                </ButtonIcon>
+                <Button
+                  secondary
+                  disabled={loading}
+                  onClick={() => setModal(!modal)}
+                >
+                  Cancelar <Close16 />
+                </Button>
+              </div>
             </div>
-            <div className="flex-center-end">
-              <ButtonIcon danger disabled={loading} onClick={handleDelete}>
-                Deletar <TrashCan16 />
-              </ButtonIcon>
-              <Button
-                secondary
-                disabled={loading}
-                onClick={() => setModal(!modal)}
-              >
-                Cancelar <Close16 />
-              </Button>
-            </div>
-          </div>
-        </Modal>
-      )}
-    </section>
-  );
+          </Modal>
+        )}
+      </section>
+    );
+  else
+    return (
+      <section>
+        <h1>Você não está autorizado.</h1>
+      </section>
+    );
 };
 
 export default Courses;

@@ -19,6 +19,7 @@ import Modal from '../../../components/Modal';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Courses = ({}) => {
+  const { user, profile } = useUser();
   const { delData, datas, getDatas, updateData } = useCourse();
   const [modal, setModal] = useState(false);
   const [modalDelete, setModalDelete] = useState(false);
@@ -124,132 +125,139 @@ const Courses = ({}) => {
     ));
   };
 
-  return (
-    <section className="p-5 bg-section">
-      <Toaster />
-      {loading && <Spinner />}
+  if (user && profile?.is_admin)
+    return (
+      <section className="p-5 bg-section">
+        <Toaster />
+        {loading && <Spinner />}
 
-      <h1>Todos os cursos</h1>
+        <h1>Todos os cursos</h1>
 
-      {!datas ? <p>Não há cursos aqui.</p> : mapCourses()}
+        {!datas ? <p>Não há cursos aqui.</p> : mapCourses()}
 
-      {modal && (
-        <Modal modal={modal} setModal={setModal}>
-          <div>
-            <div className="p-5 ">
-              <h3 className="mb-5 mr-15">Editar Curso</h3>
-              <Input
-                type="text"
-                placeholder="Name of the course .."
-                label="Name"
-                id="add-course-name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-100"
-              />
-              <Input
-                type="number"
-                placeholder="Course duration .."
-                label="Runtime"
-                id="add-course-runtime"
-                value={runtime}
-                onChange={(e) => setRuntime(e.target.value)}
-                className="w-100"
-              />
-              <Input
-                type="number"
-                placeholder="Price .."
-                label="Price"
-                id="add-course-price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                className="w-100"
-              />
+        {modal && (
+          <Modal modal={modal} setModal={setModal}>
+            <div>
+              <div className="p-5 ">
+                <h3 className="mb-5 mr-15">Editar Curso</h3>
+                <Input
+                  type="text"
+                  placeholder="Name of the course .."
+                  label="Name"
+                  id="add-course-name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-100"
+                />
+                <Input
+                  type="number"
+                  placeholder="Course duration .."
+                  label="Runtime"
+                  id="add-course-runtime"
+                  value={runtime}
+                  onChange={(e) => setRuntime(e.target.value)}
+                  className="w-100"
+                />
+                <Input
+                  type="number"
+                  placeholder="Price .."
+                  label="Price"
+                  id="add-course-price"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  className="w-100"
+                />
 
-              <Input
-                type="text"
-                placeholder="Promo code .."
-                label="Promo Code"
-                id="add-course-promo-code"
-                value={promo}
-                onChange={(e) => setPromo(e.target.value)}
-                className="w-100"
-              />
-              <Input
-                type="text"
-                placeholder="Poster URL .."
-                label="Poster URL"
-                id="add-course-promo-poster"
-                value={poster}
-                onChange={(e) => setPoster(e.target.value)}
-                className="w-100"
-              />
-              <div className="flex" style={{ gap: '1rem' }}>
-                <div className={`flex list-item`} style={{ flex: '1' }}>
-                  <input
-                    type="checkbox"
-                    name={`add-course-active`}
-                    id={`alt-course-active-1`}
-                    defaultChecked={status}
-                    onChange={() => setStatus(!status)}
-                  />
-                  <label htmlFor={`alt-course-active-1`}>Active</label>
+                <Input
+                  type="text"
+                  placeholder="Promo code .."
+                  label="Promo Code"
+                  id="add-course-promo-code"
+                  value={promo}
+                  onChange={(e) => setPromo(e.target.value)}
+                  className="w-100"
+                />
+                <Input
+                  type="text"
+                  placeholder="Poster URL .."
+                  label="Poster URL"
+                  id="add-course-promo-poster"
+                  value={poster}
+                  onChange={(e) => setPoster(e.target.value)}
+                  className="w-100"
+                />
+                <div className="flex" style={{ gap: '1rem' }}>
+                  <div className={`flex list-item`} style={{ flex: '1' }}>
+                    <input
+                      type="checkbox"
+                      name={`add-course-active`}
+                      id={`alt-course-active-1`}
+                      defaultChecked={status}
+                      onChange={() => setStatus(!status)}
+                    />
+                    <label htmlFor={`alt-course-active-1`}>Active</label>
+                  </div>
                 </div>
-              </div>
 
-              <Textarea
-                label="Description"
-                placeholder="Description of the course"
-                className="w-100"
-                rows="3"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></Textarea>
+                <Textarea
+                  label="Description"
+                  placeholder="Description of the course"
+                  className="w-100"
+                  rows="3"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                ></Textarea>
+              </div>
+              <div className="flex-center-end">
+                <ButtonIcon
+                  secondary
+                  disabled={loading}
+                  onClick={() => handleUpdate(course.id)}
+                >
+                  Atualizar <TrashCan16 />
+                </ButtonIcon>
+                <ButtonIcon danger disabled={loading} onClick={handleDelete}>
+                  Deletar <TrashCan16 />
+                </ButtonIcon>
+                <Button
+                  secondary
+                  disabled={loading}
+                  onClick={() => setModal(!modal)}
+                >
+                  Cancelar <Close16 />
+                </Button>
+              </div>
+            </div>
+          </Modal>
+        )}
+
+        {modalDelete && (
+          <Modal modal={modalDelete} setModal={setModalDelete}>
+            <div className="p-5 ">
+              <h3 className="mb-5 mr-15">Deletar Curso ?</h3>
             </div>
             <div className="flex-center-end">
-              <ButtonIcon
-                secondary
-                disabled={loading}
-                onClick={() => handleUpdate(course.id)}
-              >
-                Atualizar <TrashCan16 />
-              </ButtonIcon>
               <ButtonIcon danger disabled={loading} onClick={handleDelete}>
                 Deletar <TrashCan16 />
               </ButtonIcon>
               <Button
                 secondary
                 disabled={loading}
-                onClick={() => setModal(!modal)}
+                onClick={() => setModalDelete(!modalDelete)}
               >
                 Cancelar <Close16 />
               </Button>
             </div>
-          </div>
-        </Modal>
-      )}
-
-      {modalDelete && (
-        <Modal modal={modalDelete} setModal={setModalDelete}>
-          <div className="p-5 ">
-            <h3 className="mb-5 mr-15">Deletar Curso ?</h3>
-          </div>
-          <div className="flex-center-end">
-            <ButtonIcon danger disabled={loading} onClick={handleDelete}>
-              Deletar <TrashCan16 />
-            </ButtonIcon>
-            <Button
-              secondary
-              disabled={loading}
-              onClick={() => setModalDelete(!modalDelete)}
-            >
-              Cancelar <Close16 />
-            </Button>
-          </div>
-        </Modal>
-      )}
-    </section>
-  );
+          </Modal>
+        )}
+      </section>
+    );
+  else
+    return (
+      <section>
+        <h1>Você não está autorizado.</h1>
+      </section>
+    );
 };
 
 export default Courses;

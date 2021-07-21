@@ -11,8 +11,10 @@ import Spinner from '../../../components/ui/Spinner';
 import toast, { Toaster } from 'react-hot-toast';
 import { useCourse } from '../../../utils/useCourse';
 import Content from '../../../components/form/Content';
+import { useUser } from '../../../utils/useUser';
 
 const Courses = ({}) => {
+  const { user, profile } = useUser();
   const { getDatas, delData, datas, updateData } = useCourse();
 
   const [modal, setModal] = useState(false);
@@ -104,86 +106,93 @@ const Courses = ({}) => {
     ));
   };
 
-  return (
-    <section className="p-5 bg-section">
-      <Toaster />
+  if (user && profile?.is_admin)
+    return (
+      <section className="p-5 bg-section">
+        <Toaster />
 
-      {loading && <Spinner />}
+        {loading && <Spinner />}
 
-      <h1>Todos as matérias</h1>
+        <h1>Todos as matérias</h1>
 
-      {!datas ? <p>Não há matérias aqui.</p> : mapSubjects()}
+        {!datas ? <p>Não há matérias aqui.</p> : mapSubjects()}
 
-      {modal && (
-        <Modal modal={modal} setModal={setModal}>
-          <div className="p-5">
-            <div>
-              <h3 className="mb-5 mr-15">Editar matéria</h3>
-              <Input
-                type="text"
-                placeholder="Nome da matéira .."
-                label="Nome da matéira"
-                id="add-subject-name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-100"
-              />
-              <Input
-                type="number"
-                label="Runtime"
-                id="add-subject-runtime"
-                value={runtime}
-                onChange={(e) => setRuntime(e.target.value)}
-                className="w-100"
-              />
+        {modal && (
+          <Modal modal={modal} setModal={setModal}>
+            <div className="p-5">
+              <div>
+                <h3 className="mb-5 mr-15">Editar matéria</h3>
+                <Input
+                  type="text"
+                  placeholder="Nome da matéira .."
+                  label="Nome da matéira"
+                  id="add-subject-name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-100"
+                />
+                <Input
+                  type="number"
+                  label="Runtime"
+                  id="add-subject-runtime"
+                  value={runtime}
+                  onChange={(e) => setRuntime(e.target.value)}
+                  className="w-100"
+                />
+              </div>
+              <div className="mb-5">
+                <Content setContent={setContent} />
+              </div>
+
+              <div className="field--select mb-5">
+                <label htmlFor="add-subject-course-id">Curso</label>
+                <select
+                  className="w-100"
+                  onChange={(e) => setCourseId(e.target.value)}
+                  id="add-subject-course-id"
+                >
+                  <option defaultValue value="">
+                    Escolha um
+                  </option>
+                  {datas
+                    .map((x, i, a) => x.course_id)
+                    .map((x, i, a) => (
+                      <option value={x.id} key={i}>
+                        {x.name}
+                      </option>
+                    ))}
+                </select>
+              </div>
             </div>
-            <div className="mb-5">
-              <Content setContent={setContent} />
-            </div>
-
-            <div className="field--select mb-5">
-              <label htmlFor="add-subject-course-id">Curso</label>
-              <select
-                className="w-100"
-                onChange={(e) => setCourseId(e.target.value)}
-                id="add-subject-course-id"
+            <div className="flex-center-end">
+              <ButtonIcon
+                secondary
+                disabled={loading}
+                onClick={() => handleUpdate(subject.id)}
               >
-                <option defaultValue value="">
-                  Escolha um
-                </option>
-                {datas
-                  .map((x, i, a) => x.course_id)
-                  .map((x, i, a) => (
-                    <option value={x.id} key={i}>
-                      {x.name}
-                    </option>
-                  ))}
-              </select>
+                Atualizar <TrashCan16 />
+              </ButtonIcon>
+              <ButtonIcon danger disabled={loading} onClick={handleDelete}>
+                Deletar <TrashCan16 />
+              </ButtonIcon>
+              <Button
+                secondary
+                disabled={loading}
+                onClick={() => setModal(!modal)}
+              >
+                Cancelar <Close16 />
+              </Button>
             </div>
-          </div>
-          <div className="flex-center-end">
-            <ButtonIcon
-              secondary
-              disabled={loading}
-              onClick={() => handleUpdate(subject.id)}
-            >
-              Atualizar <TrashCan16 />
-            </ButtonIcon>
-            <ButtonIcon danger disabled={loading} onClick={handleDelete}>
-              Deletar <TrashCan16 />
-            </ButtonIcon>
-            <Button
-              secondary
-              disabled={loading}
-              onClick={() => setModal(!modal)}
-            >
-              Cancelar <Close16 />
-            </Button>
-          </div>
-        </Modal>
-      )}
-    </section>
-  );
+          </Modal>
+        )}
+      </section>
+    );
+  else
+    return (
+      <section>
+        <h1>Você não está autorizado.</h1>
+      </section>
+    );
 };
 
 export default Courses;

@@ -257,5 +257,6 @@ export const GlobalStyles = createGlobalStyle`
 
   .dash, .navbar-nav ul {
     background-color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.text};
   }
 `;

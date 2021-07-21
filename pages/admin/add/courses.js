@@ -12,7 +12,7 @@ import { useUser } from '../../../utils/useUser';
 import { useRouter } from 'next/dist/client/router';
 
 const Course = () => {
-  const { user, userProfile, profile } = useUser();
+  const { user, profile } = useUser();
   const router = useRouter();
   const [name, setName] = useState('');
   const [runtime, setRuntime] = useState(0);
@@ -71,97 +71,107 @@ const Course = () => {
     }
   };
 
-  return (
-    <section className="p-5 bg-section">
-      <Toaster />
+  if (user && profile?.is_admin)
+    return (
+      <section className="p-5 bg-section">
+        <Toaster />
 
-      <h1>Adicionar Curso</h1>
+        <h1>Adicionar Curso</h1>
 
-      <form onSubmit={handleAddCourse} className="mb-5">
-        <Input
-          type="text"
-          placeholder="Name of the course .."
-          label="Name"
-          id="add-course-name"
-          value={name}
-          error={error}
-          onChange={(e) => setName(e.target.value)}
-          className="w-100"
-        />
-        <Input
-          type="number"
-          placeholder="Course duration .."
-          label="Runtime"
-          id="add-course-runtime"
-          value={runtime}
-          error={error}
-          onChange={(e) => setRuntime(e.target.value)}
-          className="w-100"
-        />
-        <Input
-          type="number"
-          placeholder="Price .."
-          label="Price"
-          id="add-course-price"
-          value={price}
-          error={error}
-          onChange={(e) => setPrice(e.target.value)}
-          className="w-100"
-        />
+        <form onSubmit={handleAddCourse} className="mb-5">
+          <Input
+            type="text"
+            placeholder="Name of the course .."
+            label="Name"
+            id="add-course-name"
+            value={name}
+            error={error}
+            onChange={(e) => setName(e.target.value)}
+            className="w-100"
+          />
+          <Input
+            type="number"
+            placeholder="Course duration .."
+            label="Runtime"
+            id="add-course-runtime"
+            value={runtime}
+            error={error}
+            onChange={(e) => setRuntime(e.target.value)}
+            className="w-100"
+          />
+          <Input
+            type="number"
+            placeholder="Price .."
+            label="Price"
+            id="add-course-price"
+            value={price}
+            error={error}
+            onChange={(e) => setPrice(e.target.value)}
+            className="w-100"
+          />
 
-        <Input
-          type="text"
-          placeholder="Promo code .."
-          label="Promo Code"
-          id="add-course-promo-code"
-          value={promoCode}
-          error={error}
-          onChange={(e) => setPromoCode(e.target.value)}
-          className="w-100"
-        />
-        <Input
-          type="text"
-          placeholder="Poster URL .."
-          label="Poster URL"
-          id="add-course-promo-poster"
-          value={posterURL}
-          error={error}
-          onChange={(e) => setPosterURL(e.target.value)}
-          className="w-100"
-        />
-        <div className="flex" style={{ gap: '1rem' }}>
-          <div className={`flex list-item`} style={{ flex: '1' }}>
-            <input
-              type="checkbox"
-              name={`add-course-active`}
-              id={`alt-course-active-1`}
-              defaultChecked={status}
-              onChange={() => setStatus(!status)}
-            />
-            <label htmlFor={`alt-course-active-1`}>Active</label>
+          <Input
+            type="text"
+            placeholder="Promo code .."
+            label="Promo Code"
+            id="add-course-promo-code"
+            value={promoCode}
+            error={error}
+            onChange={(e) => setPromoCode(e.target.value)}
+            className="w-100"
+          />
+          <Input
+            type="text"
+            placeholder="Poster URL .."
+            label="Poster URL"
+            id="add-course-promo-poster"
+            value={posterURL}
+            error={error}
+            onChange={(e) => setPosterURL(e.target.value)}
+            className="w-100"
+          />
+          <div className="flex" style={{ gap: '1rem' }}>
+            <div className={`flex list-item`} style={{ flex: '1' }}>
+              <input
+                type="checkbox"
+                name={`add-course-active`}
+                id={`alt-course-active-1`}
+                defaultChecked={status}
+                onChange={() => setStatus(!status)}
+              />
+              <label htmlFor={`alt-course-active-1`}>Active</label>
+            </div>
           </div>
-        </div>
 
-        <Textarea
-          label="Description"
-          placeholder="Description of the course"
-          className="w-100"
-          rows="3"
-          error={error}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></Textarea>
+          <Textarea
+            label="Description"
+            placeholder="Description of the course"
+            className="w-100"
+            rows="3"
+            error={error}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          ></Textarea>
 
-        <ButtonIcon primary type="submit">
-          Save <Save16 />
+          <ButtonIcon primary type="submit">
+            Save <Save16 />
+          </ButtonIcon>
+        </form>
+
+        <ButtonIcon
+          secondary
+          onClick={() => router.push('/admin/add/subjects')}
+        >
+          Adicionar Matérias <NextOutline16 />
         </ButtonIcon>
-      </form>
-
-      <ButtonIcon secondary onClick={() => router.push('/admin/add/subjects')}>
-        Adicionar Matérias <NextOutline16 />
-      </ButtonIcon>
-    </section>
-  );
+      </section>
+    );
+  else
+    return (
+      <section>
+        <h1>Você não está autorizado.</h1>
+      </section>
+    );
 };
 
 export default Course;

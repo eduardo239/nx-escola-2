@@ -5,9 +5,10 @@ import { Send16 } from '@carbon/icons-react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useUser } from '../../../utils/useUser';
 import { formatMoney } from '../../../utils';
+import Spinner from '../../../components/ui/Spinner';
 
 const Balance = ({ users }) => {
-  const { updateBalance } = useUser();
+  const { updateBalance, user, profile } = useUser();
   const [value, setValue] = useState(0);
   const [error, setError] = useState(false);
   const [profileId, setProfileId] = useState('');
@@ -45,69 +46,76 @@ const Balance = ({ users }) => {
     }
   };
 
-  return (
-    <section className="p-5 bg-section">
-      <Toaster />
-      <form onSubmit={handleUpdateBalance}>
-        <h1>Adicionar saldo</h1>
+  if (user && profile?.is_admin)
+    return (
+      <section className="p-5 bg-section">
+        <Toaster />
+        <form onSubmit={handleUpdateBalance}>
+          <h1>Adicionar saldo</h1>
 
-        <Input
-          type="number"
-          placeholder="Value .."
-          label="Value"
-          id="add-balance-value"
-          value={value}
-          error={error}
-          onChange={(e) => setValue(e.target.value)}
-          className="w-100"
-        />
-
-        <div className="field--select mb-5">
-          <label htmlFor="add-balance-user-id">User</label>
-          <select
+          <Input
+            type="number"
+            placeholder="Value .."
+            label="Value"
+            id="add-balance-value"
+            value={value}
+            error={error}
+            onChange={(e) => setValue(e.target.value)}
             className="w-100"
-            onChange={(e) => setProfileId(e.target.value)}
-            id="add-balance-user-id"
-          >
-            <option defaultValue value="">
-              Escolha um
-            </option>
-            {users.map((x, i) => (
-              <option value={x.id} key={x.id}>
-                {x.username} - {formatMoney(x.balance)}
-              </option>
-            ))}
-          </select>
-        </div>
+          />
 
-        <div className="flex mb-5 gap-3">
-          <div className="flex field--radio">
-            <input
-              type="radio"
-              name={`add-course-balance`}
-              id={`add-course-balance-add-0`}
-              value="add"
-              onChange={() => setOperation('add')}
-            />
-            <label htmlFor={`add-course-balance-add-0`}>Adicionar</label>
+          <div className="field--select mb-5">
+            <label htmlFor="add-balance-user-id">User</label>
+            <select
+              className="w-100"
+              onChange={(e) => setProfileId(e.target.value)}
+              id="add-balance-user-id"
+            >
+              <option defaultValue value="">
+                Escolha um
+              </option>
+              {users.map((x, i) => (
+                <option value={x.id} key={x.id}>
+                  {x.username} - {formatMoney(x.balance)}
+                </option>
+              ))}
+            </select>
           </div>
-          <div className="flex field--radio">
-            <input
-              type="radio"
-              name={`add-course-balance`}
-              id={`add-course-balance-add-1`}
-              value="sub"
-              onChange={() => setOperation('sub')}
-            />
-            <label htmlFor={`add-course-balance-add-1`}>Subtrair</label>
+
+          <div className="flex mb-5 gap-3">
+            <div className="flex field--radio">
+              <input
+                type="radio"
+                name={`add-course-balance`}
+                id={`add-course-balance-add-0`}
+                value="add"
+                onChange={() => setOperation('add')}
+              />
+              <label htmlFor={`add-course-balance-add-0`}>Adicionar</label>
+            </div>
+            <div className="flex field--radio">
+              <input
+                type="radio"
+                name={`add-course-balance`}
+                id={`add-course-balance-add-1`}
+                value="sub"
+                onChange={() => setOperation('sub')}
+              />
+              <label htmlFor={`add-course-balance-add-1`}>Subtrair</label>
+            </div>
           </div>
-        </div>
-        <Button primary type="submit">
-          Salvar <Send16 />
-        </Button>
-      </form>
-    </section>
-  );
+          <Button primary type="submit">
+            Salvar <Send16 />
+          </Button>
+        </form>
+      </section>
+    );
+  else
+    return (
+      <section>
+        <h1>Você não está autorizado.</h1>
+      </section>
+    );
 };
 
 export async function getStaticProps(ctx) {
