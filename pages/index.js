@@ -29,7 +29,9 @@ export default function Home() {
       </Head>
 
       <main>
-        {/*  */}
+        <h1>Mensagens</h1>
+        <p>Não há mensagens aqui.</p>
+        {/*  
         <Button primary onClick={() => setModal(!modal)}>
           click
         </Button>
@@ -62,7 +64,7 @@ export default function Home() {
           </Modal>
         )}
         <Spinner></Spinner>
-        {/* <Button primary>Coisa</Button>
+         <Button primary>Coisa</Button>
         <Button secondary>Coisa</Button>
         <Button danger>Coisa</Button>
 

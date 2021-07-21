@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { Button } from '../components/ui/Form';
 import { default_course_poster } from '../utils/constants';
 import s from '../styles/Card.module.scss';
-import { formatMoney, sliceString } from '../utils/index';
+import { formatMinutes, formatMoney, sliceString } from '../utils/index';
 import Link from 'next/link';
 
 export const Card = ({ course }) => {
@@ -29,7 +29,9 @@ export const Card = ({ course }) => {
           <p className={s.paragraph}>
             {course.description ? sliceString(course.description) : 'Undefined'}
           </p>
-          <small>{course.runtime ? course.runtime : 'Undefined'}</small>
+          <small>
+            {course.runtime ? formatMinutes(course.runtime) : 'Undefined'}
+          </small>
         </div>
         {/* <Button
         className="w-100"

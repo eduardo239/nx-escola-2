@@ -35,7 +35,7 @@ export default function Payments({ user_payments }) {
     ));
   };
   return (
-    <section>
+    <section className="mb-5">
       <h1>Meus Pagamentos</h1>
 
       <table className="table">

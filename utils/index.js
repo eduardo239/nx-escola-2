@@ -21,7 +21,7 @@ export const toggleTheme = (theme) => {
  * @param {String} type Course, ...
  * @param {Object} item course object
  * @param {Object} profile
- * @returns
+ * @returns data and error
  */
 export const subscribe = async (type, item, profile) => {
   let balance = profile.balance;
@@ -93,6 +93,12 @@ export const addBalance = async (profile, add, v) => {
   return { data, error };
 };
 
+/**
+ *
+ * @param {Object} item
+ * @param {Object} profile
+ * @returns data and error
+ */
 export const paymentRecords = async (item, profile) => {
   const body = {
     course_id: item.id,
@@ -162,6 +168,12 @@ export const formatMoney = (value) => {
   });
 };
 
+/**
+ *
+ * @param {String} string
+ * @param {Integer} length of new string
+ * @returns string
+ */
 export const sliceString = (string, length = 110) => {
   let sl = string.length;
   if (sl > 30) {
@@ -194,12 +206,35 @@ export const formatDate = (date) => {
   return moment(date).format('DD/MM/YYYY, kk:mm:ss');
 };
 
+/**
+ *
+ * @param {String} date
+ * @returns
+ */
 export const formatDateShort = (date) => {
   return moment(date).format('DD/MM/YYYY');
 };
 
+/**
+ *
+ * @param {String} url Youtube url
+ * @returns embed url
+ */
 export const extractYoutubeUrl = (url) => {
   let id = url.split('&')[0].split('=')[1];
   let BASE_PATH = `https://www.youtube.com/embed/${id}`;
   return BASE_PATH;
+};
+
+/**
+ *
+ * @param {Float} time in minutes
+ * @returns time in hours
+ */
+export const formatMinutes = (time) => {
+  var hours = time / 60;
+  var rHours = Math.floor(hours);
+  var minutes = (hours - rHours) * 60;
+  var rMinutes = Math.round(minutes);
+  return rHours + ' hour(s) and ' + rMinutes + ' minute(s).';
 };

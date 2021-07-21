@@ -16,8 +16,10 @@
   ul {
     max-height: 100vh;
     overflow-y: auto;
+    // overflow-x: hidden;
     // background-color: var(--white);
-    width: 238px;
+    width: 248px;
+
     animation: slide 0.1s forwards;
   }
 }

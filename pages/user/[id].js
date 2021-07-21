@@ -43,7 +43,7 @@ const Profile = ({}) => {
         <h2>{profile.username}</h2>
         {userGrades && <Chart user_grades={userGrades} />}
         {userGrades && <Grades user_grades={userGrades} />}
-        {userPayments && <Payments user_payments={userPayments} />}
+        {/* {userPayments && <Payments user_payments={userPayments} />} */}
         {userCourses && <Courses user_courses={userCourses} />}
       </section>
     );

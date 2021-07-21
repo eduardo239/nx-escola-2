@@ -43,12 +43,9 @@ export default function MyGrades({ user_grades }) {
     ));
   };
   return (
-    <section>
+    <section className="mb-5">
       <h1>Minhas Notas</h1>
 
-      <div>
-        <small>Mínimo de 6 para passar</small>
-      </div>
       <table className="table">
         <thead>
           <tr className="table-header">
@@ -68,6 +65,15 @@ export default function MyGrades({ user_grades }) {
             mapUserGrades()
           )}
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan={headers.length}>
+              <small style={{ opacity: '0.7', padding: '10px' }}>
+                Nota mínima de 6 para passar.
+              </small>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </section>
   );

@@ -36,8 +36,10 @@ const Navbar = ({ toggleTheme, theme }) => {
     let next = e.target.nextSibling;
     if (next.style.display === 'none' || next.style.display === '') {
       next.style.display = 'block';
+      next.classList.add('dash');
     } else {
       next.style.display = 'none';
+      next.classList.remove('dash');
     }
   };
   useEffect(() => {
