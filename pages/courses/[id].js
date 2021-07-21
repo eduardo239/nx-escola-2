@@ -100,7 +100,7 @@ export default function Course({ course, subjects }) {
             <p className="black80">{timeFromX(course.created_at)}</p>
             <div className="separator mb-5"></div>
             <p>{course.description}</p>
-            {!owned && (
+            {!owned && user && (
               <ButtonIcon
                 disabled={loading}
                 primary
@@ -114,7 +114,7 @@ export default function Course({ course, subjects }) {
 
         <div className="separator mb-5"></div>
 
-        {!owned && (
+        {!owned && user && (
           <div className={s.subject}>
             <h3 className="text-center mb-5">Matérias</h3>
             <div className={s.subjects}>
@@ -140,8 +140,8 @@ export async function getStaticPaths() {
   return { paths, fallback: true };
 }
 
-export async function getStaticProps(context) {
-  let id = context.params.id;
+export async function getStaticProps(ctx) {
+  let id = ctx.params.id;
   const { data: course, error } = await supabase
     .from('courses')
     .select('*')
@@ -157,6 +157,7 @@ export async function getStaticProps(context) {
 
   if (error_subjects) throw new Error(error_subjects);
   return {
+    revalidate: 60,
     props: { course, subjects },
   };
 }

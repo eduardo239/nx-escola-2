@@ -26,11 +26,6 @@ const Navbar = ({ toggleTheme, theme }) => {
     const cur = e.currentTarget;
     if (tar === cur) setMenu(!menu);
   };
-  const handleClick = (e) => {
-    const tar = e.target;
-    const cur = e.currentTarget;
-    tar !== cur && setMenu(false);
-  };
 
   const click = (e) => {
     let next = e.target.nextSibling;
@@ -92,67 +87,69 @@ const Navbar = ({ toggleTheme, theme }) => {
             </Link>
           </li>
 
-          <li>
-            <ButtonIcon className={s.button} onClick={click}>
-              Admin <CaretDown16 />
-            </ButtonIcon>
-            <ul className="none">
-              <li>
-                <ButtonIcon className={s.button} onClick={click}>
-                  Adicionar <CaretDown16 />
-                </ButtonIcon>
-                <ul className="none">
-                  <li onClick={() => setMenu(false)}>
-                    <Link href="/admin/add/courses">
-                      <a>Cursos</a>
-                    </Link>
-                  </li>
-                  <li onClick={() => setMenu(false)}>
-                    <Link href="/admin/add/subjects">
-                      <a>Matérias</a>
-                    </Link>
-                  </li>
-                  <li onClick={() => setMenu(false)}>
-                    <Link href="/admin/add/questions">
-                      <a>Questões</a>
-                    </Link>
-                  </li>
-                  <li onClick={() => setMenu(false)}>
-                    <Link href="/admin/add/balance">
-                      <a>Saldo</a>
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <ButtonIcon className={s.button} onClick={click}>
-                  Listas <CaretDown16 />
-                </ButtonIcon>
-                <ul className="none">
-                  <li onClick={() => setMenu(false)}>
-                    <Link href="/admin/all/courses">
-                      <a>Cursos</a>
-                    </Link>
-                  </li>
-                  <li onClick={() => setMenu(false)}>
-                    <Link href="/admin/all/subjects">
-                      <a>Matérias</a>
-                    </Link>
-                  </li>
-                  <li onClick={() => setMenu(false)}>
-                    <Link href="/admin/all/questions">
-                      <a>Questões</a>
-                    </Link>
-                  </li>
-                  <li onClick={() => setMenu(false)}>
-                    <Link href="/admin/all/users">
-                      <a>Usuários</a>
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
+          {user && profile?.is_admin && (
+            <li>
+              <ButtonIcon className={s.button} onClick={click}>
+                Admin <CaretDown16 />
+              </ButtonIcon>
+              <ul className="none">
+                <li>
+                  <ButtonIcon className={s.button} onClick={click}>
+                    Adicionar <CaretDown16 />
+                  </ButtonIcon>
+                  <ul className="none">
+                    <li onClick={() => setMenu(false)}>
+                      <Link href="/admin/add/courses">
+                        <a>Cursos</a>
+                      </Link>
+                    </li>
+                    <li onClick={() => setMenu(false)}>
+                      <Link href="/admin/add/subjects">
+                        <a>Matérias</a>
+                      </Link>
+                    </li>
+                    <li onClick={() => setMenu(false)}>
+                      <Link href="/admin/add/questions">
+                        <a>Questões</a>
+                      </Link>
+                    </li>
+                    <li onClick={() => setMenu(false)}>
+                      <Link href="/admin/add/balance">
+                        <a>Saldo</a>
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <ButtonIcon className={s.button} onClick={click}>
+                    Listas <CaretDown16 />
+                  </ButtonIcon>
+                  <ul className="none">
+                    <li onClick={() => setMenu(false)}>
+                      <Link href="/admin/all/courses">
+                        <a>Cursos</a>
+                      </Link>
+                    </li>
+                    <li onClick={() => setMenu(false)}>
+                      <Link href="/admin/all/subjects">
+                        <a>Matérias</a>
+                      </Link>
+                    </li>
+                    <li onClick={() => setMenu(false)}>
+                      <Link href="/admin/all/questions">
+                        <a>Questões</a>
+                      </Link>
+                    </li>
+                    <li onClick={() => setMenu(false)}>
+                      <Link href="/admin/all/users">
+                        <a>Usuários</a>
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          )}
 
           <li>
             <ButtonIcon className={s.button} onClick={click}>
@@ -188,11 +185,13 @@ const Navbar = ({ toggleTheme, theme }) => {
             </ButtonIcon>
           </li>
 
-          <li onClick={() => setMenu(false)}>
-            <ButtonIcon className={s.button} onClick={() => logout()}>
-              Sair <Logout16 />
-            </ButtonIcon>
-          </li>
+          {user && (
+            <li onClick={() => setMenu(false)}>
+              <ButtonIcon className={s.button} onClick={() => logout()}>
+                Sair <Logout16 />
+              </ButtonIcon>
+            </li>
+          )}
         </ul>
       </nav>
     </div>

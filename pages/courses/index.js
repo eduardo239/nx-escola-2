@@ -50,12 +50,13 @@ export default function Courses({ courses }) {
   return <Spinner />;
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { data: courses, error } = await supabase.from('courses').select('*');
 
   if (error) throw error;
 
   return {
+    revalidate: 60,
     props: { courses },
   };
 }
