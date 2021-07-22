@@ -7,6 +7,9 @@ export const ForumContextProvider = (props) => {
   const [post, setPost] = useState(null);
   const [posts, setPosts] = useState(null);
 
+  const [comment, setComment] = useState(null);
+  const [comments, setComments] = useState(null);
+
   const [data, setData] = useState(null);
   const [datas, setDatas] = useState(null);
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import {
   Add16,
   AddFilled16,
@@ -91,10 +92,10 @@ export default function Forum({ posts }) {
   };
 
   const mapPosts = () => {
-    return datas.map((x) => (
+    return posts.map((x) => (
       <div key={x.id} className="list-row">
         <div>
-          <p>{x.title}</p>
+          <Link href={`/forum/${x.id}`}>{x.title}</Link>
         </div>
         {/* TODO: only owner can delete the post */}
         <div>
