@@ -250,6 +250,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   
    .navbar-nav ul > li a, .navbar-nav ul > li button {
+    font-size: 0.75rem;
     color: ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.white};
     border-bottom: 1px solid ${({ theme }) => theme.border};

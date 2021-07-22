@@ -16,18 +16,16 @@
   ul {
     max-height: 100vh;
     overflow-y: auto;
-    // overflow-x: hidden;
-    // background-color: var(--white);
+    overflow-x: hidden;
     width: 248px;
-
     animation: slide 0.1s forwards;
   }
 }
 .button {
-  font-weight: 500;
+  font-weight: 400;
   display: flex;
 }
-
+// FIXME: button size
 // TODO: refatorar
 .container ul li a {
   display: block;

@@ -45,6 +45,8 @@ export const ForumContextProvider = (props) => {
   };
   // -----
   const value = {
+    data,
+    datas,
     getDatas,
     getData,
     delData,

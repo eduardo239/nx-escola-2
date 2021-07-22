@@ -126,27 +126,25 @@ const Questions = ({ questions = [] }) => {
 };
 
 export async function getStaticPaths() {
-  let { data: subjects } = await supabase.from('subjects').select('*');
+  let { data: subjects } = await supabase.from('subjects').select('id');
 
   const paths = subjects.map((subject) => ({
     params: { id: subject.id },
   }));
-  console.log(paths);
   return { paths, fallback: true };
 }
 
-export async function getStaticProps(context) {
-  const id = context.params.id;
+export async function getStaticProps(ctx) {
+  const id = ctx.params.id;
 
   let { data: questions, error } = await supabase
     .from('questions')
     .select('*')
     .eq('subject_id', id);
 
-  console.log(questions);
-
   if (error) throw error;
   return {
+    revalidate: 60,
     props: { questions },
   };
 }

@@ -75,7 +75,7 @@ const Subject = ({ subject }) => {
 };
 
 export async function getStaticPaths() {
-  let { data: subjects } = await supabase.from('subjects').select('*');
+  let { data: subjects } = await supabase.from('subjects').select('id');
 
   const paths = subjects.map((subject) => ({
     params: { id: subject.id },
@@ -84,8 +84,8 @@ export async function getStaticPaths() {
   return { paths, fallback: true };
 }
 
-export async function getStaticProps(context) {
-  const id = context.params.id;
+export async function getStaticProps(ctx) {
+  const id = ctx.params.id;
 
   let { data: subject, error } = await supabase
     .from('subjects')
@@ -95,6 +95,7 @@ export async function getStaticProps(context) {
 
   if (error) throw error;
   return {
+    revalidate: 60,
     props: { subject },
   };
 }

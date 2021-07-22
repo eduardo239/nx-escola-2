@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Add16,
   AddFilled16,
@@ -14,12 +14,15 @@ import {
   Textarea,
 } from '../../components/ui/Form';
 import { supabase } from '../../utils/supabase';
-import Modal from '../../components/Modal';
 import { useUser } from '../../utils/useUser';
+import { useForum } from '../../utils/useForum';
+import Modal from '../../components/Modal';
 
 export default function Forum({ posts }) {
-  const { profile } = useUser();
+  const { getDatas, getData, updateData, data, datas } = useForum();
+  const { profile, user } = useUser();
   const [modal, setModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
@@ -32,8 +35,21 @@ export default function Forum({ posts }) {
     setCategory(x.category);
     setCourseId(x.course_id);
     setPostId(x.id);
-
     setModal(!modal);
+  };
+
+  const handleNewModal = () => {
+    setTitle('');
+    setContent('');
+    setCategory('');
+    setCourseId('');
+    setPostId('');
+    setModal(!modal);
+  };
+
+  const handleDeleteModal = (id) => {
+    setPostId(id);
+    setDeleteModal(!deleteModal);
   };
 
   const handleNewPost = async () => {
@@ -47,17 +63,18 @@ export default function Forum({ posts }) {
       };
 
       const { data, error } = await supabase.from('posts').insert([body]);
-      console.log(data);
-      console.log(error);
+      // TODO:
     } else {
-      console.log('123');
+      console.log('[x] profile not found');
     }
+    getDatas('posts');
   };
 
   const handleDelete = async (id) => {
     const { data, error } = await supabase.from('posts').delete().eq('id', id);
-    console.log(data);
-    console.log(error);
+    // TODO:
+    getDatas('posts');
+    setDeleteModal(false);
   };
 
   const handleUpdate = async () => {
@@ -68,26 +85,23 @@ export default function Forum({ posts }) {
       content: content,
     };
 
-    const { data, error } = await supabase
-      .from('posts')
-      .update(body)
-      .eq('id', postId);
-
-    console.log(data);
-    console.log(error);
+    const { data, error } = updateData('posts', postId, body);
+    // TODO:
+    getDatas('posts');
   };
 
   const mapPosts = () => {
-    return posts.map((x) => (
+    return datas.map((x) => (
       <div key={x.id} className="list-row">
         <div>
           <p>{x.title}</p>
         </div>
+        {/* TODO: only owner can delete the post */}
         <div>
           <IconOnly small secondary onClick={() => handleModal(x)}>
             <Edit16 />
           </IconOnly>
-          <IconOnly small danger onClick={() => handleDelete(x.id)}>
+          <IconOnly small danger onClick={() => handleDeleteModal(x.id)}>
             <TrashCan16 />
           </IconOnly>
         </div>
@@ -95,17 +109,24 @@ export default function Forum({ posts }) {
     ));
   };
 
+  useEffect(() => {
+    getDatas('posts');
+  }, []);
+
   return (
     <section className="p-5 bg-section">
       <h1>Forum</h1>
 
       <div className="mb-5">
-        {posts.length === 0 ? <p>Não há posts aqui.</p> : mapPosts()}
+        {!datas || datas.length === 0 ? <p>Não há posts aqui.</p> : mapPosts()}
       </div>
 
-      <ButtonIcon primary onClick={() => setModal(!modal)}>
-        Novo post <Add16 />
-      </ButtonIcon>
+      {user && (
+        <ButtonIcon primary onClick={() => handleNewModal()}>
+          Novo post <Add16 />
+        </ButtonIcon>
+      )}
+
       {modal && (
         <Modal modal={modal} setModal={setModal}>
           <div className="p-5 ">
@@ -135,8 +156,25 @@ export default function Forum({ posts }) {
             <ButtonIcon primary onClick={() => handleUpdate()}>
               Atualizar <Edit16 />
             </ButtonIcon>
-
             <Button secondary onClick={() => setModal(!modal)}>
+              Cancelar <Close16 />
+            </Button>
+          </div>
+        </Modal>
+      )}
+
+      {deleteModal && (
+        <Modal modal={deleteModal} setModal={setDeleteModal}>
+          <div className="p-5 ">
+            <h3 className="mb-5 mr-15">
+              Tem certeza que deseja remover o post?
+            </h3>
+          </div>
+          <div className="flex-center-end">
+            <ButtonIcon primary onClick={() => handleDelete(postId)}>
+              Remover <Edit16 />
+            </ButtonIcon>
+            <Button secondary onClick={() => setDeleteModal(!deleteModal)}>
               Cancelar <Close16 />
             </Button>
           </div>
@@ -152,6 +190,7 @@ export async function getStaticProps() {
   if (error) throw new Error(error);
 
   return {
+    revalidate: 60,
     props: { posts },
   };
 }
