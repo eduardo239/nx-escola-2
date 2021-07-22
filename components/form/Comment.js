@@ -1,10 +1,12 @@
 import { Add16, Edit16, TrashCan16 } from '@carbon/icons-react';
 import { useState } from 'react';
 import { supabase } from '../../utils/supabase';
+import { useForum } from '../../utils/useForum';
 import { useUser } from '../../utils/useUser';
 import { ButtonIcon, IconOnly, Textarea } from '../ui/Form';
 
-export default function Comments({ post, comments = [] }) {
+export default function Comments({ post, comments = [], getDatasById }) {
+  const { postData } = useForum();
   const { user, profile } = useUser();
   const [comment, setComment] = useState('');
 
@@ -18,10 +20,8 @@ export default function Comments({ post, comments = [] }) {
         profile_id: profile.id,
         post_id: post.id,
       };
-      const { data, error } = await supabase
-        .from('posts_comments')
-        .insert([body]);
-      if (error) console.error(error);
+      const { data, error } = postData('posts_comments', body);
+      await getDatasById('posts_comments', 'post_id', post.id);
     }
   };
 

@@ -1,7 +1,16 @@
-import Comments from '../../components/form/Comment';
+import { useEffect } from 'react';
 import { supabase } from '../../utils/supabase';
+import { useForum } from '../../utils/useForum';
+import Comments from '../../components/form/Comment';
 
-export default function Post({ post, comments }) {
+export default function Post({ post }) {
+  const { getDatasById, datas } = useForum();
+
+  useEffect(() => {
+    if (post) getDatasById('posts_comments', 'post_id', post.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   if (post)
     return (
       <section className="p-5 bg-section">
@@ -13,7 +22,7 @@ export default function Post({ post, comments }) {
           </p>
         </div>
         <div>
-          <Comments post={post} comments={comments} />
+          <Comments post={post} comments={datas} getDatasById={getDatasById} />
         </div>
       </section>
     );

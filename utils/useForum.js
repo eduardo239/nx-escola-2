@@ -14,6 +14,11 @@ export const ForumContextProvider = (props) => {
   const [datas, setDatas] = useState(null);
 
   // -----
+  const postData = async (table, body) => {
+    const { data, error } = await supabase.from(table).insert([body]);
+    return { data, error };
+  };
+  // -----
   const getDatas = async (table, ...columns) => {
     let foreign = columns.length > 0;
 
@@ -26,11 +31,19 @@ export const ForumContextProvider = (props) => {
 
   const getData = async (table, id) => {
     let { data, error } = await supabase
-      .from(data)
+      .from(table)
       .select('*')
       .eq('id', id)
       .single();
     if (data) setData(data);
+    return { data, error };
+  };
+  const getDatasById = async (table, item_id, id) => {
+    let { data, error } = await supabase
+      .from(table)
+      .select('*')
+      .eq(item_id, id);
+    if (data) setDatas(data);
     return { data, error };
   };
   // -----
@@ -50,8 +63,10 @@ export const ForumContextProvider = (props) => {
   const value = {
     data,
     datas,
+    postData,
     getDatas,
     getData,
+    getDatasById,
     delData,
     updateData,
   };
