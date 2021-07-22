@@ -7,6 +7,18 @@ export default function Post({ post }) {
   );
 }
 
+export async function getStaticPaths() {
+  let { data: posts, error } = await supabase.from('posts').select('id');
+
+  const paths = posts.map((post) => ({
+    params: { id: post.id },
+  }));
+
+  if (error) throw new Error(error);
+
+  return { paths, fallback: true };
+}
+
 export async function getStaticProps(ctx) {
   const id = ctx.params.id;
 
