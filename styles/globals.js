@@ -45,12 +45,12 @@ export const GlobalStyles = createGlobalStyle`
 
   .button, .button-icon, .icon-button {
     &:disabled {
-      background-color: ${({ theme }) => theme.black80};
-      color: ${({ theme }) => theme.black20};
-      outline-color: ${({ theme }) => theme.black80};
+      background-color: ${({ theme }) => theme.bg};
+      color: ${({ theme }) => theme.black80};
+      outline-color: ${({ theme }) => theme.white};
       cursor: not-allowed;
       & svg {
-        fill: ${({ theme }) => theme.black20};
+        fill: ${({ theme }) => theme.black80};
       }
       &:hover {
         filter: brightness(100%);
@@ -249,7 +249,7 @@ export const GlobalStyles = createGlobalStyle`
     border-bottom: 2px solid ${({ theme }) => theme.text};
   }
   
-   .navbar-nav ul > li a, .navbar-nav ul > li button {
+  .navbar-nav ul > li a, .navbar-nav ul > li button {
     font-size: 0.75rem;
     color: ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.white};
@@ -257,7 +257,15 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .dash, .navbar-nav ul {
-    background-color: ${({ theme }) => theme.secondary};
+    background-color: ${({ theme }) => theme.white};
     color: ${({ theme }) => theme.text};
+  }
+
+  // DISABLED
+  input:disabled,
+  textarea:disabled {
+    background-color: ${({ theme }) => theme.bg};
+    color: ${({ theme }) => theme.black80};
+    border-bottom: 2px solid ${({ theme }) => theme.secondary};
   }
 `;

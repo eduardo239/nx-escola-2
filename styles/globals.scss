@@ -144,8 +144,7 @@ input[type='checkbox'] {
 
 input:disabled,
 textarea:disabled {
-  color: var(--light-gray) !important;
-  border-bottom: 2px solid var(--mid-gray) !important;
+  cursor: not-allowed;
 }
 /*-----------------------------------------------------*/
 .none {

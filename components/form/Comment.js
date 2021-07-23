@@ -1,5 +1,6 @@
 import { Add16, Edit16, TrashCan16 } from '@carbon/icons-react';
 import { useState } from 'react';
+import { formatDate } from '../../utils';
 import { supabase } from '../../utils/supabase';
 import { useForum } from '../../utils/useForum';
 import { useUser } from '../../utils/useUser';
@@ -9,27 +10,43 @@ export default function Comments({ post, comments = [], getDatasById }) {
   const { postData } = useForum();
   const { user, profile } = useUser();
   const [comment, setComment] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleModal = async () => {};
   const handleDeleteModal = async () => {};
 
   const handleAdd = async () => {
+    setLoading(true);
     if (profile && post) {
       const body = {
         content: comment,
         profile_id: profile.id,
         post_id: post.id,
       };
-      const { data, error } = postData('posts_comments', body);
-      await getDatasById('posts_comments', 'post_id', post.id);
+      const { data, error } = await postData('posts_comments', body);
+      await getDatasById(
+        'posts_comments',
+        'post_id',
+        post.id,
+        'profile_id(id, username, avatar_url)'
+      );
+      setComment('');
     }
+    setLoading(false);
   };
 
   const mapComments = () => {
     return comments.map((x) => (
       <div key={x.id} className="list-row">
         <div>
-          <p>{x.content}</p>
+          <p>
+            <small>{formatDate(x.created_at)}</small>
+
+            {' : '}
+            <small>{x.profile_id.username}</small>
+            {' : '}
+            {x.content}
+          </p>
         </div>
         {/* TODO: only owner can delete the post */}
         <div>
@@ -58,7 +75,12 @@ export default function Comments({ post, comments = [], getDatasById }) {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           ></Textarea>
-          <ButtonIcon type="submit" danger onClick={handleAdd}>
+          <ButtonIcon
+            disabled={loading}
+            type="submit"
+            danger
+            onClick={handleAdd}
+          >
             Adicionar
             <Add16 />
           </ButtonIcon>
@@ -66,7 +88,7 @@ export default function Comments({ post, comments = [], getDatasById }) {
         {!comments || comments.length === 0 ? (
           <p>Não há comentários aqui.</p>
         ) : (
-          mapComments()
+          mapComments().reverse()
         )}
       </section>
     );

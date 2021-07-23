@@ -14,7 +14,7 @@ const breakpointColumnsObj = {
 
 export default function Courses({ courses }) {
   const mapCourses = () => {
-    return courses.map((c, i) => <Card key={c.id} course={c} />).reverse();
+    return courses.map((c, i) => <Card key={c.id} course={c} />);
   };
 
   if (courses)
@@ -34,7 +34,11 @@ export default function Courses({ courses }) {
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
           >
-            {courses.length === 0 ? <p>Nenhum há cursos.</p> : mapCourses()}
+            {courses.length === 0 ? (
+              <p>Nenhum há cursos.</p>
+            ) : (
+              mapCourses().reverse()
+            )}
           </Masonry>
         </main>
       </section>

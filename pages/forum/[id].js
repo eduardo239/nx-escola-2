@@ -7,7 +7,13 @@ export default function Post({ post }) {
   const { getDatasById, datas } = useForum();
 
   useEffect(() => {
-    if (post) getDatasById('posts_comments', 'post_id', post.id);
+    if (post)
+      getDatasById(
+        'posts_comments',
+        'post_id',
+        post.id,
+        'profile_id(id, username, avatar_url)'
+      );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -1,12 +1,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import {
-  Add16,
-  AddFilled16,
-  Close16,
-  Edit16,
-  TrashCan16,
-} from '@carbon/icons-react';
+import { Add16, Close16, Edit16, TrashCan16 } from '@carbon/icons-react';
 import {
   Button,
   ButtonIcon,
@@ -64,6 +58,7 @@ export default function Forum({ posts }) {
       };
 
       const { data, error } = await supabase.from('posts').insert([body]);
+
       // TODO:
     } else {
       console.log('[x] profile not found');
@@ -120,7 +115,11 @@ export default function Forum({ posts }) {
       <h1>Forum</h1>
 
       <div className="mb-5">
-        {!datas || datas.length === 0 ? <p>Não há posts aqui.</p> : mapPosts()}
+        {!datas || datas.length === 0 ? (
+          <p>Não há posts aqui.</p>
+        ) : (
+          mapPosts().reverse()
+        )}
       </div>
 
       {user && (

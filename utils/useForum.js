@@ -38,10 +38,12 @@ export const ForumContextProvider = (props) => {
     if (data) setData(data);
     return { data, error };
   };
-  const getDatasById = async (table, item_id, id) => {
+  const getDatasById = async (table, item_id, id, ...columns) => {
+    let foreign = columns.length > 0;
+
     let { data, error } = await supabase
       .from(table)
-      .select('*')
+      .select(`* ${foreign ? ', ' + columns.toString() : ''}`)
       .eq(item_id, id);
     if (data) setDatas(data);
     return { data, error };
