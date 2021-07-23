@@ -3,5 +3,7 @@ export const default_course_poster =
 
 export const app_name = 'App Escola';
 
+export const app_description = 'App para acompanhamento estudantil.';
+
 export const default_logo =
   'https://lkjdvpqdsyneokvxbctv.supabase.co/storage/v1/object/sign/nx-escola/default_logo (2).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJueC1lc2NvbGEvZGVmYXVsdF9sb2dvICgyKS5wbmciLCJpYXQiOjE2MjYyODc1NDUsImV4cCI6MTk0MTY0NzU0NX0.s9tEqZNUvagmN9BvqGabl9XHW36bzXqt2jGeWaTxi1A';

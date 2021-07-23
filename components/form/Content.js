@@ -170,7 +170,6 @@ const AddContent = ({ setContent }) => {
               placeholder="Escreva aqui .."
               value={code}
               onChange={(e) => setCode(e.target.value)}
-              className="w-100"
             />
             <Button type="submit" danger onClick={handleAdd}>
               Adicionar {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -186,7 +185,6 @@ const AddContent = ({ setContent }) => {
             id="add-subject-text"
             label={type.charAt(0).toUpperCase() + type.slice(1)}
             placeholder="Write here .."
-            className="w-100"
             rows="4"
             value={code}
             onChange={(e) => setCode(e.target.value)}

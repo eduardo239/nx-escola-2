@@ -3,7 +3,7 @@ import { IconOnly } from '../../ui/Form';
 import { TrashCan16 } from '@carbon/icons-react';
 import { formatDate, timeFromX } from '../../../utils';
 
-const headers = ['Curso', 'Atualizado em', 'Opções'];
+const headers = ['Curso', 'Atualizado em', 'Op'];
 
 export default function Payments({ user_courses }) {
   const [loading, setLoading] = useState(false);
@@ -34,9 +34,9 @@ export default function Payments({ user_courses }) {
   };
   return (
     <section>
-      <h1>Meus Cursos</h1>
+      <h1 className="mb-5">Meus Cursos</h1>
 
-      <table className="table">
+      <table className="table mb-10">
         <thead>
           <tr className="table-header">
             {headers.map((x, i) => (

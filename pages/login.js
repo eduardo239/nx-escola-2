@@ -6,7 +6,7 @@ import { Login16, LogoGithub16 } from '@carbon/icons-react';
 import { Button, Input } from '../components/ui/Form';
 import toast, { Toaster } from 'react-hot-toast';
 import Head from 'next/head';
-import { app_name } from '../utils/constants';
+import { app_description, app_name } from '../utils/constants';
 import Spinner from '../components/ui/Spinner';
 
 const Login = () => {
@@ -59,7 +59,10 @@ const Login = () => {
       <section className="p-5 bg-section">
         <Head>
           <title>{`${app_name} - Login`}</title>
-          <meta name="description" content="Description" />
+          <meta
+            name="description"
+            content={`${app_name} - ${app_description}`}
+          />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
@@ -74,7 +77,6 @@ const Login = () => {
             id="login-email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-100"
           />
           <Input
             type="password"
@@ -83,7 +85,6 @@ const Login = () => {
             id="login-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-100"
           />
 
           <div className="mb-5">

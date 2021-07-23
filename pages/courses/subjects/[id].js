@@ -3,7 +3,7 @@ import { Button } from '../../../components/ui/Form';
 import { useRouter } from 'next/router';
 import s from '../../../styles/Subject.module.scss';
 import Head from 'next/head';
-import { app_name } from '../../../utils/constants';
+import { app_description, app_name } from '../../../utils/constants';
 import Spinner from '../../../components/ui/Spinner';
 
 const Subject = ({ subject }) => {
@@ -34,7 +34,10 @@ const Subject = ({ subject }) => {
       <section className="p-5 bg-section">
         <Head>
           <title>{`${app_name} - Matéria: ${subject.name}`}</title>
-          <meta name="description" content="Cursos de todos os tipos aqui." />
+          <meta
+            name="description"
+            content={`${app_name} - ${app_description}`}
+          />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 

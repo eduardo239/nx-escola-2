@@ -70,7 +70,6 @@ export default function Comments({ post, comments = [], getDatasById }) {
             id="add-subject-text"
             label="Comentários"
             placeholder="Write here .."
-            className="w-100"
             rows="4"
             value={comment}
             onChange={(e) => setComment(e.target.value)}

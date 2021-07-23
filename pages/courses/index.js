@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { Card } from '../../components/Card';
-import { app_name } from '../../utils/constants';
+import { app_description, app_name } from '../../utils/constants';
 import { supabase } from '../../utils/supabase';
 import Masonry from 'react-masonry-css';
 import Spinner from '../../components/ui/Spinner';
@@ -22,7 +22,10 @@ export default function Courses({ courses }) {
       <section className="p-5 bg-section">
         <Head>
           <title>{`${app_name} - Cursos`}</title>
-          <meta name="description" content="Cursos de todos os tipos aqui." />
+          <meta
+            name="description"
+            content={`${app_name} - ${app_description}`}
+          />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 

@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
-import {
-  Button,
-  ButtonIcon,
-  ButtonLink,
-  ButtonOutline,
-} from '../../components/ui/Form';
+import { ButtonIcon, ButtonOutline } from '../../components/ui/Form';
 import { supabase } from '../../utils/supabase';
 import { useUser } from '../../utils/useUser';
 import { Currency16 } from '@carbon/icons-react';
-import { app_name, default_course_poster } from '../../utils/constants';
+import {
+  app_description,
+  app_name,
+  default_course_poster,
+} from '../../utils/constants';
 import { formatMoney, paymentRecords, subscribe, timeFromX } from '../../utils';
 import { useRouter } from 'next/router';
 import toast, { Toaster } from 'react-hot-toast';
@@ -77,10 +76,12 @@ export default function Course({ course, subjects }) {
     return (
       <section className="p-5 bg-section">
         <Toaster />
-
         <Head>
-          <title>{`${app_name} - Curso: ${course.name}`}</title>
-          <meta name="description" content="Cursos de todos os tipos aqui." />
+          <title>{`${app_name} - ${course.name}`}</title>
+          <meta
+            name="description"
+            content={`${app_name} - ${app_description}`}
+          />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 

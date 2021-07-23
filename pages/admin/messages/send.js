@@ -43,7 +43,6 @@ export default function Send() {
       <Textarea
         label="Conteúdo"
         placeholder="Conteúdo da mensagem"
-        className="w-100"
         rows="4"
         value={content}
         onChange={(e) => setContent(e.target.value)}
@@ -53,7 +52,6 @@ export default function Send() {
         <div className="field--select mb-5">
           <label htmlFor="send-message-user-id">Função</label>
           <select
-            className="w-100"
             onChange={(e) => setRole(e.target.value)}
             id="add-balance-user-id"
           >

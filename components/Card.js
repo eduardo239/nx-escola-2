@@ -33,13 +33,6 @@ export const Card = ({ course }) => {
             {course.runtime ? formatMinutes(course.runtime) : 'Undefined'}
           </small>
         </div>
-        {/* <Button
-        className="w-100"
-        primary
-        onClick={() => router.push(`/courses/${course.id}`)}
-      >
-        Leia mais
-      </Button> */}
       </div>
     </Link>
   );

@@ -147,7 +147,6 @@ const Courses = ({}) => {
                   id="add-course-name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-100"
                 />
                 <Input
                   type="number"
@@ -156,7 +155,6 @@ const Courses = ({}) => {
                   id="add-course-runtime"
                   value={runtime}
                   onChange={(e) => setRuntime(e.target.value)}
-                  className="w-100"
                 />
                 <Input
                   type="number"
@@ -165,7 +163,6 @@ const Courses = ({}) => {
                   id="add-course-price"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
-                  className="w-100"
                 />
 
                 <Input
@@ -175,7 +172,6 @@ const Courses = ({}) => {
                   id="add-course-promo-code"
                   value={promo}
                   onChange={(e) => setPromo(e.target.value)}
-                  className="w-100"
                 />
                 <Input
                   type="text"
@@ -184,7 +180,6 @@ const Courses = ({}) => {
                   id="add-course-promo-poster"
                   value={poster}
                   onChange={(e) => setPoster(e.target.value)}
-                  className="w-100"
                 />
                 <div className="flex" style={{ gap: '1rem' }}>
                   <div className={`flex list-item`} style={{ flex: '1' }}>
@@ -202,7 +197,6 @@ const Courses = ({}) => {
                 <Textarea
                   label="Description"
                   placeholder="Description of the course"
-                  className="w-100"
                   rows="3"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}

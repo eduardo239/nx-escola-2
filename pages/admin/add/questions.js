@@ -89,7 +89,6 @@ const Questions = ({ subjects }) => {
         <Textarea
           label="Question"
           placeholder="Question here .."
-          className="w-100"
           rows="3"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
@@ -103,7 +102,6 @@ const Questions = ({ subjects }) => {
             id="add-question-alternative"
             value={alternative}
             onChange={(e) => setAlternative(e.target.value)}
-            className="w-100"
           />
           <Button secondary type="submit" onClick={handleAddAlternative}>
             Adicionar <Add16 />
@@ -142,7 +140,6 @@ const Questions = ({ subjects }) => {
         <div className="field--select mb-5">
           <label htmlFor="add-subject-course-id">Curso/Matéria</label>
           <select
-            className="w-100"
             onChange={(e) => setSubjectId(e.target.value)}
             id="add-subject-course-id"
           >

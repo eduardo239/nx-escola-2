@@ -8,7 +8,8 @@ const options = {
     yAxes: [
       {
         ticks: {
-          beginAtZero: true,
+          max: 10,
+          min: 0,
         },
       },
     ],
@@ -28,9 +29,10 @@ const Chart = ({ user_grades }) => {
   mapDates();
   return (
     <section>
-      <h1>Notas</h1>
+      <h1 className="mb-5">Notas</h1>
 
       <Line
+        className="mb-5"
         data={{
           labels: mapDates(),
           datasets: [
@@ -53,7 +55,7 @@ const Chart = ({ user_grades }) => {
         id="add-course-results"
         value={length}
         onChange={(e) => setLength(e.target.value)}
-        className="w-100"
+        className="mb-10"
       />
     </section>
   );

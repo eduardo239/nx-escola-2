@@ -87,7 +87,6 @@ const Course = () => {
             value={name}
             error={error}
             onChange={(e) => setName(e.target.value)}
-            className="w-100"
           />
           <Input
             type="number"
@@ -97,7 +96,6 @@ const Course = () => {
             value={runtime}
             error={error}
             onChange={(e) => setRuntime(e.target.value)}
-            className="w-100"
           />
           <Input
             type="number"
@@ -107,7 +105,6 @@ const Course = () => {
             value={price}
             error={error}
             onChange={(e) => setPrice(e.target.value)}
-            className="w-100"
           />
 
           <Input
@@ -118,7 +115,6 @@ const Course = () => {
             value={promoCode}
             error={error}
             onChange={(e) => setPromoCode(e.target.value)}
-            className="w-100"
           />
           <Input
             type="text"
@@ -128,7 +124,6 @@ const Course = () => {
             value={posterURL}
             error={error}
             onChange={(e) => setPosterURL(e.target.value)}
-            className="w-100"
           />
           <div className="flex" style={{ gap: '1rem' }}>
             <div className={`flex list-item`} style={{ flex: '1' }}>
@@ -146,7 +141,6 @@ const Course = () => {
           <Textarea
             label="Description"
             placeholder="Description of the course"
-            className="w-100"
             rows="3"
             error={error}
             value={description}

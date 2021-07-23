@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { Button, Input } from '../components/ui/Form';
 import { Login16 } from '@carbon/icons-react';
 import { formatUsername } from '../utils';
-import { app_name } from '../utils/constants';
+import { app_description, app_name } from '../utils/constants';
 import toast, { Toaster } from 'react-hot-toast';
 import Spinner from '../components/ui/Spinner';
 import Head from 'next/head';
@@ -62,7 +62,10 @@ const Register = () => {
       <section className="p-5 bg-section">
         <Head>
           <title>{`${app_name} - Registro`}</title>
-          <meta name="description" content="Description" />
+          <meta
+            name="description"
+            content={`${app_name} - ${app_description}`}
+          />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
@@ -77,7 +80,6 @@ const Register = () => {
             id="register-email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-100"
           />
 
           <Input
@@ -87,7 +89,6 @@ const Register = () => {
             id="register-username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-100"
           />
           <Input
             type="password"
@@ -96,7 +97,6 @@ const Register = () => {
             id="register-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-100"
           />
 
           <div className="separator mb-5"></div>

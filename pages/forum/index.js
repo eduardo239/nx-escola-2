@@ -139,12 +139,10 @@ export default function Forum({ posts }) {
               id="forum-new-title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-100"
             />
             <Textarea
               label="Conteúdo"
               placeholder="Conteúdo do post"
-              className="w-100"
               rows="3"
               value={content}
               onChange={(e) => setContent(e.target.value)}

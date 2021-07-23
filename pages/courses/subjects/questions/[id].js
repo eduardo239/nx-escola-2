@@ -7,7 +7,7 @@ import { checkTheAnswers } from '../../../../utils';
 import toast, { Toaster } from 'react-hot-toast';
 import s from '../../../../styles/Questions.module.scss';
 import Head from 'next/head';
-import { app_name } from '../../../../utils/constants';
+import { app_description, app_name } from '../../../../utils/constants';
 
 const Questions = ({ questions = [] }) => {
   const { user, userProfile, profile } = useUser();
@@ -105,7 +105,7 @@ const Questions = ({ questions = [] }) => {
 
       <Head>
         <title>{`${app_name} - Atividades`}</title>
-        <meta name="description" content="Cursos de todos os tipos aqui." />
+        <meta name="description" content={`${app_name} - ${app_description}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

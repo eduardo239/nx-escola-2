@@ -129,7 +129,6 @@ const Courses = ({}) => {
                   id="add-subject-name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-100"
                 />
                 <Input
                   type="number"
@@ -137,7 +136,6 @@ const Courses = ({}) => {
                   id="add-subject-runtime"
                   value={runtime}
                   onChange={(e) => setRuntime(e.target.value)}
-                  className="w-100"
                 />
               </div>
               <div className="mb-5">
@@ -147,7 +145,6 @@ const Courses = ({}) => {
               <div className="field--select mb-5">
                 <label htmlFor="add-subject-course-id">Curso</label>
                 <select
-                  className="w-100"
                   onChange={(e) => setCourseId(e.target.value)}
                   id="add-subject-course-id"
                 >

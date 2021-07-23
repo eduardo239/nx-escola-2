@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { app_name } from '../../utils/constants';
+import { app_description, app_name } from '../../utils/constants';
 import { useUser } from '../../utils/useUser';
 import Grades from '../../components/table/user/Grades';
 import Head from 'next/head';
@@ -35,16 +35,20 @@ const Profile = ({}) => {
           <title>{`${app_name} - ${profile.username}`}</title>
           <meta
             name="description"
-            content="App Escola - App para acompanhamento estudantil."
+            content={`${app_name} - ${app_description}`}
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <h2>{profile.username}</h2>
+        <h5>Conta: {profile.username}</h5>
         {userGrades && <Chart user_grades={userGrades} />}
+        <div className="separator mb-5"></div>
         {userGrades && <Grades user_grades={userGrades} />}
-        {/* {userPayments && <Payments user_payments={userPayments} />} */}
-        {userCourses && <Courses user_courses={userCourses} />}
+        <div className="separator mb-5"></div>
+        {userPayments && <Payments user_payments={userPayments} />}
+        <div className="separator mb-5"></div>
+
+        {/* {userCourses && <Courses user_courses={userCourses} />} */}
       </section>
     );
 

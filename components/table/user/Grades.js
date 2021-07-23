@@ -4,7 +4,7 @@ import { ButtonIcon, IconOnly } from '../../ui/Form';
 import { TrashCan16 } from '@carbon/icons-react';
 import { formatDate, timeFromX } from '../../../utils';
 
-const headers = ['Curso', 'Matéria', 'Nota', 'Atualizado em', 'Opções'];
+const headers = ['Curso', 'Matéria', 'Nota', 'Atualizado em', 'Op'];
 
 export default function MyGrades({ user_grades }) {
   const [loading, setLoading] = useState(false);
@@ -43,10 +43,10 @@ export default function MyGrades({ user_grades }) {
     ));
   };
   return (
-    <section className="mb-5">
-      <h1>Minhas Notas</h1>
+    <section>
+      <h1 className="mb-5">Minhas Notas</h1>
 
-      <table className="table">
+      <table className="table mb-10">
         <thead>
           <tr className="table-header">
             {headers.map((x, i) => (

@@ -4,7 +4,7 @@ import { ButtonIcon, IconOnly } from '../../ui/Form';
 import { TrashCan16 } from '@carbon/icons-react';
 import { formatDate, formatMoney, timeFromX } from '../../../utils';
 
-const headers = ['Curso', 'Valor', 'Atualizado em', 'Opções'];
+const headers = ['Curso', 'Valor', 'Atualizado em', 'Op'];
 
 export default function Payments({ user_payments }) {
   const [loading, setLoading] = useState(false);
@@ -35,10 +35,10 @@ export default function Payments({ user_payments }) {
     ));
   };
   return (
-    <section className="mb-5">
-      <h1>Meus Pagamentos</h1>
+    <section>
+      <h1 className="mb-5">Meus Cursos</h1>
 
-      <table className="table">
+      <table className="table mb-10">
         <thead>
           <tr className="table-header">
             {headers.map((x, i) => (

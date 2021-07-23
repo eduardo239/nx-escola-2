@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useUser } from '../../utils/useUser';
 import { Button, Input } from '../../components/ui/Form';
 import { Send16 } from '@carbon/icons-react';
-import { app_name } from '../../utils/constants';
+import { app_description, app_name } from '../../utils/constants';
 import { formatMoney } from '../../utils';
 import toast, { Toaster } from 'react-hot-toast';
 import Spinner from '../../components/ui/Spinner';
@@ -45,7 +45,7 @@ const Balance = () => {
           <title>{`${app_name} - Saldo`}</title>
           <meta
             name="description"
-            content="App Escola - App para acompanhamento estudantil."
+            content={`${app_name} - ${app_description}`}
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -66,7 +66,6 @@ const Balance = () => {
               id="add-balance-value"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              className="w-100"
             />
 
             <Button primary type="submit">

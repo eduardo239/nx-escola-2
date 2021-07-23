@@ -61,13 +61,11 @@ const Balance = ({ users }) => {
             value={value}
             error={error}
             onChange={(e) => setValue(e.target.value)}
-            className="w-100"
           />
 
           <div className="field--select mb-5">
             <label htmlFor="add-balance-user-id">User</label>
             <select
-              className="w-100"
               onChange={(e) => setProfileId(e.target.value)}
               id="add-balance-user-id"
             >

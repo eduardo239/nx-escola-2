@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { Accessibility16, Close16, TrashCan16 } from '@carbon/icons-react';
-import { app_name } from '../utils/constants';
+import { app_description, app_name } from '../utils/constants';
 import Spinner from '../components/ui/Spinner';
 import { supabase } from '../utils/supabase';
 import { formatDate } from '../utils';
@@ -19,11 +19,8 @@ export default function Home({ messages }) {
   return (
     <section className="p-5 bg-section">
       <Head>
-        <title>{`${app_name}`}</title>
-        <meta
-          name="description"
-          content="App Escola - App para acompanhamento estudantil."
-        />
+        <title>{`${app_name} - Home`}</title>
+        <meta name="description" content={`${app_name} - ${app_description}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
