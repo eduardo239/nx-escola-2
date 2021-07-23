@@ -243,6 +243,16 @@ export const GlobalStyles = createGlobalStyle`
     border-bottom: 1px solid ${({ theme }) => theme.border};
   }
 // NORMAL
+  .message {
+    p {
+      color: ${({ theme }) => theme.text};
+    }
+  }
+  .message-info {
+    color: ${({ theme }) => theme.black80};
+    border: 1px solid ${({ theme }) => theme.black20};
+  }
+
   .modal-body {
     color: ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.white};
