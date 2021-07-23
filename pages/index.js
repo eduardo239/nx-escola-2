@@ -12,10 +12,15 @@ import { app_name } from '../utils/constants';
 import Spinner from '../components/ui/Spinner';
 import Modal from '../components/Modal';
 import { useCourse } from '../utils/useCourse';
+import { supabase } from '../utils/supabase';
 
-export default function Home() {
+export default function Home({ messages }) {
   const [modal, setModal] = useState(false);
   const { courses, getCourses } = useCourse();
+
+  const mapMessages = () => {
+    return messages.map((x, i) => <div key={x.id}>{x.content}</div>);
+  };
 
   return (
     <section className="p-5 bg-section">
@@ -30,7 +35,13 @@ export default function Home() {
 
       <main>
         <h1>Mensagens</h1>
-        <p>Não há mensagens aqui.</p>
+
+        {messages.length === 0 ? (
+          <p>Não há mensagens aqui.</p>
+        ) : (
+          mapMessages().reverse()
+        )}
+
         {/*  
         <Button primary onClick={() => setModal(!modal)}>
           click
@@ -134,7 +145,13 @@ export default function Home() {
 }
 
 export async function getStaticProps() {
+  let { data: messages, error } = await supabase
+    .from('messages')
+    .select('*')
+    .eq('to_role', 'student');
+
   return {
-    props: { data: [] },
+    revalidate: 60,
+    props: { messages },
   };
 }

@@ -10,6 +10,7 @@ import '../styles/reset.css';
 import '../styles/globals.scss';
 import '../styles/buttons.scss';
 import '../styles/form.scss';
+import { MessageContextProvider } from '../utils/useMessage';
 
 function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState('light');
@@ -31,12 +32,14 @@ function MyApp({ Component, pageProps }) {
     <UserContextProvider>
       <CourseContextProvider>
         <ForumContextProvider>
-          <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-            <GlobalStyles />
-            <Layout toggleTheme={toggleTheme} theme={theme}>
-              <Component {...pageProps} />
-            </Layout>
-          </ThemeProvider>
+          <MessageContextProvider>
+            <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+              <GlobalStyles />
+              <Layout toggleTheme={toggleTheme} theme={theme}>
+                <Component {...pageProps} />
+              </Layout>
+            </ThemeProvider>
+          </MessageContextProvider>
         </ForumContextProvider>
       </CourseContextProvider>
     </UserContextProvider>

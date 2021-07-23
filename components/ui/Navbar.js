@@ -12,6 +12,7 @@ import {
   CaretDown16,
   User16,
   Money16,
+  Email16,
 } from '@carbon/icons-react';
 import s from '../../styles/Navbar.module.scss';
 // import Logo from '../Logo';
@@ -143,6 +144,18 @@ const Navbar = ({ toggleTheme, theme }) => {
                     <li onClick={() => setMenu(false)}>
                       <Link href="/admin/all/users">
                         <a>Usuários</a>
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <ButtonIcon className={s.button} onClick={click}>
+                    Mensagens <CaretDown16 />
+                  </ButtonIcon>
+                  <ul className="none">
+                    <li onClick={() => setMenu(false)}>
+                      <Link href="/admin/messages/send">
+                        <a>Enviar</a>
                       </Link>
                     </li>
                   </ul>
