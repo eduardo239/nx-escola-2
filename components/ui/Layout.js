@@ -1,7 +1,6 @@
 import s from '../../styles/Layout.module.css';
+import Footer from './Footer';
 import Navbar from './Navbar';
-// import Footer from './section/Footer';
-// import Navbar from './section/Navbar';
 
 const Layout = ({ children, toggleTheme, theme }) => {
   return (
@@ -9,7 +8,7 @@ const Layout = ({ children, toggleTheme, theme }) => {
       <Navbar toggleTheme={toggleTheme} theme={theme} />
       <main className={s.main}>{children}</main>
       <div className={s.footer}>
-        <footer>footer</footer>
+        <Footer></Footer>
       </div>
     </div>
   );
