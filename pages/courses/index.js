@@ -30,7 +30,7 @@ export default function Courses({ courses }) {
         </Head>
 
         <main>
-          <h1>Todos os Cursos</h1>
+          <h1 className="mb-5">Todos os Cursos</h1>
 
           <Masonry
             breakpointCols={breakpointColumnsObj}

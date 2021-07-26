@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../../../../utils/supabase';
-import { Button } from '../../../../components/ui/Form';
+import { Button, ButtonIcon } from '../../../../components/ui/Form';
 import { useUser } from '../../../../utils/useUser';
 import { useRouter } from 'next/router';
 import { checkTheAnswers } from '../../../../utils';
@@ -8,6 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import s from '../../../../styles/Questions.module.scss';
 import Head from 'next/head';
 import { app_description, app_name } from '../../../../utils/constants';
+import { Save16 } from '@carbon/icons-react';
 
 const Questions = ({ questions = [] }) => {
   const { user, userProfile, profile } = useUser();
@@ -109,17 +110,18 @@ const Questions = ({ questions = [] }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Questions</h1>
+      <h1 className="mb-5">Questions</h1>
+
       {questions.length === 0 ? (
         <h1>Perguntas não encontradas.</h1>
       ) : (
         mapQuestions()
       )}
 
-      <div className="mb-4">
-        <Button secondary onClick={handleSave}>
-          Save and continue
-        </Button>
+      <div className="mb-5 flex-center-end">
+        <ButtonIcon secondary onClick={handleSave}>
+          Save and continue <Save16 />
+        </ButtonIcon>
       </div>
     </section>
   );

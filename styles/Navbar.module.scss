@@ -17,7 +17,7 @@
     max-height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
-    width: 248px;
+    min-width: 248px;
     animation: slide 0.1s forwards;
   }
 }
@@ -48,9 +48,6 @@
   letter-spacing: 0.04rem;
   font-size: 0.75rem;
   width: 100%;
-}
-.none {
-  display: none;
 }
 
 .button:focus,

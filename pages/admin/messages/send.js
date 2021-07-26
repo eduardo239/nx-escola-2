@@ -37,8 +37,7 @@ export default function Send() {
 
   return (
     <section className="p-5 bg-section">
-      <h1>Enviar mensagem</h1>
-      {role}
+      <h1 className="mb-5">Enviar mensagem</h1>
 
       <Textarea
         label="Conteúdo"

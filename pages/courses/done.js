@@ -9,7 +9,7 @@ const Done = () => {
         <meta name="description" content={`${app_name} - ${app_description}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Done!</h1>
+      <h1 className="mb-5">Done!</h1>
     </section>
   );
 };

@@ -4,7 +4,7 @@ import { supabase } from './supabase';
 export const MessageContext = createContext();
 
 export const MessageContextProvider = (props) => {
-  const [message, setMessage] = useState(null);
+  const [messages, setMessages] = useState(null);
 
   const [data, setData] = useState(null);
   const [datas, setDatas] = useState(null);
@@ -21,6 +21,25 @@ export const MessageContextProvider = (props) => {
     return { data, error };
   };
   // -----
+  /**
+   *
+   * @param {Integer} offset
+   * @param {Integer} limit
+   * @param  {...any} columns
+   * @returns array
+   */
+  const getMessages = async (offset, limit, ...columns) => {
+    let foreign = columns.length > 0;
+
+    let { data, error } = await supabase
+      .from('messages')
+      .select(`* ${foreign ? ', ' + columns.toString() : ''}`)
+      .range(offset, limit)
+      .order('created_at', { ascending: false });
+    if (data) setMessages(data);
+    return { data, error };
+  };
+
   const getDatas = async (table, ...columns) => {
     let foreign = columns.length > 0;
 
@@ -73,6 +92,8 @@ export const MessageContextProvider = (props) => {
     getDatasById,
     delData,
     updateData,
+    getMessages,
+    messages,
   };
   return <MessageContext.Provider value={value} {...props} />;
 };

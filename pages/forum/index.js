@@ -90,7 +90,11 @@ export default function Forum({ posts }) {
     return posts.map((x) => (
       <div key={x.id} className="list-row">
         <div>
-          <Link href={`/forum/${x.id}`}>{x.title}</Link>
+          <Link href={`/forum/${x.id}`} passHref>
+            <p style={{ cursor: 'pointer' }} className="black80">
+              {x.title}
+            </p>
+          </Link>
         </div>
         {/* TODO: only owner can delete the post */}
         <div>

@@ -24,6 +24,10 @@ export const GlobalStyles = createGlobalStyle`
   .secondary {
     color: ${({ theme }) => theme.secondary};
   }
+
+  .white {
+    color: ${({ theme }) => theme.white};
+  }
   
   .black80 {
     color: ${({ theme }) => theme.black80};
@@ -121,8 +125,6 @@ export const GlobalStyles = createGlobalStyle`
       box-shadow: inset 0 0 0 1px ${({ theme }) => theme.primaryActive},
         inset 0 0 0 2px var(--white);
     }
-    &:hover {
-    }
   }
 
   .button-link--secondary {
@@ -137,9 +139,6 @@ export const GlobalStyles = createGlobalStyle`
       box-shadow: inset 0 0 0 1px ${({ theme }) => theme.secondaryActive},
         inset 0 0 0 2px var(--white);
     }
-    &:hover {
-      
-    }
   }
   
   .button-link--white {
@@ -153,9 +152,6 @@ export const GlobalStyles = createGlobalStyle`
       border-color: ${({ theme }) => theme.black};
       box-shadow: inset 0 0 0 1px ${({ theme }) => theme.black},
         inset 0 0 0 2px ${({ theme }) => theme.black};
-    }
-    &:hover {
-      
     }
   }
 
@@ -270,6 +266,11 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.white};
     color: ${({ theme }) => theme.text};
   }
+
+    .subject-header {
+      background-color: ${({ theme }) => theme.text};
+      color: ${({ theme }) => theme.bg};
+    }
 
   // DISABLED
   input:disabled,

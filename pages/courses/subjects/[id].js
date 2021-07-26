@@ -1,10 +1,12 @@
 import { supabase } from '../../../utils/supabase';
-import { Button } from '../../../components/ui/Form';
+import { Button, ButtonIcon } from '../../../components/ui/Form';
 import { useRouter } from 'next/router';
 import s from '../../../styles/Subject.module.scss';
 import Head from 'next/head';
 import { app_description, app_name } from '../../../utils/constants';
 import Spinner from '../../../components/ui/Spinner';
+import { formatMinutes } from '../../../utils';
+import { DocumentTasks16 } from '@carbon/icons-react';
 
 const Subject = ({ subject }) => {
   const router = useRouter();
@@ -41,10 +43,10 @@ const Subject = ({ subject }) => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <div className="mb-5">
+        <div className={`${s.header} mb-5 subject-header`}>
           <small>{subject.course_id?.name}</small>
           <h1>{subject.name}</h1>
-          <p>{subject.runtime ? `${subject.runtime} min.` : ''}</p>
+          <p>{subject.runtime ? `${formatMinutes(subject.runtime)}` : ''}</p>
         </div>
 
         <div className="separator"></div>
@@ -57,15 +59,15 @@ const Subject = ({ subject }) => {
           )}
         </div>
 
-        <div className="mb-5">
-          <Button
+        <div className="mb-5 flex-center-end">
+          <ButtonIcon
             primary
             onClick={() =>
               router.push(`/courses/subjects/questions/${subject.id}`)
             }
           >
-            Atividades
-          </Button>
+            Atividades <DocumentTasks16 />
+          </ButtonIcon>
         </div>
       </section>
     );
