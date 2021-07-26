@@ -1,50 +1,47 @@
 import React, { useEffect, useState } from 'react';
+import { supabase } from '../utils/supabase';
 import Head from 'next/head';
 import { ArrowLeft16, ArrowRight16 } from '@carbon/icons-react';
 import { app_description, app_name } from '../utils/constants';
-import Spinner from '../components/ui/Spinner';
-import { supabase } from '../utils/supabase';
 import { formatDate } from '../utils';
 import { useMessage } from '../utils/useMessage';
 import { Button, ButtonIcon } from '../components/ui/Form';
+import Spinner from '../components/ui/Spinner';
+import Messages from '../components/Messages';
+import Pagination from '../components/Pagination';
 
 export default function Home({}) {
   const { getMessages, messages } = useMessage();
 
-  const [range, setRange] = useState(3);
-  const [offset, setOffset] = useState(0);
-  const [limit, setLimit] = useState(3);
+  // const [messages, setMessages] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [messagesPerPage, setMessagesPerPage] = useState(5);
+  const [loading, setLoading] = useState(false);
 
-  const mapMessages = () => {
-    return messages.map((x, i) => (
-      <div className="message message-info" key={x.id}>
-        <p>{x.content}</p>
-        <small>{formatDate(x.created_at)}</small>
-      </div>
-    ));
-  };
+  const indexOfLastMessage = currentPage * messagesPerPage;
+  const indexOfFirstMessage = indexOfLastMessage - messagesPerPage;
+  const currentMessage = messages?.slice(
+    indexOfFirstMessage,
+    indexOfLastMessage
+  );
 
-  const handleLoadMore = async (op) => {
-    if (offset >= 0) {
-      if (op === '+') {
-        setOffset(offset + range);
-        setLimit(limit + range);
-      } else {
-        setOffset(offset - range);
-        setLimit(limit - range);
-      }
-    } else {
-      return;
-    }
-    console.log(offset, limit);
-    // FIXME
-    await getMessages(offset, limit);
-  };
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
-    getMessages(offset, limit);
+    (async function () {
+      setLoading(true);
+      await getMessages();
+      setLoading(false);
+    })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (loading)
+    return (
+      <section className="p-5 bg-section">
+        <Spinner />
+      </section>
+    );
 
   return (
     <section className="p-5 bg-section">
@@ -59,27 +56,16 @@ export default function Home({}) {
           <h1>Mensagens</h1>
         </div>
 
-        {!messages ? <p>Não há mensagens aqui.</p> : mapMessages()}
+        {/* {!messages ? <p>Não há mensagens aqui.</p> : mapMessages()} */}
+        {messages && <Messages loading={loading} messages={currentMessage} />}
 
-        <div className="flex-center-center gap-1">
-          <ButtonIcon
-            disabled={offset <= 0}
-            primary
-            onClick={() => handleLoadMore('-')}
-          >
-            Voltar <ArrowLeft16 />
-          </ButtonIcon>
-          <Button secondary disabled>
-            Página {offset} - {limit}
-          </Button>
-          <ButtonIcon
-            disabled={false}
-            primary
-            onClick={() => handleLoadMore('+')}
-          >
-            Próxima <ArrowRight16 />
-          </ButtonIcon>
-        </div>
+        {messages && (
+          <Pagination
+            messagesPerPage={messagesPerPage}
+            totalMessages={messages.length}
+            paginate={paginate}
+          />
+        )}
       </main>
     </section>
   );

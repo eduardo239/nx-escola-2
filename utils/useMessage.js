@@ -28,13 +28,12 @@ export const MessageContextProvider = (props) => {
    * @param  {...any} columns
    * @returns array
    */
-  const getMessages = async (offset, limit, ...columns) => {
+  const getMessages = async (...columns) => {
     let foreign = columns.length > 0;
 
     let { data, error } = await supabase
       .from('messages')
       .select(`* ${foreign ? ', ' + columns.toString() : ''}`)
-      .range(offset, limit)
       .order('created_at', { ascending: false });
     if (data) setMessages(data);
     return { data, error };
