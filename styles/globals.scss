@@ -146,6 +146,16 @@ textarea:disabled {
   cursor: not-allowed;
 }
 /*-----------------------------------------------------*/
+ol,
+ul {
+  list-style: circle;
+  padding-left: 1rem;
+  margin-left: 1rem;
+  li {
+    margin-bottom: 0.5rem;
+  }
+}
+/*-----------------------------------------------------*/
 .none {
   display: none;
 }

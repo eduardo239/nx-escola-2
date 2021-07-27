@@ -11,26 +11,6 @@ import { DocumentTasks16 } from '@carbon/icons-react';
 const Subject = ({ subject }) => {
   const router = useRouter();
 
-  const mapContent = () => {
-    return subject.content.map((c, i) => (
-      <div key={i} className="text-center">
-        {c.type === 'title' && <h1 className={s.h1}>{c.content}</h1>}
-        {c.type === 'subtitle' && <h4 className={s.subtitle}>{c.content}</h4>}
-        {c.type === 'paragraph' && <p className={s.paragraph}>{c.content}</p>}
-        {c.type === 'text' && <p className="text-left">{c.content}</p>}
-        {c.type === 'video' && <p>{c.content}</p>}
-        {c.type === 'pdf' && <p>{c.content}</p>}
-        {c.type === 'anchor' && (
-          <a href={c.content} target="_blank" rel="noreferrer">
-            {c.content}
-          </a>
-        )}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        {c.type === 'image' && <img src={c.content} alt={c.content} />}
-      </div>
-    ));
-  };
-
   if (subject)
     return (
       <section className="p-5 bg-section">
@@ -52,11 +32,11 @@ const Subject = ({ subject }) => {
         <div className="separator"></div>
 
         <div className="mb-5">
-          {subject.content.length === 0 ? (
-            <p>Conteúdo não encontrado.</p>
-          ) : (
-            mapContent()
-          )}
+          <section
+            className={s.container}
+            dangerouslySetInnerHTML={{ __html: subject.content }}
+          ></section>
+          <div className="separator"></div>
         </div>
 
         <div className="mb-5 flex-center-end">

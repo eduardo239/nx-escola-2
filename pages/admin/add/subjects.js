@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { useUser } from '../../../utils/useUser';
 import toast, { Toaster } from 'react-hot-toast';
 import Content from '../../../components/form/Content';
+import Editor from '../../../components/form/Editor';
 
 const Subject = ({ courses }) => {
   const { user, profile } = useUser();
@@ -14,6 +15,8 @@ const Subject = ({ courses }) => {
   const [content, setContent] = useState('');
   const [runtime, setRuntime] = useState(0);
   const [courseId, setCourseId] = useState('');
+
+  const [html, setHtml] = useState('');
   const handleAddSubject = async (e) => {
     e.preventDefault();
 
@@ -29,7 +32,7 @@ const Subject = ({ courses }) => {
       });
       return;
     }
-    if (content.length === 0) {
+    if (html === '') {
       toast.error('O conteúdo é obrigatório.', {
         id: 'add-subject-content',
       });
@@ -46,7 +49,7 @@ const Subject = ({ courses }) => {
       course_id: courseId,
       name,
       runtime,
-      content,
+      content: html,
     };
 
     const { error } = await supabase.from('subjects').insert([body]);
@@ -87,8 +90,12 @@ const Subject = ({ courses }) => {
         </div>
 
         <div className="mb-5">
-          <Content setContent={setContent} />
+          {/* <Content setContent={setContent} /> */}
+
+          <Editor setHtml={setHtml} />
         </div>
+
+        <div className="separator mb-5"></div>
 
         <div className="field--select mb-5">
           <label htmlFor="add-subject-course-id">Curso</label>
