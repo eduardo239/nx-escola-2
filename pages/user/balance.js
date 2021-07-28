@@ -14,12 +14,17 @@ const Balance = () => {
   const { profile, updateBalance } = useUser();
 
   const [value, setValue] = useState(0);
-  const [paymentMethod, setPaymentMethod] = useState(null);
+  const [paymentType, setPaymentType] = useState(null);
 
   const handleUpdateBalance = async (e) => {
     e.preventDefault();
 
-    const { error } = await updateBalance(profile, 'add', parseFloat(value));
+    const { error } = await updateBalance(
+      profile,
+      'add',
+      parseFloat(value),
+      paymentType
+    );
     if (error) {
       toast.dismiss();
       toast.error(error.message, {
@@ -78,26 +83,30 @@ const Balance = () => {
           </div>
 
           <form onSubmit={handleUpdateBalance}>
-            <Input
-              type="text"
-              placeholder="Value .."
-              label="Value"
-              id="add-balance-value"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-            />
+            <div className="flex gap-3">
+              <Input
+                type="text"
+                placeholder="Value .."
+                label="Value"
+                id="add-balance-value"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+              />
 
-            <div className="field--select mb-5">
-              <label htmlFor="add-balance-user-id">Método de pagamento:</label>
-              <select
-                onChange={(e) => setPaymentMethod(e.target.value)}
-                id="add-balance-user-id"
-              >
-                <option defaultValue value="">
-                  Escolha um
-                </option>
-                {mapPaymentMethod()}
-              </select>
+              <div className="field--select mb-5">
+                <label htmlFor="add-balance-user-id">
+                  Método de pagamento:
+                </label>
+                <select
+                  onChange={(e) => setPaymentType(e.target.value)}
+                  id="add-balance-user-id"
+                >
+                  <option defaultValue value="">
+                    Escolha um
+                  </option>
+                  {mapPaymentMethod()}
+                </select>
+              </div>
             </div>
 
             <Button primary type="submit">

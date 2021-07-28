@@ -65,7 +65,7 @@ export const subscribe = async (type, item, profile) => {
  * @param {Float} value float
  * @returns data and error
  */
-export const addBalance = async (profile, add, v) => {
+export const addBalance = async (profile, add, v, paymentType) => {
   let current_balance = parseFloat(profile.balance);
   let value = parseFloat(v);
   let amount = 0;
@@ -89,6 +89,18 @@ export const addBalance = async (profile, add, v) => {
     .from('profiles')
     .update(body)
     .eq('id', profile.id);
+
+  if (data) {
+    const body = {
+      updated_at: new Date(),
+      payment_type: paymentType,
+      profile_id: profile.id,
+      amount: value,
+      balance: amount,
+    };
+
+    const { data, error } = await supabase.from('user_wallet').insert([body]);
+  }
 
   return { data, error };
 };

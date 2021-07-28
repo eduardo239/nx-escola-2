@@ -53,8 +53,9 @@ export const UserContextProvider = (props) => {
     return { data, error };
   };
 
-  const updateBalance = async (profile, add, value) => {
-    const { data, error } = await addBalance(profile, add, value);
+  const updateBalance = async (profile, add, value, paymentType) => {
+    const { data, error } = await addBalance(profile, add, value, paymentType);
+
     if (data) setProfile(data[0]);
     return { data, error };
   };
