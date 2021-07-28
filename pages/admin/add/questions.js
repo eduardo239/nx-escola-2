@@ -48,13 +48,13 @@ const Questions = ({ subjects }) => {
       return;
     }
     if (correct === null) {
-      toast.error('Por favor escolha a alternativa correta.', {
+      toast.error('Por favor, escolha a alternativa correta.', {
         id: 'add-question-answer',
       });
       return;
     }
     if (subjectId === '') {
-      toast.error('Selecione a matéria.', {
+      toast.error('Por favor, selecione a matéria.', {
         id: 'add-question-subject-id',
       });
       return;

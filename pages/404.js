@@ -9,7 +9,7 @@ const NotFound = () => {
         <meta name="description" content={`${app_name} - ${app_description}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Not Found</h1>
+      <h1>Está página não existe.</h1>
     </div>
   );
 };

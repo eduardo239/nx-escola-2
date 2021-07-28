@@ -1,16 +1,13 @@
 import {
-  LogoFacebook16,
   LogoFacebook24,
-  LogoGithub16,
   LogoGithub24,
-  LogoTwitter16,
   LogoTwitter24,
 } from '@carbon/icons-react';
 import s from '../../styles/Footer.module.scss';
 
 export default function Footer() {
   return (
-    <section className={`${s.container} ${s.footer}`}>
+    <section className={`${s.container} footer-container`}>
       <div className={s.grid} style={{ flex: '1' }}>
         <div style={{ marginLeft: '1rem' }}>
           <h3>App Escola</h3>

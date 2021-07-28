@@ -4,7 +4,6 @@ import { useUser } from '../../utils/useUser';
 import Grades from '../../components/table/user/Grades';
 import Head from 'next/head';
 import Payments from '../../components/table/user/Payments';
-import Courses from '../../components/table/user/Courses';
 import Chart from '../../components/table/user/Chart';
 
 const Profile = ({}) => {
@@ -40,15 +39,16 @@ const Profile = ({}) => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <h5>Conta: {profile.username}</h5>
+        <h5 className="mb-5">Conta: {profile.username}</h5>
+
+        <div className="separator mb-5"></div>
+
         {userGrades && <Chart user_grades={userGrades} />}
         <div className="separator mb-5"></div>
         {userGrades && <Grades user_grades={userGrades} />}
         <div className="separator mb-5"></div>
         {userPayments && <Payments user_payments={userPayments} />}
         <div className="separator mb-5"></div>
-
-        {/* {userCourses && <Courses user_courses={userCourses} />} */}
       </section>
     );
 

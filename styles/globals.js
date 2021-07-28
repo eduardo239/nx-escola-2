@@ -13,10 +13,6 @@ export const GlobalStyles = createGlobalStyle`
     box-shadow: var(--shadow-2);
   }
 
-  a {
-    color: ${({ theme }) => theme.primary};
-  }
-
   .primary {
     color: ${({ theme }) => theme.primary};
   }
@@ -31,20 +27,6 @@ export const GlobalStyles = createGlobalStyle`
   
   .black80 {
     color: ${({ theme }) => theme.black80};
-  }
-
-  input, select, textarea {
-    color: ${({ theme }) => theme.text};
-    background-color: ${({ theme }) => theme.bg};
-    border-bottom: 2px solid ${({ theme }) => theme.text}
-  }
-
-  .field label, label {
-    color: ${({ theme }) => theme.text};
-  }
-
-  .field--radio, .list-item {
-   border: 1px solid ${({ theme }) => theme.border};
   }
 
   .button, .button-icon, .icon-button {
@@ -208,69 +190,43 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
-  .menu-header {
-    background-color: ${({ theme }) => theme.primary};
-  }
-  .menu-container ul {
-    background-color: ${({ theme }) => theme.bg};
-  }
-  .menu-container ul a {
+  input, select, textarea {
     color: ${({ theme }) => theme.text};
+    background-color: ${({ theme }) => theme.bg};
+    border-bottom: 2px solid ${({ theme }) => theme.text}
   }
 
-  .separator,
-  .spinner__center > div  {
-    background-color: ${({ theme }) => theme.primary};
+  // LT = BORDER LIGHT GRAY
+  .field--radio, .list-item {
+    border: 1px solid ${({ theme }) => theme.border};
   }
 
-  .question--header {
-    background-color: ${({ theme }) => theme.text};
-  }
-  .question--header > * {
-    color: ${({ theme }) => theme.body};
-  }
-
-  .table-header th {
-    color: var(--white);
-    background-color: ${({ theme }) => theme.primary};
-  }
-
+  // LT = BORDER-BOTTOM LIGHT GRAY
   .table-row td {
     border-bottom: 1px solid ${({ theme }) => theme.border};
   }
-// NORMAL
-  .message {
-    p {
-      color: ${({ theme }) => theme.text};
-    }
-  }
+
+  // LT = TEXT GRAY, BORDER OPACITY
   .message-info {
-    color: ${({ theme }) => theme.black80};
+    color: ${({ theme }) => theme.text};
     border: 1px solid ${({ theme }) => theme.black20};
   }
 
+  // LT = BG WHITE, TEXT GRAY, BORDER GRAY
   .modal-body {
     color: ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.white};
     border-bottom: 2px solid ${({ theme }) => theme.text};
   }
   
-  .navbar-nav ul > li a, .navbar-nav ul > li button {
+ 
+  // navbar links and buttons 
+ .navbar-nav ul > li a, .navbar-nav ul > li button {
     font-size: 0.75rem;
     color: ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.white};
     border-bottom: 1px solid ${({ theme }) => theme.border};
   }
-
-  .dash, .navbar-nav ul {
-    background-color: ${({ theme }) => theme.white};
-    color: ${({ theme }) => theme.text};
-  }
-
-    .subject-header {
-      background-color: ${({ theme }) => theme.text};
-      color: ${({ theme }) => theme.bg};
-    }
 
   // DISABLED
   input:disabled,
@@ -278,5 +234,45 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.bg};
     color: ${({ theme }) => theme.black80};
     border-bottom: 2px solid ${({ theme }) => theme.secondary};
+  }
+
+  // LT = TXT DARK, >> TODO: .message p CHECK
+  .menu-container ul a, .message p, .field label, label {
+    color: ${({ theme }) => theme.text};
+  }
+  // LT = BG WHITE
+  .menu-container ul {
+    background-color: ${({ theme }) => theme.body};
+  }
+  // LT = BG WHITE, TEXT GRAY
+  .dash, .navbar-nav ul {
+    background-color: ${({ theme }) => theme.body};
+    color: ${({ theme }) => theme.text};
+  }
+ 
+  // BG PRIMARY
+ .menu-header, .table-header th{
+    background-color: ${({ theme }) => theme.primary};
+  }
+
+  // TEXT PRIMARY
+  a {
+    color: ${({ theme }) => theme.primary};
+  }
+
+  // LT = TEXT WHITE
+  .table-header th {
+    color: ${({ theme }) => theme.white};
+  }
+
+  // LT = BG WHITE, TXT GRAY
+  .footer-container,.subject-header, .question--header, .question--header > * {
+    background-color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.bg};
+  }
+  
+  // LT = BG WHITE
+   .separator, .spinner__center > div {
+    background-color: ${({ theme }) => theme.text};
   }
 `;
