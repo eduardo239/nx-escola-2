@@ -51,7 +51,7 @@ const Chart = ({ user_grades }) => {
       <Input
         type="number"
         placeholder="Mostrar #n últimas notas .."
-        label="Number of results"
+        label={`Mostrar as ${length} últimas notas`}
         id="add-course-results"
         value={length}
         onChange={(e) => setLength(e.target.value)}

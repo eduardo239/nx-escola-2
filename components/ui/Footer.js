@@ -8,14 +8,11 @@ import s from '../../styles/Footer.module.scss';
 export default function Footer() {
   return (
     <section className={`${s.container} footer-container`}>
-      <div className={s.grid} style={{ flex: '1' }}>
-        <div style={{ marginLeft: '1rem' }}>
+      <div className={s.grid} style={{ flex: '1', padding: '1rem' }}>
+        <div>
           <h3>App Escola</h3>
         </div>
-        <ul
-          className="flex-center-center gap-5"
-          style={{ marginRight: '1rem' }}
-        >
+        <ul className="flex-center-center gap-5">
           <li>
             <LogoGithub24 />
           </li>
@@ -27,10 +24,7 @@ export default function Footer() {
           </li>
         </ul>
       </div>
-      <div
-        className={s.grid}
-        style={{ marginTop: '2rem', marginBottom: '1rem' }}
-      >
+      <div className={s.grid} style={{ margin: '1rem', padding: '1rem' }}>
         <small>
           © Todos os direitos reservados - {new Date().getFullYear()}
         </small>

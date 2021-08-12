@@ -118,11 +118,11 @@ const Subject = ({ courses }) => {
           <Button primary type="submit" onClick={handleAddSubject}>
             Salvar <Save16 />
           </Button>
-
-          <Button secondary onClick={() => router.push('/admin/add/questions')}>
-            Adicionar Perguntas <NextOutline16 />
-          </Button>
         </div>
+
+        <Button secondary onClick={() => router.push('/admin/add/questions')}>
+          Adicionar Perguntas <NextOutline16 />
+        </Button>
       </section>
     );
   else

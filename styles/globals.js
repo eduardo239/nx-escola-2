@@ -16,7 +16,7 @@ export const GlobalStyles = createGlobalStyle`
   .primary {
     color: ${({ theme }) => theme.primary};
   }
-  
+
   .secondary {
     color: ${({ theme }) => theme.secondary};
   }
@@ -24,7 +24,7 @@ export const GlobalStyles = createGlobalStyle`
   .white {
     color: ${({ theme }) => theme.white};
   }
-  
+
   .black80 {
     color: ${({ theme }) => theme.black80};
   }
@@ -43,7 +43,7 @@ export const GlobalStyles = createGlobalStyle`
       }
     }
   }
- 
+
   .button--primary, .button-icon--primary, .icon-button--primary {
     color: var(--white);
     background-color: ${({ theme }) => theme.primary};
@@ -122,7 +122,7 @@ export const GlobalStyles = createGlobalStyle`
         inset 0 0 0 2px var(--white);
     }
   }
-  
+
   .button-link--white {
     color:  ${({ theme }) => theme.black};
     background-color: transparent;
@@ -154,7 +154,7 @@ export const GlobalStyles = createGlobalStyle`
        box-shadow: inset 0 0 0 1px ${({ theme }) => theme.primaryActive};
     }
   }
-  
+
   .button-outline--secondary {
     color:  ${({ theme }) => theme.secondary};
     background-color: transparent;
@@ -218,9 +218,9 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.white};
     border-bottom: 2px solid ${({ theme }) => theme.text};
   }
-  
- 
-  // navbar links and buttons 
+
+
+  // navbar links and buttons
  .navbar-nav ul > li a, .navbar-nav ul > li button {
     font-size: 0.75rem;
     color: ${({ theme }) => theme.text};
@@ -236,7 +236,7 @@ export const GlobalStyles = createGlobalStyle`
     border-bottom: 2px solid ${({ theme }) => theme.secondary};
   }
 
-  // LT = TXT DARK, >> TODO: .message p CHECK
+  // LT = TXT DARK
   .menu-container ul a, .message p, .field label, label {
     color: ${({ theme }) => theme.text};
   }
@@ -249,7 +249,7 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
   }
- 
+
   // BG PRIMARY
  .menu-header, .table-header th{
     background-color: ${({ theme }) => theme.primary};
@@ -262,7 +262,7 @@ export const GlobalStyles = createGlobalStyle`
 
   // LT = TEXT WHITE
   .table-header th {
-    color: ${({ theme }) => theme.white};
+    color: #fff;
   }
 
   // LT = BG WHITE, TXT GRAY
@@ -270,7 +270,7 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.text};
     color: ${({ theme }) => theme.bg};
   }
-  
+
   // LT = BG WHITE
    .separator, .spinner__center > div {
     background-color: ${({ theme }) => theme.text};

@@ -95,7 +95,7 @@ const Courses = ({}) => {
     }
     await getDatas('courses');
     setLoading(false);
-    setModal(!modal);
+    setModalDelete(false);
   };
 
   useEffect(() => {

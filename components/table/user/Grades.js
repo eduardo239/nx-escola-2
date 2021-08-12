@@ -4,7 +4,7 @@ import { ButtonIcon, IconOnly } from '../../ui/Form';
 import { TrashCan16 } from '@carbon/icons-react';
 import { formatDate, timeFromX } from '../../../utils';
 
-const headers = ['Curso', 'Matéria', 'Nota', 'Atualizado em', 'Op'];
+const headers = ['Curso', 'Matéria', 'Nota', 'Atualizado em'];
 
 export default function MyGrades({ user_grades }) {
   const [loading, setLoading] = useState(false);
@@ -23,24 +23,16 @@ export default function MyGrades({ user_grades }) {
     }
   };
   const mapUserGrades = () => {
-    return user_grades.map((x) => (
-      <tr key={x.id} className="table-row">
-        <td>{x.subject_id.course_id.name}</td>
-        <td>{x.subject_id.name}</td>
-        <td className={resultPass(x.result)}>{x.result}</td>
-        <td>{formatDate(x.updated_at)}</td>
-        <td>
-          <IconOnly
-            small
-            disabled={loading}
-            danger
-            onClick={() => handleModal(x.id)}
-          >
-            <TrashCan16 />
-          </IconOnly>
-        </td>
-      </tr>
-    ));
+    return user_grades
+      .map((x) => (
+        <tr key={x.id} className="table-row">
+          <td>{x.subject_id.course_id.name}</td>
+          <td>{x.subject_id.name}</td>
+          <td className={resultPass(x.result)}>{x.result}</td>
+          <td>{formatDate(x.updated_at)}</td>
+        </tr>
+      ))
+      .reverse();
   };
   return (
     <section>

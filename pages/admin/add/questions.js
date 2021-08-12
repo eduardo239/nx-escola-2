@@ -87,8 +87,8 @@ const Questions = ({ subjects }) => {
         <h1>Criar questões</h1>
 
         <Textarea
-          label="Question"
-          placeholder="Question here .."
+          label="Pergunta"
+          placeholder="Escreva a pergunta aqui .."
           rows="3"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
@@ -97,8 +97,8 @@ const Questions = ({ subjects }) => {
         <form onSubmit={handleAddAlternative} className="mb-5">
           <Input
             type="text"
-            placeholder="Alternative .."
-            label="Alternative"
+            placeholder="Escreva a alternativa aqui .."
+            label="Alternativa"
             id="add-question-alternative"
             value={alternative}
             onChange={(e) => setAlternative(e.target.value)}
