@@ -4,9 +4,9 @@ import { useUser } from '../utils/useUser';
 import { useRouter } from 'next/router';
 import { Login16, LogoGithub16 } from '@carbon/icons-react';
 import { Button, Input } from '../components/ui/Form';
+import { app_description, app_name } from '../utils/constants';
 import toast, { Toaster } from 'react-hot-toast';
 import Head from 'next/head';
-import { app_description, app_name } from '../utils/constants';
 import Spinner from '../components/ui/Spinner';
 
 const Login = () => {

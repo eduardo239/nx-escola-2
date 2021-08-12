@@ -17,10 +17,10 @@ import Spinner from '../../components/ui/Spinner';
 import s from '../../styles/Course.module.scss';
 
 export default function Course({ course, subjects }) {
-  const { userProfile, user, profile, getUserCourses, userCourses } = useUser();
+  const { user, profile, getUserCourses, userCourses } = useUser();
   const router = useRouter();
 
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [owned, setOwned] = useState(false);
 

@@ -110,7 +110,7 @@ const Balance = () => {
             </div>
 
             <Button primary type="submit">
-              Próximo <NextOutline16 />
+              Salvar <NextOutline16 />
             </Button>
           </form>
         </div>

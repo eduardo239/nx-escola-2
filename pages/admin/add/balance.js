@@ -5,7 +5,7 @@ import { Send16 } from '@carbon/icons-react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useUser } from '../../../utils/useUser';
 import { formatMoney } from '../../../utils';
-import Spinner from '../../../components/ui/Spinner';
+// import Spinner from '../../../components/ui/Spinner';
 
 const Balance = ({ users }) => {
   const { updateBalance, user, profile } = useUser();

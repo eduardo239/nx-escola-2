@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
-import { NextFilled16, NextOutline16, Save16 } from '@carbon/icons-react';
-import {
-  Button,
-  ButtonIcon,
-  Input,
-  Textarea,
-} from '../../../components/ui/Form';
+import { NextOutline16, Save16 } from '@carbon/icons-react';
+import { ButtonIcon, Input, Textarea } from '../../../components/ui/Form';
 import { supabase } from '../../../utils/supabase';
 import toast, { Toaster } from 'react-hot-toast';
 import { useUser } from '../../../utils/useUser';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 
 const Course = () => {
   const { user, profile } = useUser();
